@@ -8,9 +8,9 @@ import Health
 class GenerateTile:
     def __init__(self, tileType):
         self.tileType = tileType
-        self.tileResourceWood = 0
-        self.tileResourceStone = 0
-        self.tileResourceOre = 0
+        self.wood = 0
+        self.stone = 0
+        self.ore = 0
         
 
     def generate_tile(self, x, y, tilesize, screen):
@@ -40,3 +40,6 @@ class GenerateTile:
             self.tileResourceWood = 0
             self.tileResourceStone = 0
             self.tileResourceOre = 0
+
+    def changeResourceAmount(self, amount):
+        
