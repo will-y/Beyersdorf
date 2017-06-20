@@ -1,10 +1,11 @@
 import pygame as pg
 import sys
+import Health
 
 class Main():
     def __init__(self):
-        self.width = 1024
-        self.height = 1024
+        self.width = 1000
+        self.height = 1000
         self.screen = pg.display.set_mode((self.width, self.height))
         self.background = pg.Surface(self.screen.get_size())
         self.background = self.background.convert()
@@ -12,8 +13,11 @@ class Main():
         self.clock = pg.time.Clock()
 
     def runGame(self):
+        healthBar = Health.Health((0, 0), 100, self.screen)
         while(True):
             self.clock.tick(10)
+            
+            healthBar.drawHealth(100, 50)
 
             for event in pg.event.get():
                 if(event.type == pg.QUIT):
