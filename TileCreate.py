@@ -1,11 +1,8 @@
 import pygame as pg
 import time
 import math
-<<<<<<< HEAD
 import random
-=======
 import Health
->>>>>>> 4c659034fbea86acd285df2a940255a18dfcdb32
 
 """Creates tile"""
 class GenerateTile:
