@@ -12,7 +12,7 @@ class GenerateTile:
         self.tileResourceOre = 0
 
     def generate_tile(self, x, y, tilesize):
-        tile = pg.rect((x*tilesize, y*tilesize),(tilesize, tilesize))
+        tile = pg.Rect((x*tilesize, y*tilesize),(tilesize, tilesize))
 
     def generate_Resources(self,tileType):
         pass
