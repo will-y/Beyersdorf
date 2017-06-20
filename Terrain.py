@@ -9,21 +9,12 @@ class Terrain():
         self.boardNum = boardNum
         self.screenWidth = screenWidth
         self.tileWidth = screenWidth/boardNum
+        self.board = []
 
     def generate_board(self):
-        board = []
         for i in range(self.boardNum):
             row = []
-            for j in range(boardSize):
-                row.append(GenerateTile.)
-            board.append(row)
-
-class GenerateTile:
-
-    def __init__(self, tileType,):
-        self.tileType = tileType
-        self.tileResource1
-        self.tileResource2
-        self.tileResource3
-
-    def generate_tile(self):
+            for j in range(self.boardNum):
+                tile = GenerateTile(0)
+                row.append(tile.generate_tile(i,j,self.tileWidth))
+            self.board.append(row)
