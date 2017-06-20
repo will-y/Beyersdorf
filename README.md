@@ -1,1 +1,1 @@
-The Third Worst Game
+The Third Worst Game in the Wild West
