@@ -7,8 +7,8 @@ class Main_Menu:
         # Screen Settings
         self.width = 800
         self.height = 800
-        self.screen = pg.display.set_mode((self.width, self.height))
-        self.background = pg.Surface(self.screen.get_size())
+        self.startscreen = pg.display.set_mode((self.width, self.height))
+        self.background = pg.Surface(self.startscreen.get_size())
         self.background = self.background.convert()
         self.screen_color = (255,255,255)
         self.clock = pg.time.Clock()
@@ -17,9 +17,6 @@ class Main_Menu:
         self.tile_height = None
         # Keys Pressed
         self.keys = []
-    
-    def ask(self, screen, question):
-      pass  
 
     def runScreen(self):
         pg.init()
@@ -60,11 +57,13 @@ class Main_Menu:
                 self.keys.append("9")
                 time.sleep(0.1)
             if key[pg.K_RETURN]:
+                # self.startscreen.fill(self.screen_color)
+                # sys.exit()
                 break
             for event in events:
                 if event.type == pg.QUIT:
                     sys.exit()
-            self.screen.fill(self.screen_color)
+            self.startscreen.fill(self.screen_color)
             textBox.update(events)
-            textBox.draw(self.screen)
+            textBox.draw(self.startscreen)
             pg.display.update()

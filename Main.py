@@ -1,9 +1,4 @@
-import pygame as pg
-import sys
-import Health
-import Terrain
-import math
-import UserInterface
+import pygame as pg, sys, Health, Terrain, math, UserInterface, MainMenu
 
 class Main():
     def __init__(self):
@@ -26,6 +21,11 @@ class Main():
             return (self.xCoord, self.yCoord)
 
     def runGame(self):
+        main_menu = MainMenu.Main_Menu()
+        main_menu.runScreen()
+        self.screen = pg.display.set_mode((math.floor(self.width* 3/2), self.height))
+        self.screen.fill(pg.Color('white'))
+        # main_menu.width = self.width
         terrainobject = Terrain.Terrain(10, self.width)
         terrainobject.generate_board(self.screen)
         userInterface = UserInterface.UserInterface(self.screen)
