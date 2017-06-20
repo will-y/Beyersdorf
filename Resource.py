@@ -1,10 +1,14 @@
 import math
 import time
 
+"""Class resource takes in a type of resource and the amount it has to store"""
 class Resource():
     def __init__(self,type,amount):
-        self.type = type #TYPE OF RESOURCE IE: WOOD, STONE, IRON, etc
+        self.type = type
         self.amount = amount
-    
-    def edit(self,theAmount): #ADDS RESOURCES TO AMOUNT STORED AS THE CURRENT RESOURCE
+    """Edits the amount of the resource that it is currently holding"""
+    def edit(self,theAmount):
         self.amount+=theAmount
+    """Overwrites the current # of resources ont he tile"""
+    def set(self,theAmount):
+        self.amount=theAmount
