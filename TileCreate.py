@@ -14,7 +14,7 @@ class GenerateTile:
         
 
     def generate_tile(self, x, y, tilesize, screen):
-        tile = pg.Rect((x*tilesize, y*tilesize),(tilesize, tilesize))
+        self.tile = pg.Rect((x*tilesize, y*tilesize),(tilesize, tilesize))
         pg.draw.rect(screen, pg.Color("black"), (x*tilesize, y*tilesize,tilesize, tilesize), 1)
         healthBar = Health.Health((x*tilesize, y*tilesize), 100, screen)
         healthBar.drawHealth(100, 100)
