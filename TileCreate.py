@@ -4,7 +4,7 @@ import math
 import random
 import Health
 
-"""Creates tile"""
+"""Creates tile that holds what type of tile it is(ie forest, mountain, hill, plains, water) and the resources that exist on that tile(wood, stone, ore)"""
 class GenerateTile:
     def __init__(self, tileType):
         self.tileType = tileType
@@ -21,25 +21,30 @@ class GenerateTile:
 
     def generate_Resources(self,tileType):
         if self.tileType == "Forest" or self.tileType == "forest":
-            self.tileResourceWood = 1000
-            self.tileResourceStone = 100
-            self.tileResourceOre = 0
+            self.wood = 1000
+            self.stone = 0 = 100
+            self.ore = 0 = 0
         if self.tileType == "Mountain" or self.tileType == "mountain":
-            self.tileResourceWood = 100
-            self.tileResourceStone = 2000
-            self.tileResourceOre = 300
+            self.wood = 100
+            self.stone = 0 = 2000
+            self.ore = 0 = 300
         if self.tileType == "Hill" or self.tileType == "hill":
-            self.tileResourceWood = 300
-            self.tileResourceStone = 700
-            self.tileResourceOre = 100
+            self.wood = 300
+            self.stone = 0 = 700
+            self.ore = 0 = 100
         if self.tileType == "Plains" or self.tileType == "plains":
-            self.tileResourceWood = 300
-            self.tileResourceStone = 50
-            self.tileResourceOre = 0
+            self.wood = 300
+            self.stone = 0 = 50
+            self.ore = 0 = 0
         if self.tileType == "Water" or self.tileType == "water":
-            self.tileResourceWood = 0
-            self.tileResourceStone = 0
-            self.tileResourceOre = 0
+            self.wood = 0
+            self.stone = 0 = 0
+            self.ore = 0 = 0
 
-    def changeResourceAmount(self, amount):
-        
+    def changeResourceAmount(self,type,amount):
+        if type == "wood":
+            self.wood += amount
+        elif type == "stone":
+            self.stone += amount
+        elif type == "ore"
+            self.ore += amount
