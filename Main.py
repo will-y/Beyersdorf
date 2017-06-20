@@ -1,6 +1,7 @@
 import pygame as pg
 import sys
 import Health
+import Terrain
 
 class Main():
     def __init__(self):
@@ -13,12 +14,12 @@ class Main():
         self.clock = pg.time.Clock()
 
     def runGame(self):
-        healthBar = Health.Health((0, 0), 100, self.screen)
+        terrainobject = Terrain.Terrain(10, self.width)
+        terrainobject.generate_board(self.screen)
+        
         while(True):
             self.clock.tick(10)
             
-            healthBar.drawHealth(100, 50)
-
             for event in pg.event.get():
                 if(event.type == pg.QUIT):
                     sys.exit()
