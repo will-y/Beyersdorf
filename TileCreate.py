@@ -22,29 +22,29 @@ class GenerateTile:
     def generate_Resources(self,tileType):
         if self.tileType == "Forest" or self.tileType == "forest":
             self.wood = 1000
-            self.stone = 0 = 100
-            self.ore = 0 = 0
+            self.stone = 100
+            self.ore = 0
         if self.tileType == "Mountain" or self.tileType == "mountain":
             self.wood = 100
-            self.stone = 0 = 2000
-            self.ore = 0 = 300
+            self.stone = 2000
+            self.ore = 300
         if self.tileType == "Hill" or self.tileType == "hill":
             self.wood = 300
-            self.stone = 0 = 700
-            self.ore = 0 = 100
+            self.stone = 700
+            self.ore = 100
         if self.tileType == "Plains" or self.tileType == "plains":
             self.wood = 300
-            self.stone = 0 = 50
-            self.ore = 0 = 0
+            self.stone = 50
+            self.ore = 0
         if self.tileType == "Water" or self.tileType == "water":
             self.wood = 0
-            self.stone = 0 = 0
-            self.ore = 0 = 0
+            self.stone = 0
+            self.ore = 0
 
     def changeResourceAmount(self,type,amount):
         if type == "wood":
             self.wood += amount
         elif type == "stone":
             self.stone += amount
-        elif type == "ore"
+        elif type == "ore":
             self.ore += amount
