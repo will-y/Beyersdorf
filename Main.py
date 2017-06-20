@@ -3,6 +3,7 @@ import sys
 import Health
 import Terrain
 import math
+import UserInterface
 
 class Main():
     def __init__(self):
@@ -27,6 +28,8 @@ class Main():
     def runGame(self):
         terrainobject = Terrain.Terrain(10, self.width)
         terrainobject.generate_board(self.screen)
+        userInterface = UserInterface.UserInterface(self.screen)
+        userInterface.drawInterface()
         
         while(True):
             self.clock.tick(10)
