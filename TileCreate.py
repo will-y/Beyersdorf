@@ -1,8 +1,7 @@
 import pygame as pg, time, math, Health
 
 class GenerateTile:
-    """Creates tile that holds what type of tile it is(ie forest, mountain, hill, 
-    plains, water) and the resources that exist on that tile(wood, stone, ore)"""
+    """Creates tile that holds what type of tile it is(ie forest, mountain, hill, plains, water) and the resources that exist on that tile(wood, stone, ore)"""
 
     def __init__(self, tileType):
         self.tileType = tileType

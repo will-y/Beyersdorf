@@ -28,6 +28,14 @@ class UserInterface():
         self.tabButtonColor = pg.Color(145, 145, 145)
         self.tabButtonSelectedColor = pg.Color(99, 99, 99)
 
+        self.tabButton2Height = 25
+        self.tabButton2Width = 100
+        self.tabButton2XValue = self.tabButtonXValue + (self.tabButtonWidth * 2 - self.tabButton2Width * 3)/2
+        self.tabButton2YValue = 450
+
+        #CURRENT BUILDING TAB: RESOURCE = 0, MILITARY = 1, INFRASTRUCTURE = 2
+        self.currentBuildingTab = 0
+
     def drawInterface(self):
         pg.draw.rect(self.screen, self.rectColor, (self.rectXPos, self.rectYPos, self.rectWidth, self.rectHeight))
         self.screen.blit(self.resourceText, (1125, 25))
@@ -38,12 +46,32 @@ class UserInterface():
         self.screen.blit(self.popCount, (1050, 300))
 
         if(not self.inspector):
+            #BUILDING SELECTED
             #LEFT TAB: BUILDING
             pg.draw.rect(self.screen, self.tabButtonSelectedColor, (self.tabButtonXValue, self.tabButtonYValue, self.tabButtonWidth, self.tabButtonHeight))
             #RIGHT TAB: INSPECTOR
             pg.draw.rect(self.screen, self.tabButtonColor, (self.tabButtonXValue + self.tabButtonWidth, self.tabButtonYValue, self.tabButtonWidth, self.tabButtonHeight))
+            #DRAW BOTTOM TABS
+            if(self.currentBuildingTab == 0):
+                pg.draw.rect(self.screen, self.tabButtonSelectedColor, (self.tabButton2XValue, self.tabButton2YValue, self.tabButton2Width, self.tabButton2Height))
+                pg.draw.rect(self.screen, self.tabButtonColor, (self.tabButton2XValue + self.tabButton2Width, self.tabButton2YValue, self.tabButton2Width, self.tabButton2Height))
+                pg.draw.rect(self.screen, self.tabButtonColor, (self.tabButton2XValue + self.tabButton2Width * 2, self.tabButton2YValue, self.tabButton2Width, self.tabButton2Height))
+
+            elif(self.currentBuildingTab == 1):
+                pg.draw.rect(self.screen, self.tabButtonColor, (self.tabButton2XValue, self.tabButton2YValue, self.tabButton2Width, self.tabButton2Height))
+                pg.draw.rect(self.screen, self.tabButtonSelectedColor, (self.tabButton2XValue + self.tabButton2Width, self.tabButton2YValue, self.tabButton2Width, self.tabButton2Height))
+                pg.draw.rect(self.screen, self.tabButtonColor, (self.tabButton2XValue + self.tabButton2Width * 2, self.tabButton2YValue, self.tabButton2Width, self.tabButton2Height))
+
+            elif(self.currentBuildingTab == 2):
+                pg.draw.rect(self.screen, self.tabButtonColor, (self.tabButton2XValue, self.tabButton2YValue, self.tabButton2Width, self.tabButton2Height))
+                pg.draw.rect(self.screen, self.tabButtonColor, (self.tabButton2XValue + self.tabButton2Width, self.tabButton2YValue, self.tabButton2Width, self.tabButton2Height))
+                pg.draw.rect(self.screen, self.tabButtonSelectedColor, (self.tabButton2XValue + self.tabButton2Width * 2, self.tabButton2YValue, self.tabButton2Width, self.tabButton2Height))
+            #DRAW DIVIDERS
+            pg.draw.rect(self.screen, self.tabButtonSelectedColor, (self.tabButton2XValue + self.tabButton2Width, self.tabButton2YValue, 2, self.tabButton2Height))
+            pg.draw.rect(self.screen, self.tabButtonSelectedColor, (self.tabButton2XValue + self.tabButton2Width * 2, self.tabButton2YValue, 2, self.tabButton2Height))
             #TODO: DRAW BUILDING OPTIONS
         else:
+            #INSPECTOR SELECTED
             #LEFT TAB: BUILDING
             pg.draw.rect(self.screen, self.tabButtonColor, (self.tabButtonXValue, self.tabButtonYValue, self.tabButtonWidth, self.tabButtonHeight))
             #RIGHT TAB: INSPECTOR
@@ -59,6 +87,21 @@ class UserInterface():
         pg.draw.rect(self.screen, self.rectColor, (self.rectXPos, self.rectYPos, self.rectWidth, self.rectHeight))
         self.drawInterface()
 
+    def goToResourceBuildings(self):
+        self.currentBuildingTab = 0
+        pg.draw.rect(self.screen, self.rectColor, (self.rectXPos, self.rectYPos, self.rectWidth, self.rectHeight))
+        self.drawInterface()
+
+    def goToMilitaryBuildings(self):
+        self.currentBuildingTab = 1
+        pg.draw.rect(self.screen, self.rectColor, (self.rectXPos, self.rectYPos, self.rectWidth, self.rectHeight))
+        self.drawInterface()
+
+    def goToInfrastructureBuildings(self):
+        self.currentBuildingTab = 2
+        pg.draw.rect(self.screen, self.rectColor, (self.rectXPos, self.rectYPos, self.rectWidth, self.rectHeight))
+        self.drawInterface()
+
     def detectClick(self, boardCoords):
         if(pg.mouse.get_pressed()[0]):
             if(boardCoords):
@@ -70,13 +113,28 @@ class UserInterface():
         else:
             return (-1, -1)
 
-    def detectTabChange(self):
-        if(not self.detectClick(False) == (-1, -1)):
-            if((self.tabButtonXValue < self.detectClick(False)[0] < self.tabButtonXValue + self.tabButtonWidth) and (self.inspector == True) and (self.tabButtonYValue < self.detectClick(False)[1] < self.tabButtonYValue + self.tabButtonHeight)):
-                print("Tab 1 clicked")
-                sys.stdout.flush()
-                self.goToBuildingTab()
-            elif(self.tabButtonXValue + self.tabButtonWidth < self.detectClick(False)[0] < self.tabButtonXValue + 2 * self.tabButtonWidth and self.inspector == False and self.tabButtonYValue < self.detectClick(False)[1] < self.tabButtonYValue + self.tabButtonHeight):
-                print("Tab 2 clicked")
-                sys.stdout.flush()
-                self.goToInspectorTab()
+    def detectTabChange(self, tabID):
+        if(tabID == 0):
+            if(not self.detectClick(False) == (-1, -1)):
+                if((self.tabButtonXValue < self.detectClick(False)[0] < self.tabButtonXValue + self.tabButtonWidth) and (self.inspector == True) and (self.tabButtonYValue < self.detectClick(False)[1] < self.tabButtonYValue + self.tabButtonHeight)):
+                    print("Tab 1 clicked")
+                    sys.stdout.flush()
+                    self.goToBuildingTab()
+                elif(self.tabButtonXValue + self.tabButtonWidth < self.detectClick(False)[0] < self.tabButtonXValue + 2 * self.tabButtonWidth and self.inspector == False and self.tabButtonYValue < self.detectClick(False)[1] < self.tabButtonYValue + self.tabButtonHeight):
+                    print("Tab 2 clicked")
+                    sys.stdout.flush()
+                    self.goToInspectorTab()
+        elif(tabID == 1):
+            if(not self.detectClick(False) == (-1, -1)):
+                if(self.tabButton2XValue < self.detectClick(False)[0] < self.tabButton2XValue + self.tabButton2Width and not self.currentBuildingTab == 0 and self.tabButton2YValue < self.detectClick(False)[1] < self.tabButton2YValue + self.tabButton2Height):
+                    print("Switched to Resource Buildings")
+                    sys.stdout.flush()
+                    self.goToResourceBuildings()
+                elif(self.tabButton2XValue + self.tabButton2Width < self.detectClick(False)[0] < self.tabButton2XValue + self.tabButton2Width * 2 and not self.currentBuildingTab == 1 and self.tabButton2YValue < self.detectClick(False)[1] < self.tabButton2YValue + self.tabButton2Height):
+                    print("Switched to Military Buildings")
+                    sys.stdout.flush()
+                    self.goToMilitaryBuildings()
+                elif(self.tabButton2XValue + self.tabButton2Width * 2 < self.detectClick(False)[0] < self.tabButton2XValue + self.tabButton2Width * 3 and not self.currentBuildingTab == 2 and self.tabButton2YValue < self.detectClick(False)[1] < self.tabButton2YValue + self.tabButton2Height):
+                    print("Switched to Infrastructure Buildings")
+                    sys.stdout.flush()
+                    self.goToInfrastructureBuildings()
