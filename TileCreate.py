@@ -10,13 +10,8 @@ class GenerateTile:
         self.stone = 0
         self.ore = 0
         
-<<<<<<< HEAD
     def generate_tile(self, x, y, tilesize, screen):
         tileTypes = ["Forest","Mountain","Hill","Plains","Water"]
-=======
-
-    def generateTile(self, x, y, tilesize, screen):
->>>>>>> 5e4cae07d629794df5f650a2da117e38fa6bbef1
         self.tile = pg.Rect((x*tilesize, y*tilesize),(tilesize, tilesize))
         pg.draw.rect(screen, pg.Color("black"), (x*tilesize, y*tilesize,tilesize, tilesize))
         pg.rect
