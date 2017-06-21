@@ -27,7 +27,7 @@ class Main():
         self.screen.fill(pg.Color('white'))
         # main_menu.width = self.width
         terrainobject = Terrain.Terrain(10, self.width)
-        terrainobject.generate_board(self.screen)
+        terrainobject.generateBoard(self.screen)
         userInterface = UserInterface.UserInterface(self.screen)
         userInterface.drawInterface()
         
