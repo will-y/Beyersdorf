@@ -92,4 +92,13 @@ class Building:
             self.populationAdd = 10
             self.woodCost = 250
             self.stoneCost = 100
-            self.oreCost = 1
+            self.oreCost = 5
+
+            #City
+        if self.buildingType == 8:
+            self.productionRate = 0
+            self.populationCost = 0
+            self.populationAdd = 20
+            self.woodCost = 500
+            self.stoneCost = 300
+            self.oreCost = 50
