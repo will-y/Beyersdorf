@@ -1,8 +1,7 @@
 import pygame as pg, time, math, TileCreate as tc, random
 
 class Terrain():
-"""Makes the world as we know it"""
-
+    """Makes the world as we know it"""
     def __init__(self, boardNum, screenWidth):
         self.boardNum = boardNum
         self.screenWidth = screenWidth
