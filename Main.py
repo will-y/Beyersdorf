@@ -1,4 +1,4 @@
-import pygame as pg, sys, Health, Terrain, math, UserInterface, MainMenu
+import pygame as pg, sys, Health, Terrain, math, UserInterface, MainMenu, Buildings
 
 class Main():
     def __init__(self):
@@ -11,6 +11,7 @@ class Main():
         self.clock = pg.time.Clock()
         self.xCoord = 0
         self.yCoord = 0
+        self.tilesize = 100
 
     def detectClick(self, boardCoords):
         #for event in pg.event.get():
@@ -18,6 +19,7 @@ class Main():
             if(boardCoords):
                 self.xCoord = (int)(pg.mouse.get_pos()[0]/100)
                 self.yCoord = (int)(pg.mouse.get_pos()[1]/100)
+                self.building = Buildings.Building(0, self.xCoord*self.tilesize, self.yCoord*self.tilesize, self.tilesize, self.screen)
                 return (self.xCoord, self.yCoord)
             else:
                 return pg.mouse.get_pos() 
@@ -41,7 +43,7 @@ class Main():
                     sys.exit()
             pg.mouse.set_cursor(*pg.cursors.broken_x)
             pg.display.update()
-            #print(self.detectClick(False))
+            self.detectClick(True)
             #sys.stdout.flush()
 
 def main():
