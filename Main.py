@@ -46,7 +46,8 @@ class Main():
             pg.mouse.set_cursor(*pg.cursors.broken_x)
             pg.display.update()
             self.detectClick(True)
-            userInterface.detectTabChange()
+            userInterface.detectTabChange(0)
+            userInterface.detectTabChange(1)
             #sys.stdout.flush()
 
 def main():
