@@ -2,15 +2,16 @@ import math
 import pygame as pg
 import Terrain
 
-"""Class that deals with health of buildings"""
 class Health():
+    """Class that deals with health of buildings"""
+    
     def __init__(self, position, tileSize, screen):
         self.position = position
         self.screen = screen
         self.tileSize = tileSize
 
-    """Draws the health onto a tile givin percentage of health"""
     def drawHealth(self, maxHealth, currentHealth):
+        """Draws the health onto a tile givin percentage of health"""
         percentageHealth = currentHealth/maxHealth
         if not currentHealth == 0 and not percentageHealth == 1:
             if(percentageHealth <= 1/3):
