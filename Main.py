@@ -26,8 +26,8 @@ class Main():
                 return pg.mouse.get_pos() 
 
     def runGame(self):
-        main_menu = MainMenu.Main_Menu()
-        main_menu.runScreen()
+        #main_menu = MainMenu.Main_Menu()
+        #main_menu.runScreen()
         self.screen = pg.display.set_mode((math.floor(self.width* 3/2), self.height))
         self.screen.fill(pg.Color('white'))
         # main_menu.width = self.width

@@ -3,16 +3,36 @@ import sys
 
 class UserInterface():
     def __init__(self, screen):
+        #Init stuff
         self.screen = screen
         self.font = pg.font.SysFont("monospace", 50)
         self.resourceCountFont = pg.font.SysFont("monospace", 30)
-        self.resourceText = self.font.render("Resources", True, pg.Color('black'))
-        self.woodCount = self.resourceCountFont.render("Wood", True, pg.Color('black'))
-        self.stoneCount = self.resourceCountFont.render("Stone", True, pg.Color('black'))
-        self.oreCount = self.resourceCountFont.render("Ore", True, pg.Color('black'))
-        self.foodCount = self.resourceCountFont.render("Food", True, pg.Color('black'))
-        self.popCount = self.resourceCountFont.render("Population", True, pg.Color('black'))
 
+        #Resources List
+        self.resourceText = self.font.render("Resources", True, pg.Color('black'))
+        self.woodCountText = self.resourceCountFont.render("Wood", True, pg.Color('black'))
+        self.stoneCountText = self.resourceCountFont.render("Stone", True, pg.Color('black'))
+        self.oreCountText = self.resourceCountFont.render("Ore", True, pg.Color('black'))
+        self.foodCountText = self.resourceCountFont.render("Food", True, pg.Color('black'))
+        self.popCountText = self.resourceCountFont.render("Population", True, pg.Color('black'))
+
+        #Resource Images
+        self.woodImage = pg.image.load("Images/log.png")
+        self.woodImage = pg.transform.scale(self.woodImage, (70, 45))
+
+        self.stoneImage = pg.image.load("Images/stone.png")
+        self.stoneImage = pg.transform.scale(self.stoneImage, (70, 45))
+
+        self.oreImage = pg.image.load("Images/ore.png")
+        self.oreImage = pg.transform.scale(self.oreImage, (70, 45))
+
+        self.foodImage = pg.image.load("Images/food.png")
+        self.foodImage = pg.transform.scale(self.foodImage, (60, 45))
+
+        self.populationImage = pg.image.load("Images/pop.png")
+        self.populationImage = pg.transform.scale(self.populationImage, (45, 45))
+
+        #Background rectangle dimensions
         self.rectXPos = 1000
         self.rectYPos = 0
         self.rectWidth = 500
@@ -21,6 +41,7 @@ class UserInterface():
 
         self.inspector = False
 
+        #First Tab Dimensions
         self.tabButtonHeight = 35
         self.tabButtonWidth = 200
         self.tabButtonXValue = 1050
@@ -28,6 +49,7 @@ class UserInterface():
         self.tabButtonColor = pg.Color(145, 145, 145)
         self.tabButtonSelectedColor = pg.Color(99, 99, 99)
 
+        #Second Tab Dimensions
         self.tabButton2Height = 25
         self.tabButton2Width = 100
         self.tabButton2XValue = self.tabButtonXValue + (self.tabButtonWidth * 2 - self.tabButton2Width * 3)/2
@@ -37,13 +59,25 @@ class UserInterface():
         self.currentBuildingTab = 0
 
     def drawInterface(self):
+        self.drawResourceBuildings()
         pg.draw.rect(self.screen, self.rectColor, (self.rectXPos, self.rectYPos, self.rectWidth, self.rectHeight))
+
+        #Draw resource names
         self.screen.blit(self.resourceText, (1125, 25))
-        self.screen.blit(self.woodCount, (1050, 100))
-        self.screen.blit(self.stoneCount, (1050, 150))
-        self.screen.blit(self.oreCount, (1050, 200))
-        self.screen.blit(self.foodCount, (1050, 250))
-        self.screen.blit(self.popCount, (1050, 300))
+        self.screen.blit(self.woodCountText, (1050, 100))
+        self.screen.blit(self.stoneCountText, (1050, 150))
+        self.screen.blit(self.oreCountText, (1050, 200))
+        self.screen.blit(self.foodCountText, (1050, 250))
+        self.screen.blit(self.popCountText, (1050, 300))
+
+        #Draw resource images
+        self.screen.blit(self.woodImage, (1130, 95))
+        self.screen.blit(self.stoneImage, (1135, 140))
+        self.screen.blit(self.oreImage, (1110, 190))
+        self.screen.blit(self.foodImage, (1130, 240))
+        self.screen.blit(self.populationImage, (1235, 290))
+
+        #Draw resource Amounts
 
         if(not self.inspector):
             #BUILDING SELECTED
@@ -91,16 +125,31 @@ class UserInterface():
         self.currentBuildingTab = 0
         pg.draw.rect(self.screen, self.rectColor, (self.rectXPos, self.rectYPos, self.rectWidth, self.rectHeight))
         self.drawInterface()
+        self.drawResourceBuildings()
 
     def goToMilitaryBuildings(self):
         self.currentBuildingTab = 1
         pg.draw.rect(self.screen, self.rectColor, (self.rectXPos, self.rectYPos, self.rectWidth, self.rectHeight))
         self.drawInterface()
+        self.drawMilitaryBuildings()
 
     def goToInfrastructureBuildings(self):
         self.currentBuildingTab = 2
         pg.draw.rect(self.screen, self.rectColor, (self.rectXPos, self.rectYPos, self.rectWidth, self.rectHeight))
         self.drawInterface()
+        self.drawInfrastructureBuildings()
+
+    def drawResourceBuildings(self):
+        print("Drawing Resource Buildings")
+        sys.stdout.flush()
+    
+    def drawMilitaryBuildings(self):
+        print("Drawing Military Buildings")
+        sys.stdout.flush()
+
+    def drawInfrastructureBuildings(self):
+        print("Drawing Infrastructure Buildings")
+        sys.stdout.flush()
 
     def detectClick(self, boardCoords):
         if(pg.mouse.get_pressed()[0]):
