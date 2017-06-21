@@ -32,6 +32,13 @@ class UserInterface():
         self.populationImage = pg.image.load("Images/pop.png")
         self.populationImage = pg.transform.scale(self.populationImage, (45, 45))
 
+        #Resource Amounts
+        self.woodCount = self.resourceCountFont.render("1000", True, pg.Color('black'))
+        self.stoneCount = self.resourceCountFont.render("1", True, pg.Color('black'))
+        self.oreCount = self.resourceCountFont.render("72", True, pg.Color('black'))
+        self.foodCount = self.resourceCountFont.render("60", True, pg.Color('black'))
+        self.populationCount = self.resourceCountFont.render("100000", True, pg.Color('black'))
+
         #Background rectangle dimensions
         self.rectXPos = 1000
         self.rectYPos = 0
@@ -78,6 +85,11 @@ class UserInterface():
         self.screen.blit(self.populationImage, (1235, 290))
 
         #Draw resource Amounts
+        self.screen.blit(self.woodCount, (1210, 100))
+        self.screen.blit(self.stoneCount, (1210, 150))
+        self.screen.blit(self.oreCount, (1200, 200))
+        self.screen.blit(self.foodCount, (1210, 250))
+        self.screen.blit(self.populationCount, (1305, 300))
 
         if(not self.inspector):
             #BUILDING SELECTED
