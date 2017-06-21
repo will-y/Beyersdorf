@@ -36,6 +36,7 @@ class Main():
         userInterface = UserInterface.UserInterface(self.screen)
         userInterface.drawInterface()
         
+        
         while(True):
             self.clock.tick(10)
             
@@ -45,6 +46,7 @@ class Main():
             pg.mouse.set_cursor(*pg.cursors.broken_x)
             pg.display.update()
             self.detectClick(True)
+            userInterface.detectTabChange()
             #sys.stdout.flush()
 
 def main():

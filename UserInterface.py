@@ -20,6 +20,10 @@ class UserInterface():
 
         self.inspector = False
 
+        self.tabButtonHeight = 25
+        self.tabButtonWidth = 500
+        self.tabButton = 1050
+
     def drawInterface(self):
         pg.draw.rect(self.screen, pg.Color(183, 183, 183), (self.rectXPos, self.rectYPos, self.rectWidth, self.rectHeight))
         self.screen.blit(self.resourceText, (1125, 25))
@@ -28,7 +32,6 @@ class UserInterface():
         self.screen.blit(self.oreCount, (1050, 200))
         self.screen.blit(self.foodCount, (1050, 250))
         self.screen.blit(self.popCount, (1050, 300))
-        self.detectTabChange()
 
         if(not self.inspector):
             #LEFT TAB
@@ -68,10 +71,8 @@ class UserInterface():
             if(1050 < self.detectClick(False)[0] < 1250):
                 print("Tab 1 clicked")
                 sys.stdout.flush()
-                break
+                self.goToBuildingTab()
             elif(1250 < self.detectClick(False)[0] < 1450):
                 print("Tab 2 clicked")
                 sys.stdout.flush()
-                break
-            else:
-                print("No Tab Clicked")
+                self.goToInspectorTab()
