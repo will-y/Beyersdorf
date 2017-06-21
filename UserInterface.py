@@ -17,15 +17,19 @@ class UserInterface():
         self.rectYPos = 0
         self.rectWidth = 500
         self.rectHeight = 1000
+        self.rectColor = pg.Color(183, 183, 183)
 
         self.inspector = False
 
-        self.tabButtonHeight = 25
-        self.tabButtonWidth = 500
-        self.tabButton = 1050
+        self.tabButtonHeight = 35
+        self.tabButtonWidth = 200
+        self.tabButtonXValue = 1050
+        self.tabButtonYValue = 400
+        self.tabButtonColor = pg.Color(145, 145, 145)
+        self.tabButtonSelectedColor = pg.Color(99, 99, 99)
 
     def drawInterface(self):
-        pg.draw.rect(self.screen, pg.Color(183, 183, 183), (self.rectXPos, self.rectYPos, self.rectWidth, self.rectHeight))
+        pg.draw.rect(self.screen, self.rectColor, (self.rectXPos, self.rectYPos, self.rectWidth, self.rectHeight))
         self.screen.blit(self.resourceText, (1125, 25))
         self.screen.blit(self.woodCount, (1050, 100))
         self.screen.blit(self.stoneCount, (1050, 150))
@@ -34,25 +38,25 @@ class UserInterface():
         self.screen.blit(self.popCount, (1050, 300))
 
         if(not self.inspector):
-            #LEFT TAB
-            pg.draw.rect(self.screen, pg.Color(99, 99, 99), (1050, 500, 200, 25))
-            #RIGHT TAB
-            pg.draw.rect(self.screen, pg.Color(145, 145, 145), (1250, 500, 200, 25))
+            #LEFT TAB: BUILDING
+            pg.draw.rect(self.screen, self.tabButtonSelectedColor, (self.tabButtonXValue, self.tabButtonYValue, self.tabButtonWidth, self.tabButtonHeight))
+            #RIGHT TAB: INSPECTOR
+            pg.draw.rect(self.screen, self.tabButtonColor, (self.tabButtonXValue + self.tabButtonWidth, self.tabButtonYValue, self.tabButtonWidth, self.tabButtonHeight))
             #TODO: DRAW BUILDING OPTIONS
         else:
-            #LEFT TAB
-            pg.draw.rect(self.screen, pg.Color(145, 145, 145), (1050, 500, 200, 25))
-            #RIGHT TAB
-            pg.draw.rect(self.screen, pg.Color(99, 99, 99), (1250, 500, 200, 25))
+            #LEFT TAB: BUILDING
+            pg.draw.rect(self.screen, self.tabButtonColor, (self.tabButtonXValue, self.tabButtonYValue, self.tabButtonWidth, self.tabButtonHeight))
+            #RIGHT TAB: INSPECTOR
+            pg.draw.rect(self.screen, self.tabButtonSelectedColor, (self.tabButtonXValue + self.tabButtonWidth, self.tabButtonYValue, self.tabButtonWidth, self.tabButtonHeight))
 
     def goToBuildingTab(self):
         self.inspector = False
-        pg.draw.rect(self.screen, pg.Color(183, 183, 183), (self.rectXPos, self.rectYPos, self.rectWidth, self.rectHeight))
+        pg.draw.rect(self.screen, self.rectColor, (self.rectXPos, self.rectYPos, self.rectWidth, self.rectHeight))
         self.drawInterface()
 
     def goToInspectorTab(self):
         self.inspector = True
-        pg.draw.rect(self.screen, pg.Color(183, 183, 183), (self.rectXPos, self.rectYPos, self.rectWidth, self.rectHeight))
+        pg.draw.rect(self.screen, self.rectColor, (self.rectXPos, self.rectYPos, self.rectWidth, self.rectHeight))
         self.drawInterface()
 
     def detectClick(self, boardCoords):
@@ -68,11 +72,11 @@ class UserInterface():
 
     def detectTabChange(self):
         if(not self.detectClick(False) == (-1, -1)):
-            if(1050 < self.detectClick(False)[0] < 1250):
+            if((self.tabButtonXValue < self.detectClick(False)[0] < self.tabButtonXValue + self.tabButtonWidth) and (self.inspector == True) and (self.tabButtonYValue < self.detectClick(False)[1] < self.tabButtonYValue + self.tabButtonHeight)):
                 print("Tab 1 clicked")
                 sys.stdout.flush()
                 self.goToBuildingTab()
-            elif(1250 < self.detectClick(False)[0] < 1450):
+            elif(self.tabButtonXValue + self.tabButtonWidth < self.detectClick(False)[0] < self.tabButtonXValue + 2 * self.tabButtonWidth and self.inspector == False and self.tabButtonYValue < self.detectClick(False)[1] < self.tabButtonYValue + self.tabButtonHeight):
                 print("Tab 2 clicked")
                 sys.stdout.flush()
                 self.goToInspectorTab()
