@@ -12,13 +12,15 @@ class Main():
         self.xCoord = 0
         self.yCoord = 0
 
-    def detectClick(self):
+    def detectClick(self, boardCoords):
         #for event in pg.event.get():
         if(pg.mouse.get_pressed()[0]):
-            self.xCoord = (int)(pg.mouse.get_pos()[0]/100)
-            self.yCoord = (int)(pg.mouse.get_pos()[1]/100)
-
-            return (self.xCoord, self.yCoord)
+            if(boardCoords):
+                self.xCoord = (int)(pg.mouse.get_pos()[0]/100)
+                self.yCoord = (int)(pg.mouse.get_pos()[1]/100)
+                return (self.xCoord, self.yCoord)
+            else:
+                return pg.mouse.get_pos() 
 
     def runGame(self):
         main_menu = MainMenu.Main_Menu()
@@ -27,7 +29,7 @@ class Main():
         self.screen.fill(pg.Color('white'))
         # main_menu.width = self.width
         terrainobject = Terrain.Terrain(10, self.width)
-        terrainobject.generate_board(self.screen)
+        terrainobject.generateBoard(self.screen)
         userInterface = UserInterface.UserInterface(self.screen)
         userInterface.drawInterface()
         
@@ -39,7 +41,7 @@ class Main():
                     sys.exit()
             pg.mouse.set_cursor(*pg.cursors.broken_x)
             pg.display.update()
-            #print(self.detectClick())
+            #print(self.detectClick(False))
             #sys.stdout.flush()
 
 def main():

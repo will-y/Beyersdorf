@@ -29,13 +29,22 @@ class UserInterface():
         self.screen.blit(self.popCount, (1050, 300))
 
         if(not self.inspector):
-            pg.draw.rect(self.screen, pg.Color(255, 142, 255), (1050, 500, 200, 50))
+            #LEFT TAB
+            pg.draw.rect(self.screen, pg.Color(99, 99, 99), (1050, 500, 200, 50))
+            #RIGHT TAB
             pg.draw.rect(self.screen, pg.Color(145, 145, 145), (1250, 500, 200, 50))
         else:
-            pg.draw.rect(self.screen, pg.Color(145, 145, 145), (1450, 500, 200, 50))
+            #LEFT TAB
+            pg.draw.rect(self.screen, pg.Color(145, 145, 145), (1050, 500, 200, 50))
+            #RIGHT TAB
+            pg.draw.rect(self.screen, pg.Color(99, 99, 99), (1250, 500, 200, 50))
 
     def goToBuildingTab(self):
         self.inspector = False
+        pg.draw.rect(self.screen, pg.Color(183, 183, 183), (self.rectXPos, self.rectYPos, self.rectWidth, self.rectHeight))
+        self.drawInterface()
 
     def goToInspectorTab(self):
         self.inspector = True
+        pg.draw.rect(self.screen, pg.Color(183, 183, 183), (self.rectXPos, self.rectYPos, self.rectWidth, self.rectHeight))
+        self.drawInterface()
