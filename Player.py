@@ -3,6 +3,7 @@ import math
 """Player class keeps track of that players wood, stone, ore, and food stores"""
 class Player():
     def __init__(self):
+        self.team = 0
         self.playerWood = 0
         self.playerStone = 0
         self.playerOre = 0

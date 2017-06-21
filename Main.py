@@ -1,4 +1,4 @@
-import pygame as pg, sys, Health, Terrain, math, UserInterface, MainMenu, Buildings
+import pygame as pg, sys, Health, Terrain, math, UserInterface, MainMenu, Buildings, Player
 
 class Main():
     def __init__(self):
@@ -13,6 +13,11 @@ class Main():
         self.yCoord = 0
         self.tilesize = 100
 
+    def changeResources(self, player):
+        player.editWood(self.building.woodCost)
+        player.editStone(self.building.stoneCost)
+        player.editWood(self.building.oreCost)
+
     def detectClick(self, boardCoords):
         #for event in pg.event.get():
         if(pg.mouse.get_pressed()[0]):
@@ -21,11 +26,14 @@ class Main():
                 self.yCoord = (int)(pg.mouse.get_pos()[1]/100)
                 if self.xCoord <= 9:
                     self.building = Buildings.Building(0, self.xCoord*self.tilesize, self.yCoord*self.tilesize, self.tilesize, self.screen)
+                    changeResources(self.player1)
                 return (self.xCoord, self.yCoord)
             else:
                 return pg.mouse.get_pos() 
 
     def runGame(self):
+        self.player1 = Player.Player()
+        self.player2 = Player.Player()
         #main_menu = MainMenu.Main_Menu()
         #main_menu.runScreen()
         self.screen = pg.display.set_mode((math.floor(self.width* 3/2), self.height))

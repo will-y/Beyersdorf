@@ -76,7 +76,7 @@ class Building:
             self.stoneCost = 200
             self.oreCost = 5
 
-            #House
+            #HouseCastle
         if self.buildingType == 6:
             self.productionRate = 0
             self.populationCost = 0
@@ -129,3 +129,12 @@ class Building:
             self.woodCost = 300 
             self.stoneCost = 100
             self.oreCost = 10
+
+            #CannonTower
+        if self.buildingType == 12:
+            self.productionRate = 0
+            self.populationCost = 0
+            self.populationAdd = 10
+            self.woodCost = 1000    
+            self.stoneCost = 1000
+            self.oreCost = 200
