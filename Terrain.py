@@ -1,7 +1,7 @@
 import pygame as pg, time, math, TileCreate as tc, random
 
 class Terrain():
-"""Makes the world as we know it"""
+    """Makes the world as we know it"""
 
     def __init__(self, boardNum, screenWidth):
         self.boardNum = boardNum
@@ -16,6 +16,7 @@ class Terrain():
         self.waterColor = (30,144,255)
 
     def generateBoard(self, screen):
+        """Generates the board with different tiles"""
         for i in range(self.boardNum):
             row = []
             for j in range(self.boardNum):
@@ -49,6 +50,7 @@ class Terrain():
         return self.board
     
     def generateLand(self):
+        """Generates the land"""
         getType = random.randint(0,6)
         if getType <= 1:
             self.tileResourceColor = self.forestColor
@@ -60,6 +62,7 @@ class Terrain():
             self.tileResourceColor = self.plainColor
         
     def generateOcean(self):
+        """Generates the ocean zone"""
         # Change the chance of Ocean appearing
         getType = random.randint(0,8)
         if getType == 0:
