@@ -1,4 +1,5 @@
 import pygame as pg
+import sys
 
 class UserInterface():
     def __init__(self, screen):
@@ -27,17 +28,19 @@ class UserInterface():
         self.screen.blit(self.oreCount, (1050, 200))
         self.screen.blit(self.foodCount, (1050, 250))
         self.screen.blit(self.popCount, (1050, 300))
+        self.detectTabChange()
 
         if(not self.inspector):
             #LEFT TAB
-            pg.draw.rect(self.screen, pg.Color(99, 99, 99), (1050, 500, 200, 50))
+            pg.draw.rect(self.screen, pg.Color(99, 99, 99), (1050, 500, 200, 25))
             #RIGHT TAB
-            pg.draw.rect(self.screen, pg.Color(145, 145, 145), (1250, 500, 200, 50))
+            pg.draw.rect(self.screen, pg.Color(145, 145, 145), (1250, 500, 200, 25))
+            #TODO: DRAW BUILDING OPTIONS
         else:
             #LEFT TAB
-            pg.draw.rect(self.screen, pg.Color(145, 145, 145), (1050, 500, 200, 50))
+            pg.draw.rect(self.screen, pg.Color(145, 145, 145), (1050, 500, 200, 25))
             #RIGHT TAB
-            pg.draw.rect(self.screen, pg.Color(99, 99, 99), (1250, 500, 200, 50))
+            pg.draw.rect(self.screen, pg.Color(99, 99, 99), (1250, 500, 200, 25))
 
     def goToBuildingTab(self):
         self.inspector = False
@@ -48,3 +51,27 @@ class UserInterface():
         self.inspector = True
         pg.draw.rect(self.screen, pg.Color(183, 183, 183), (self.rectXPos, self.rectYPos, self.rectWidth, self.rectHeight))
         self.drawInterface()
+
+    def detectClick(self, boardCoords):
+        if(pg.mouse.get_pressed()[0]):
+            if(boardCoords):
+                self.xCoord = (int)(pg.mouse.get_pos()[0]/100)
+                self.yCoord = (int)(pg.mouse.get_pos()[1]/100)
+                return (self.xCoord, self.yCoord)
+            else:
+                return pg.mouse.get_pos()
+        else:
+            return (-1, -1)
+
+    def detectTabChange(self):
+        if(not self.detectClick(False) == (-1, -1)):
+            if(1050 < self.detectClick(False)[0] < 1250):
+                print("Tab 1 clicked")
+                sys.stdout.flush()
+                break
+            elif(1250 < self.detectClick(False)[0] < 1450):
+                print("Tab 2 clicked")
+                sys.stdout.flush()
+                break
+            else:
+                print("No Tab Clicked")
