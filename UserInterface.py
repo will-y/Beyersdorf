@@ -168,7 +168,6 @@ class UserInterface():
         self.populationCount = self.resourceCountFont.render(str(player.playerCurPop + "/" + playerMaxPop), True, pg.Color('black'))
 
 
-
     def drawResourceBuildings(self):
         print("Drawing Resource Buildings")
         sys.stdout.flush()
