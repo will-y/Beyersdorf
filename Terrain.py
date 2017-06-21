@@ -7,16 +7,17 @@ class Terrain():
         self.boardNum = boardNum
         self.screenWidth = screenWidth
         self.tileWidth = math.floor(self.screenWidth/self.boardNum)
-        self.board = []
         # Tile Colors
         self.forestColor = (34,139,34)
         self.hillColor = (152,251,152)
         self.plainColor = (247,218,61)
         self.mountainColor = (205,201,201)
         self.waterColor = (30,144,255)
+        self.tileType = None
 
     def generateBoard(self, screen):
         """Generates the board with different tiles"""
+        self.board = []
         for i in range(self.boardNum):
             row = []
             for j in range(self.boardNum):
@@ -43,10 +44,10 @@ class Terrain():
                     self.generateOcean()
                 else:
                     self.generateLand()
-                tile = tc.GenerateTile(0)
-                row.append(tile.generate_tile(i,j,self.tileWidth, self.tileResourceColor, screen))
+                tile = tc.GenerateTile(self.tileType)
+                tile.generate_tile(i,j,self.tileWidth, self.tileResourceColor, screen)
+                row.append(tile)
             self.board.append(row)
-        print(self.board)
         return self.board
     
     def generateLand(self):
@@ -54,12 +55,16 @@ class Terrain():
         getType = random.randint(0,6)
         if getType <= 1:
             self.tileResourceColor = self.forestColor
+            self.tileType = 0
         elif getType == 2:
             self.tileResourceColor = self.mountainColor
+            self.tileType = 1
         elif getType >= 3 and getType <= 4:
             self.tileResourceColor = self.hillColor
+            self.tileType = 2
         elif getType >= 5 and getType <= 6:
             self.tileResourceColor = self.plainColor
+            self.tileType = 3
         
     def generateOcean(self):
         """Generates the ocean zone"""
@@ -67,11 +72,16 @@ class Terrain():
         getType = random.randint(0,8)
         if getType == 0:
             self.tileResourceColor = self.forestColor
+            self.tileType = 0
         elif getType == 1:
             self.tileResourceColor = self.mountainColor
+            self.tileType = 1
         elif getType == 2:
             self.tileResourceColor = self.hillColor
+            self.tileType = 2
         elif getType == 3:
             self.tileResourceColor = self.plainColor
+            self.tileType = 3
         elif getType >= 4:
             self.tileResourceColor = self.waterColor
+            self.tileType = 4
