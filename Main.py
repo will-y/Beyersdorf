@@ -14,9 +14,9 @@ class Main():
         self.tilesize = 100
 
     def changeResources(self, player):
-        player.editWood(self.building.woodCost)
-        player.editStone(self.building.stoneCost)
-        player.editWood(self.building.oreCost)
+        player.editWood(-self.building.woodCost)
+        player.editStone(-self.building.stoneCost)
+        player.editOre(-self.building.oreCost)
 
     def detectClick(self, boardCoords):
         #for event in pg.event.get():
@@ -26,7 +26,9 @@ class Main():
                 self.yCoord = (int)(pg.mouse.get_pos()[1]/100)
                 if self.xCoord <= 9:
                     self.building = Buildings.Building(0, self.xCoord*self.tilesize, self.yCoord*self.tilesize, self.tilesize, self.screen)
-                    changeResources(self.player1)
+                    self.changeResources(self.player1)
+                    string = str.format("{} {} {}", self.player1.playerWood, self.player1.playerStone, self.player1.playerOre)
+                    print(string)
                 return (self.xCoord, self.yCoord)
             else:
                 return pg.mouse.get_pos() 
