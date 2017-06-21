@@ -18,20 +18,20 @@ class GenerateTile:
 
     def generateResources(self, tileType):
         if self.tileType == "Forest" or self.tileType == "forest":
-            self.wood = 1000
-            self.stone = 100
-            self.ore = 0
+            self.wood = random.randint(750, 1250)
+            self.stone = random.randint(50, 150)
+            self.ore = random.randint(0, 10)
         if self.tileType == "Mountain" or self.tileType == "mountain":
-            self.wood = 100
-            self.stone = 2000
-            self.ore = 300
+            self.wood = random.randint(75, 125)
+            self.stone = random.randint(2000, 4000)
+            self.ore = random.randint(250, 450)
         if self.tileType == "Hill" or self.tileType == "hill":
-            self.wood = 300
-            self.stone = 700
-            self.ore = 100
+            self.wood = random.randint(300, 500)
+            self.stone = random.randint(750, 1500)
+            self.ore = random.randint(75, 150)
         if self.tileType == "Plains" or self.tileType == "plains":
-            self.wood = 300
-            self.stone = 50
+            self.wood = random.randint(200,400)
+            self.stone = random.randint(25, 75)
             self.ore = 0
         if self.tileType == "Water" or self.tileType == "water":
             self.wood = 0
