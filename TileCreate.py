@@ -11,9 +11,20 @@ class GenerateTile:
         self.ore = 0
         
     def generate_tile(self, x, y, tilesize, screen):
-        tileTypes = ["Forest","Mountain","Hill","Plains","Water"]
         self.tile = pg.Rect((x*tilesize, y*tilesize),(tilesize, tilesize))
-        pg.draw.rect(screen, pg.Color("black"), (x*tilesize, y*tilesize,tilesize, tilesize))
+        tileResourceType = random.randint(0,4)
+        tileResourceColor = None
+        if tileResourceType == 0:
+            tileResourceColor = "Forest Green"
+        elif tileResourceType == 1:
+            tileResourceColor = "Snow 3"
+        elif tileResourceType == 2:
+            tileResourceColor = "Spring Green"
+        elif tileResourceType == 3:
+            tileResourceColor = "Pale Green"
+        elif tileResourceType == 4:
+            tileResourceColor = "Dodger Blue"
+        pg.draw.rect(screen, pg.Color(tileResourceColor), (x*tilesize, y*tilesize,tilesize, tilesize))
         pg.rect
         healthBar = Health.Health((x*tilesize, y*tilesize), 100, screen)
         healthBar.drawHealth(100, 100)
