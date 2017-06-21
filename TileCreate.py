@@ -1,21 +1,20 @@
-import pygame as pg
-import time
-import math
-import random
-import Health
+import pygame as pg, time, math, random, Health
 
-"""Creates tile that holds what type of tile it is(ie forest, mountain, hill, plains, water) and the resources that exist on that tile(wood, stone, ore)"""
+# Creates tile that holds what type of tile it is(ie forest, mountain, hill, 
+# plains, water) and the resources that exist on that tile(wood, stone, ore)
 class GenerateTile:
+
     def __init__(self, tileType):
         self.tileType = tileType
         self.wood = 0
         self.stone = 0
         self.ore = 0
         
-
     def generate_tile(self, x, y, tilesize, screen):
+        tileTypes = ["Forest","Mountain","Hill","Plains","Water"]
         self.tile = pg.Rect((x*tilesize, y*tilesize),(tilesize, tilesize))
-        pg.draw.rect(screen, pg.Color("black"), (x*tilesize, y*tilesize,tilesize, tilesize), 1)
+        pg.draw.rect(screen, pg.Color("black"), (x*tilesize, y*tilesize,tilesize, tilesize))
+        pg.rect
         healthBar = Health.Health((x*tilesize, y*tilesize), 100, screen)
         healthBar.drawHealth(100, 100)
 
