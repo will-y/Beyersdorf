@@ -13,13 +13,13 @@ class GenerateTile:
         self.ore = 0
         
 
-    def generate_tile(self, x, y, tilesize, screen):
+    def generateTile(self, x, y, tilesize, screen):
         self.tile = pg.Rect((x*tilesize, y*tilesize),(tilesize, tilesize))
         pg.draw.rect(screen, pg.Color("black"), (x*tilesize, y*tilesize,tilesize, tilesize), 1)
         healthBar = Health.Health((x*tilesize, y*tilesize), 100, screen)
         healthBar.drawHealth(100, 100)
 
-    def generate_Resources(self,tileType):
+    def generateResources(self, tileType):
         if self.tileType == "Forest" or self.tileType == "forest":
             self.wood = 1000
             self.stone = 100
