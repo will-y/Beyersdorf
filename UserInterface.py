@@ -1,5 +1,6 @@
 import pygame as pg
 import sys
+import Player
 
 class UserInterface():
     def __init__(self, screen):
@@ -33,11 +34,11 @@ class UserInterface():
         self.populationImage = pg.transform.scale(self.populationImage, (45, 45))
 
         #Resource Amounts
-        self.woodCount = self.resourceCountFont.render("1000", True, pg.Color('black'))
-        self.stoneCount = self.resourceCountFont.render("1", True, pg.Color('black'))
-        self.oreCount = self.resourceCountFont.render("72", True, pg.Color('black'))
-        self.foodCount = self.resourceCountFont.render("60", True, pg.Color('black'))
-        self.populationCount = self.resourceCountFont.render("100000", True, pg.Color('black'))
+        self.woodCount = self.resourceCountFont.render("0", True, pg.Color('black'))
+        self.stoneCount = self.resourceCountFont.render("0", True, pg.Color('black'))
+        self.oreCount = self.resourceCountFont.render("0", True, pg.Color('black'))
+        self.foodCount = self.resourceCountFont.render("0", True, pg.Color('black'))
+        self.populationCount = self.resourceCountFont.render("0", True, pg.Color('black'))
 
         #Background rectangle dimensions
         self.rectXPos = 1000
@@ -64,6 +65,13 @@ class UserInterface():
 
         #CURRENT BUILDING TAB: RESOURCE = 0, MILITARY = 1, INFRASTRUCTURE = 2
         self.currentBuildingTab = 0
+
+        self.wood = 0
+        self.stone = 0
+        self.food = 0
+        self.ore = 0
+        self.maxPopulation = 0
+        self.currentPopulation = 0
 
     def drawInterface(self):
         self.drawResourceBuildings()
@@ -150,6 +158,16 @@ class UserInterface():
         pg.draw.rect(self.screen, self.rectColor, (self.rectXPos, self.rectYPos, self.rectWidth, self.rectHeight))
         self.drawInterface()
         self.drawInfrastructureBuildings()
+
+    def updateResources(self, player):
+        pg.draw.rect(self.screen, self.rectColor, (self.rectXPos, self.rectYPos, self.rectWidth, self.rectHeight))
+        self.woodCount = self.resourceCountFont.render(str(player.playerWood), True, pg.Color('black'))
+        self.stoneCount = self.resourceCountFont.render(str(player.playerStone, True, pg.Color('black'))
+        self.oreCount = self.resourceCountFont.render(str(player.playerOre), True, pg.Color('black'))
+        self.foodCount = self.resourceCountFont.render(str(player.playerFood), True, pg.Color('black'))
+        self.populationCount = self.resourceCountFont.render(str(player.playerCurPop + "/" + playerMaxPop), True, pg.Color('black'))
+
+
 
     def drawResourceBuildings(self):
         print("Drawing Resource Buildings")
