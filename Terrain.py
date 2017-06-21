@@ -12,7 +12,7 @@ class Terrain():
         self.tileWidth = math.floor(self.screenWidth/self.boardNum)
         self.board = []
 
-    def generate_board(self, screen):
+    def generateBoard(self, screen):
         for i in range(self.boardNum):
             row = []
             for j in range(self.boardNum):
