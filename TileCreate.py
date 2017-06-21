@@ -12,28 +12,38 @@ class GenerateTile:
         
     def generate_tile(self, x, y, tilesize, tilecolor, screen):
         self.tile = pg.Rect((x*tilesize, y*tilesize),(tilesize, tilesize))
+        self.generateResources(self.tileType)
         pg.draw.rect(screen, tilecolor, (x*tilesize, y*tilesize,tilesize, tilesize))
         healthBar = Health.Health((x*tilesize, y*tilesize), 100, screen)
         healthBar.drawHealth(100, 100)
 
     def generateResources(self, tileType):
-        if self.tileType == "Forest" or self.tileType == "forest":
+            #Forest
+        if self.tileType == 0:
             self.wood = random.randint(750, 1250)
             self.stone = random.randint(50, 150)
             self.ore = random.randint(0, 10)
-        if self.tileType == "Mountain" or self.tileType == "mountain":
+
+            #Mountain
+        if self.tileType == 1:
             self.wood = random.randint(75, 125)
             self.stone = random.randint(2000, 4000)
             self.ore = random.randint(250, 450)
-        if self.tileType == "Hill" or self.tileType == "hill":
+
+            #Hill
+        if self.tileType == 2:
             self.wood = random.randint(300, 500)
             self.stone = random.randint(750, 1500)
             self.ore = random.randint(75, 150)
-        if self.tileType == "Plains" or self.tileType == "plains":
+
+            #Plains
+        if self.tileType == 3:
             self.wood = random.randint(200,400)
             self.stone = random.randint(25, 75)
             self.ore = 0
-        if self.tileType == "Water" or self.tileType == "water":
+
+            #Water
+        if self.tileType == 4:
             self.wood = 0
             self.stone = 0
             self.ore = 0
