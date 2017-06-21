@@ -19,7 +19,8 @@ class Main():
             if(boardCoords):
                 self.xCoord = (int)(pg.mouse.get_pos()[0]/100)
                 self.yCoord = (int)(pg.mouse.get_pos()[1]/100)
-                self.building = Buildings.Building(0, self.xCoord*self.tilesize, self.yCoord*self.tilesize, self.tilesize, self.screen)
+                if self.xCoord <= 9:
+                    self.building = Buildings.Building(0, self.xCoord*self.tilesize, self.yCoord*self.tilesize, self.tilesize, self.screen)
                 return (self.xCoord, self.yCoord)
             else:
                 return pg.mouse.get_pos() 
