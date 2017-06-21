@@ -48,7 +48,6 @@ class Terrain():
                 tile.generate_tile(i,j,self.tileWidth, self.tileResourceColor, screen)
                 row.append(tile)
             self.board.append(row)
-        print(self.board)
         return self.board
     
     def generateLand(self):
