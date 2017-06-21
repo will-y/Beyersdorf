@@ -102,3 +102,30 @@ class Building:
             self.woodCost = 500
             self.stoneCost = 300
             self.oreCost = 50
+
+            #Bridge
+        if self.buildingType == 9:
+            self.productionRate = 0
+            self.populationCost = 0
+            self.populationAdd = 0
+            self.woodCost = 200
+            self.stoneCost = 100
+            self.oreCost = 0
+
+            #Castle
+        if self.buildingType == 10:
+            self.productionRate = 0
+            self.populationCost = 0
+            self.populationAdd = 10
+            self.woodCost = 1000    
+            self.stoneCost = 1000
+            self.oreCost = 200
+
+            #Outpost
+        if self.buildingType == 11:
+            self.productionRate = 0
+            self.populationCost = 1
+            self.populationAdd = 0
+            self.woodCost = 300 
+            self.stoneCost = 100
+            self.oreCost = 10
