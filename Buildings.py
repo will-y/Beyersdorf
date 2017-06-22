@@ -15,14 +15,16 @@ class Building:
         self.woodCost = None
         self.stoneCost = None
         self.oreCost = None
-        self.createBuilding(x, y, tilesize, screen)
         self.x = x
         self.y = y
         self.screen = screen
         self.tilesize = tilesize
+        self.image = None
+        self.createBuilding(x, y, tilesize, screen)
 
     def drawBuilding(self):
-        pg.draw.rect(self.screen, pg.Color(244, 101, 66), (self.x, self.y, self.tilesize, self.tilesize))
+        #pg.draw.rect(self.screen, pg.Color(244, 101, 66), (self.x, self.y, self.tilesize, self.tilesize))
+        self.screen.blit(self.image, (self.x + self.tilesize/10, self.y + self.tilesize/10))
 
     def createBuilding(self, x, y, tilesize, screen):
         self.building = pg.Rect(x, y, tilesize, tilesize)
@@ -38,6 +40,8 @@ class Building:
             self.woodCost = 100
             self.stoneCost = 50
             self.oreCost = 2
+            self.image = pg.image.load("Images/farm.png")
+            self.image = pg.transform.scale(self.image, (int(self.tilesize * (4/5)), int(self.tilesize * (4/5))))
 
             #Ranch
         if self.buildingType == 1:
@@ -47,6 +51,8 @@ class Building:
             self.woodCost = 300
             self.stoneCost = 200
             self.oreCost = 10
+            self.image = pg.image.load("Images/ranch.png")
+            self.image = pg.transform.scale(self.image, (int(self.tilesize * (4/5)), int(self.tilesize * (4/5))))
        
             #Fishhut
         if self.buildingType == 2:
@@ -56,6 +62,8 @@ class Building:
             self.woodCost = 200
             self.stoneCost = 100
             self.oreCost = 5
+            self.image = pg.image.load("Images/fishingHut.png")
+            self.image = pg.transform.scale(self.image, (int(self.tilesize * (4/5)), int(self.tilesize * (4/5))))
 
             #LumberMill
         if self.buildingType == 3:
@@ -65,6 +73,8 @@ class Building:
             self.woodCost = 100
             self.stoneCost = 50
             self.oreCost = 2
+            self.image = pg.image.load("Images/lumberMill.png")
+            self.image = pg.transform.scale(self.image, (int(self.tilesize * (4/5)), int(self.tilesize * (4/5))))
 
             #Quarry
         if self.buildingType == 4:
@@ -74,6 +84,8 @@ class Building:
             self.woodCost = 100
             self.stoneCost = 25
             self.oreCost = 5
+            self.image = pg.image.load("Images/quarry.png")
+            self.image = pg.transform.scale(self.image, (int(self.tilesize * (4/5)), int(self.tilesize * (4/5))))
 
             #Mine
         if self.buildingType == 5:
@@ -83,8 +95,10 @@ class Building:
             self.woodCost = 300
             self.stoneCost = 200
             self.oreCost = 5
+            self.image = pg.image.load("Images/mine.png")
+            self.image = pg.transform.scale(self.image, (int(self.tilesize * (4/5)), int(self.tilesize * (4/5))))
 
-            #HouseCastle
+            #House
         if self.buildingType == 6:
             self.productionRate = 0
             self.populationCost = 0
@@ -92,6 +106,8 @@ class Building:
             self.woodCost = 100
             self.stoneCost = 50
             self.oreCost = 0
+            self.image = pg.image.load("Images/house.png")
+            self.image = pg.transform.scale(self.image, (int(self.tilesize * (4/5)), int(self.tilesize * (4/5))))
 
             #Town
         if self.buildingType == 7:
@@ -101,6 +117,8 @@ class Building:
             self.woodCost = 250
             self.stoneCost = 100
             self.oreCost = 5
+            self.image = pg.image.load("Images/farm.png")
+            self.image = pg.transform.scale(self.image, (int(self.tilesize * (4/5)), int(self.tilesize * (4/5))))
 
             #City
         if self.buildingType == 8:
@@ -110,6 +128,8 @@ class Building:
             self.woodCost = 500
             self.stoneCost = 300
             self.oreCost = 50
+            self.image = pg.image.load("Images/farm.png")
+            self.image = pg.transform.scale(self.image, (int(self.tilesize * (4/5)), int(self.tilesize * (4/5))))
 
             #Bridge
         if self.buildingType == 9:
@@ -119,6 +139,8 @@ class Building:
             self.woodCost = 200
             self.stoneCost = 100
             self.oreCost = 0
+            self.image = pg.image.load("Images/farm.png")
+            self.image = pg.transform.scale(self.image, (int(self.tilesize * (4/5)), int(self.tilesize * (4/5))))
 
             #Castle
         if self.buildingType == 10:
@@ -128,6 +150,8 @@ class Building:
             self.woodCost = 1000    
             self.stoneCost = 1000
             self.oreCost = 200
+            self.image = pg.image.load("Images/farm.png")
+            self.image = pg.transform.scale(self.image, (int(self.tilesize * (4/5)), int(self.tilesize * (4/5))))
 
             #Outpost
         if self.buildingType == 11:
@@ -137,6 +161,8 @@ class Building:
             self.woodCost = 300 
             self.stoneCost = 100
             self.oreCost = 10
+            self.image = pg.image.load("Images/farm.png")
+            self.image = pg.transform.scale(self.image, (int(self.tilesize * (4/5)), int(self.tilesize * (4/5))))
 
             #CannonTower
         if self.buildingType == 12:
@@ -146,3 +172,5 @@ class Building:
             self.woodCost = 1000    
             self.stoneCost = 1000
             self.oreCost = 200
+            self.image = pg.image.load("Images/farm.png")
+            self.image = pg.transform.scale(self.image, (int(self.tilesize * (4/5)), int(self.tilesize * (4/5))))
