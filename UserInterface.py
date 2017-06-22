@@ -168,7 +168,8 @@ class UserInterface():
         self.stoneCount = self.resourceCountFont.render(str(player.playerStone), True, pg.Color('black'))
         self.oreCount = self.resourceCountFont.render(str(player.playerOre), True, pg.Color('black'))
         self.foodCount = self.resourceCountFont.render(str(player.playerFood), True, pg.Color('black'))
-        self.populationCount = self.resourceCountFont.render(str(player.playerCurPop + " / " +str(player.playerMaxPop)), True, pg.Color('black'))
+        self.populationCount = self.resourceCountFont.render(str(player.playerCurPop) + " / " + str(player.playerMaxPop), True, pg.Color('black'))
+        self.drawInterface()
 
 
     def drawResourceBuildings(self):
