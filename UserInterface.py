@@ -33,6 +33,24 @@ class UserInterface():
         self.populationImage = pg.image.load("Images/pop.png")
         self.populationImage = pg.transform.scale(self.populationImage, (45, 45))
 
+        self.farmImage = pg.image.load("Images/farm.png")
+        self.farmImage = pg.transform.scale(self.farmImage, (60, 60))
+
+        self.ranchImage = pg.image.load("Images/ranch.png")
+        self.ranchImage = pg.transform.scale(self.ranchImage, (60, 60))
+
+        self.fishImage = pg.image.load("Images/fishingHut.png")
+        self.fishImage = pg.transform.scale(self.fishImage, (60, 60))
+
+        self.quarryImage = pg.image.load("Images/quarry.png")
+        self.quarryImage = pg.transform.scale(self.quarryImage, (60, 60))
+
+        self.lumberMillImage = pg.image.load("Images/lumberMill.png")
+        self.lumberMillImage = pg.transform.scale(self.lumberMillImage, (60, 60))
+
+        self.mineImage = pg.image.load("Images/ranch.png")
+        self.mineImage = pg.transform.scale(self.mineImage, (60, 60))
+
         #Resource Amounts
         self.woodCount = self.resourceCountFont.render("0", True, pg.Color('black'))
         self.stoneCount = self.resourceCountFont.render("0", True, pg.Color('black'))
@@ -79,8 +97,9 @@ class UserInterface():
 
     def drawInterface(self):
         pg.draw.rect(self.screen, self.rectColor, (self.rectXPos, self.rectYPos, self.rectWidth, self.rectHeight))
+        pg.draw.rect(self.screen, pg.Color('black'), (self.rectXPos, self.rectYPos, self.rectWidth,self.rectHeight), 5)
 
-        if(self.currentBuildingTab == 0):  
+        if(self.currentBuildingTab == 0 and not self.inspector):  
             self.drawResourceBuildings()
 
         #Draw resource names
@@ -182,12 +201,18 @@ class UserInterface():
 
 
     def drawResourceBuildings(self):
-        pg.draw.rect(self.screen, pg.Color('red'), (1000 + self.buildingPadding, 475 + self.buildingPadding, self.buildingWidth, self.buildingWidth))
-        pg.draw.rect(self.screen, pg.Color('blue'), (1000 + self.buildingPadding, 475 + self.buildingPadding * 2 + self.buildingWidth, self.buildingWidth, self.buildingWidth))
-        pg.draw.rect(self.screen, pg.Color('orange'), (1000 + self.buildingPadding, 475 + self.buildingPadding * 3 + self.buildingWidth * 2, self.buildingWidth, self.buildingWidth))
-        pg.draw.rect(self.screen, pg.Color('green'), (1000 + self.buildingPadding, 475 + self.buildingPadding * 4 + self.buildingWidth * 3, self.buildingWidth, self.buildingWidth))
-        pg.draw.rect(self.screen, pg.Color('purple'), (1000 + self.buildingPadding, 475 + self.buildingPadding * 5 + self.buildingWidth * 4, self.buildingWidth, self.buildingWidth))
-        pg.draw.rect(self.screen, pg.Color('black'), (1000 + self.buildingPadding, 475 + self.buildingPadding * 6 + self.buildingWidth * 5, self.buildingWidth, self.buildingWidth))
+        #pg.draw.rect(self.screen, pg.Color('red'), (1050 + self.buildingPadding, 515 + self.buildingPadding, self.buildingWidth, self.buildingWidth))
+        self.screen.blit(self.farmImage, (1050 + self.buildingPadding, 515 + self.buildingPadding))
+        #pg.draw.rect(self.screen, pg.Color('blue'), (1050 + self.buildingPadding, 515 + self.buildingPadding * 2 + self.buildingWidth, self.buildingWidth, self.buildingWidth))
+        self.screen.blit(self.ranchImage, (1050 + self.buildingPadding, 515 + self.buildingPadding * 2 + self.buildingWidth))
+        #pg.draw.rect(self.screen, pg.Color('orange'), (1050 + self.buildingPadding, 515 + self.buildingPadding * 3 + self.buildingWidth * 2, self.buildingWidth, self.buildingWidth))
+        self.screen.blit(self.fishImage, (1050 + self.buildingPadding, 515 + self.buildingPadding * 3 + self.buildingWidth * 2))
+        #pg.draw.rect(self.screen, pg.Color('green'), (1050 + self.buildingPadding, 515 + self.buildingPadding * 4 + self.buildingWidth * 3, self.buildingWidth, self.buildingWidth))
+        self.screen.blit(self.lumberMillImage, (1050 + self.buildingPadding, 515 + self.buildingPadding * 4 + self.buildingWidth * 3))
+        #pg.draw.rect(self.screen, pg.Color('purple'), (1050 + self.buildingPadding, 515 + self.buildingPadding * 5 + self.buildingWidth * 4, self.buildingWidth, self.buildingWidth))
+        self.screen.blit(self.quarryImage, (1050 + self.buildingPadding, 515 + self.buildingPadding * 5 + self.buildingWidth * 4))
+        #pg.draw.rect(self.screen, pg.Color('black'), (1050 + self.buildingPadding, 515 + self.buildingPadding * 6 + self.buildingWidth * 5, self.buildingWidth, self.buildingWidth))
+        self.screen.blit(self.mineImage, (1050 + self.buildingPadding, 515 + self.buildingPadding * 6 + self.buildingWidth * 5))
         print("Drawing Resource Buildings")
         sys.stdout.flush()
     
