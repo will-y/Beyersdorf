@@ -28,6 +28,7 @@ class Main():
                     self.building = Buildings.Building(0, self.xCoord*self.tilesize, self.yCoord*self.tilesize, self.tilesize, self.screen)
                     self.changeResources(self.player1)
                     string = str.format("{} {} {}", self.player1.playerWood, self.player1.playerStone, self.player1.playerOre)
+                    self.userInterface.updateResources(self.player1)
                     print(string)
                 return (self.xCoord, self.yCoord)
             else:
@@ -43,8 +44,8 @@ class Main():
         # main_menu.width = self.width
         terrainobject = Terrain.Terrain(10, self.width)
         terrainobject.generateBoard(self.screen)
-        userInterface = UserInterface.UserInterface(self.screen)
-        userInterface.drawInterface()
+        self.userInterface = UserInterface.UserInterface(self.screen)
+        self.userInterface.drawInterface()
         
         
         while(True):
@@ -56,8 +57,8 @@ class Main():
             pg.mouse.set_cursor(*pg.cursors.broken_x)
             pg.display.update()
             self.detectClick(True)
-            userInterface.detectTabChange(0)
-            userInterface.detectTabChange(1)
+            self.userInterface.detectTabChange(0)
+            self.userInterface.detectTabChange(1)
             #sys.stdout.flush()
 
 def main():
