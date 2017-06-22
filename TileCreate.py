@@ -8,6 +8,7 @@ class GenerateTile:
         self.wood = 0
         self.stone = 0
         self.ore = 0
+        self.builtOn = False
     
     def __str__(self):
         mystr = str.format("{}, {}, {}", self.wood, self.stone, self.ore)

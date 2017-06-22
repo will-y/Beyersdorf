@@ -13,6 +13,8 @@ class Main():
         self.yCoord = 0
         self.tilesize = 100
         self.inspect = InspectorGadget.Inspector()
+        self.player1 = Player.Player()
+        self.player2 = Player.Player()
 
     def changeResources(self, player):
         player.editWood(-self.building.woodCost)
@@ -29,15 +31,18 @@ class Main():
                     self.inspect.inspectTile(self.terrainobject.board, self.xCoord, self.yCoord)
                     # self.building = Buildings.Building(0, self.xCoord*self.tilesize, self.yCoord*self.tilesize, self.tilesize, self.screen)
                     self.changeResources(self.player1)
+                    if not self.terrainobject.board[self.xCoord][self.yCoord].builtOn:
+                        self.building = Buildings.Building(0, self.xCoord*self.tilesize, self.yCoord*self.tilesize, self.tilesize, self.screen)
+                        self.changeResources(self.player1)
+                        self.terrainobject.board[self.xCoord][self.yCoord].builtOn = True
                     string = str.format("{} {} {}", self.player1.playerWood, self.player1.playerStone, self.player1.playerOre)
+                    self.userInterface.updateResources(self.player1)
                     print(string)
                 return (self.xCoord, self.yCoord)
             else:
                 return pg.mouse.get_pos() 
 
     def runGame(self):
-        self.player1 = Player.Player()
-        self.player2 = Player.Player()
         #main_menu = MainMenu.Main_Menu()
         #main_menu.runScreen()
         self.screen = pg.display.set_mode((math.floor(self.width* 3/2), self.height))
@@ -45,9 +50,8 @@ class Main():
         # main_menu.width = self.width
         self.terrainobject = Terrain.Terrain(10, self.width)
         self.terrainobject.generateBoard(self.screen)
-        userInterface = UserInterface.UserInterface(self.screen)
-        userInterface.drawInterface()
-        
+        self.userInterface = UserInterface.UserInterface(self.screen)
+        self.userInterface.drawInterface()
         
         while(True):
             self.clock.tick(10)
@@ -58,8 +62,8 @@ class Main():
             pg.mouse.set_cursor(*pg.cursors.broken_x)
             pg.display.update()
             self.detectClick(True)
-            userInterface.detectTabChange(0)
-            userInterface.detectTabChange(1)
+            self.userInterface.detectTabChange(0)
+            self.userInterface.detectTabChange(1)
             #sys.stdout.flush()
 
 def main():
