@@ -1,4 +1,4 @@
-import pygame as pg, sys, Health, Terrain, math, UserInterface, MainMenu, Buildings, Player
+import pygame as pg, sys, Health, Terrain, math, UserInterface, MainMenu, Buildings, Player, InspectorGadget
 
 class Main():
     def __init__(self):
@@ -12,6 +12,7 @@ class Main():
         self.xCoord = 0
         self.yCoord = 0
         self.tilesize = 100
+        self.inspect = InspectorGadget.Inspector()
 
     def changeResources(self, player):
         player.editWood(-self.building.woodCost)
@@ -25,7 +26,8 @@ class Main():
                 self.xCoord = (int)(pg.mouse.get_pos()[0]/100)
                 self.yCoord = (int)(pg.mouse.get_pos()[1]/100)
                 if self.xCoord <= 9:
-                    self.building = Buildings.Building(0, self.xCoord*self.tilesize, self.yCoord*self.tilesize, self.tilesize, self.screen)
+                    self.inspect.inspectTile(self.terrainobject.board, self.xCoord, self.yCoord)
+                    # self.building = Buildings.Building(0, self.xCoord*self.tilesize, self.yCoord*self.tilesize, self.tilesize, self.screen)
                     self.changeResources(self.player1)
                     string = str.format("{} {} {}", self.player1.playerWood, self.player1.playerStone, self.player1.playerOre)
                     print(string)
@@ -41,8 +43,8 @@ class Main():
         self.screen = pg.display.set_mode((math.floor(self.width* 3/2), self.height))
         self.screen.fill(pg.Color('white'))
         # main_menu.width = self.width
-        terrainobject = Terrain.Terrain(10, self.width)
-        terrainobject.generateBoard(self.screen)
+        self.terrainobject = Terrain.Terrain(10, self.width)
+        self.terrainobject.generateBoard(self.screen)
         userInterface = UserInterface.UserInterface(self.screen)
         userInterface.drawInterface()
         
