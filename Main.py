@@ -28,6 +28,9 @@ class Main():
                 #If click is in UI
                 if self.xCoord <= 9:
                     #If tile is already built on
+                    self.inspect.inspectTile(self.terrainobject.board, self.xCoord, self.yCoord)
+                    self.building = Buildings.Building(0, self.xCoord*self.tilesize, self.yCoord*self.tilesize, self.tilesize, self.screen)
+                    self.changeResources(self.player1)
                     if not self.terrainobject.board[self.xCoord][self.yCoord].builtOn:
                         self.building = Buildings.Building(0, self.xCoord*self.tilesize, self.yCoord*self.tilesize, self.tilesize, self.screen)
                         #if player have resources to build
@@ -36,7 +39,7 @@ class Main():
                             self.terrainobject.board[self.xCoord][self.yCoord].builtOn = True
                     string = str.format("{} {} {}", self.player1.playerWood, self.player1.playerStone, self.player1.playerOre)
                     self.userInterface.updateResources(self.player1)
-                    print(string)
+                    # print(string)
                     sys.stdout.flush()
                 return (self.xCoord, self.yCoord)
             else:

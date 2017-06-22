@@ -6,7 +6,8 @@ class Inspector:
         pass
 
     def inspectTile(self, board, x, y):
-        tile_x = x - 1
-        tile_y = y - 1
+        self.tile_x = x
+        self.tile_y = y
         currentTile = board[self.tile_x][self.tile_y]
-        print(currentTile)
+        # print(currentTile)
+        return currentTile

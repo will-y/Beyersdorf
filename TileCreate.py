@@ -11,7 +11,7 @@ class GenerateTile:
         self.builtOn = False
     
     def __str__(self):
-        mystr = str.format("{}, {}, {}", self.wood, self.stone, self.ore)
+        mystr = str.format("{}, {}, {}, {}", self.tileType, self.wood, self.stone, self.ore)
         return mystr
         
     def generate_tile(self, x, y, tilesize, tilecolor, screen):
