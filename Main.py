@@ -16,9 +16,7 @@ class Main():
         self.player2 = Player.Player()
 
     def changeResources(self, player):
-        player.editWood(-self.building.woodCost)
-        player.editStone(-self.building.stoneCost)
-        player.editOre(-self.building.oreCost)
+        return player.editWood(-self.building.woodCost) and player.editStone(-self.building.stoneCost) and player.editOre(-self.building.oreCost)
 
     def detectClick(self, boardCoords):
         #for event in pg.event.get():
@@ -26,11 +24,15 @@ class Main():
             if(boardCoords):
                 self.xCoord = (int)(pg.mouse.get_pos()[0]/100)
                 self.yCoord = (int)(pg.mouse.get_pos()[1]/100)
+                #If click is in UI
                 if self.xCoord <= 9:
+                    #If tile is already built on
                     if not self.terrainobject.board[self.xCoord][self.yCoord].builtOn:
                         self.building = Buildings.Building(0, self.xCoord*self.tilesize, self.yCoord*self.tilesize, self.tilesize, self.screen)
-                        self.changeResources(self.player1)
-                        self.terrainobject.board[self.xCoord][self.yCoord].builtOn = True
+                        #if player have resources to build
+                        if self.changeResources(self.player1):
+                            self.building.drawBuilding()
+                            self.terrainobject.board[self.xCoord][self.yCoord].builtOn = True
                     string = str.format("{} {} {}", self.player1.playerWood, self.player1.playerStone, self.player1.playerOre)
                     self.userInterface.updateResources(self.player1)
                     print(string)

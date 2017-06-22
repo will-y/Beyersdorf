@@ -18,6 +18,8 @@ class Building:
         self.createBuilding(x, y, tilesize, screen)
         self.x = x
         self.y = y
+        self.screen = screen
+        self.tilesize = tilesize
 
     def drawBuilding(self):
         pg.draw.rect(self.screen, pg.Color(244, 101, 66), (self.x, self.y, self.tilesize, self.tilesize))
