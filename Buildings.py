@@ -3,6 +3,7 @@ import math
 import time
 import Terrain
 import Health
+import TileCreate
 
 class Building:
 
@@ -15,10 +16,15 @@ class Building:
         self.stoneCost = None
         self.oreCost = None
         self.createBuilding(x, y, tilesize, screen)
+        self.x = x
+        self.y = y
+
+    def drawBuilding(self):
+        pg.draw.rect(self.screen, pg.Color(244, 101, 66), (self.x, self.y, self.tilesize, self.tilesize))
 
     def createBuilding(self, x, y, tilesize, screen):
         self.building = pg.Rect(x, y, tilesize, tilesize)
-        pg.draw.rect(screen, pg.Color(244, 101, 66), (x, y, 100, 100))
+        #pg.draw.rect(screen, pg.Color(244, 101, 66), (x, y, tilesize, tilsize))
         healthBar = Health.Health((x*tilesize, y*tilesize), 100, screen)
         healthBar.drawHealth(100, 100)
        

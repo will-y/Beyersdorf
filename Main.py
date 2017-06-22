@@ -12,6 +12,8 @@ class Main():
         self.xCoord = 0
         self.yCoord = 0
         self.tilesize = 100
+        self.player1 = Player.Player()
+        self.player2 = Player.Player()
 
     def changeResources(self, player):
         player.editWood(-self.building.woodCost)
@@ -25,8 +27,10 @@ class Main():
                 self.xCoord = (int)(pg.mouse.get_pos()[0]/100)
                 self.yCoord = (int)(pg.mouse.get_pos()[1]/100)
                 if self.xCoord <= 9:
-                    self.building = Buildings.Building(0, self.xCoord*self.tilesize, self.yCoord*self.tilesize, self.tilesize, self.screen)
-                    self.changeResources(self.player1)
+                    if not self.terrainobject.board[self.xCoord][self.yCoord].builtOn:
+                        self.building = Buildings.Building(0, self.xCoord*self.tilesize, self.yCoord*self.tilesize, self.tilesize, self.screen)
+                        self.changeResources(self.player1)
+                        self.terrainobject.board[self.xCoord][self.yCoord].builtOn = True
                     string = str.format("{} {} {}", self.player1.playerWood, self.player1.playerStone, self.player1.playerOre)
                     self.userInterface.updateResources(self.player1)
                     print(string)
@@ -36,19 +40,16 @@ class Main():
                 return pg.mouse.get_pos() 
 
     def runGame(self):
-        self.player1 = Player.Player()
-        self.player2 = Player.Player()
         #main_menu = MainMenu.Main_Menu()
         #main_menu.runScreen()
         self.screen = pg.display.set_mode((math.floor(self.width* 3/2), self.height))
         self.screen.fill(pg.Color('white'))
         # main_menu.width = self.width
-        terrainobject = Terrain.Terrain(10, self.width)
-        terrainobject.generateBoard(self.screen)
+        self.terrainobject = Terrain.Terrain(10, self.width)
+        self.terrainobject.generateBoard(self.screen)
         self.userInterface = UserInterface.UserInterface(self.screen)
         self.userInterface.drawInterface()
         self.userInterface.drawResourceBuildings()
-        
         
         while(True):
             self.clock.tick(10)
