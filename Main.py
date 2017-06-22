@@ -28,7 +28,7 @@ class Main():
                 self.xCoord = (int)(pg.mouse.get_pos()[0]/100)
                 self.yCoord = (int)(pg.mouse.get_pos()[1]/100)
                 if self.xCoord <= 9:
-                    self.inspect.inspectTile(self.terrainobject.board, self.xCoord, self.yCoord)
+                    # self.inspect.inspectTile(self.terrainobject.board, self.xCoord, self.yCoord)
                     # self.building = Buildings.Building(0, self.xCoord*self.tilesize, self.yCoord*self.tilesize, self.tilesize, self.screen)
                     self.changeResources(self.player1)
                     if not self.terrainobject.board[self.xCoord][self.yCoord].builtOn:
