@@ -29,8 +29,6 @@ class Main():
                 if self.xCoord <= 9:
                     #If tile is already built on
                     self.inspect.inspectTile(self.terrainobject.board, self.xCoord, self.yCoord)
-                    self.building = Buildings.Building(0, self.xCoord*self.tilesize, self.yCoord*self.tilesize, self.tilesize, self.screen)
-                    self.changeResources(self.player1)
                     if not self.terrainobject.board[self.xCoord][self.yCoord].builtOn:
                         self.building = Buildings.Building(0, self.xCoord*self.tilesize, self.yCoord*self.tilesize, self.tilesize, self.screen)
                         #if player have resources to build
@@ -50,12 +48,14 @@ class Main():
         #main_menu.runScreen()
         self.screen = pg.display.set_mode((math.floor(self.width* 3/2), self.height))
         self.screen.fill(pg.Color('white'))
+        
         # main_menu.width = self.width
         self.terrainobject = Terrain.Terrain(10, self.width)
         self.terrainobject.generateBoard(self.screen)
         self.userInterface = UserInterface.UserInterface(self.screen)
         self.userInterface.drawInterface()
         self.userInterface.drawResourceBuildings()
+        pg.draw.rect(self.screen, pg.Color('black'), (0, 0, 1000, 1000), 5)
         
         while(True):
             self.clock.tick(10)
