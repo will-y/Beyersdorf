@@ -15,13 +15,11 @@ class Player():
         self.playerWood=amount
     def editWood(self,amount):
         self.playerWood+=amount
-        print(self.playerWood)
 
     def setStone(self,amount):
         self.playerStone=amount
     def editStone(self,amount):
         self.playerStone+=amount
-        print(self.playerStone)
 
     def setOre(self,amount):
         self.playerOre=amount
