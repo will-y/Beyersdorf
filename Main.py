@@ -38,6 +38,7 @@ class Main():
                     string = str.format("{} {} {}", self.player1.playerWood, self.player1.playerStone, self.player1.playerOre)
                     self.userInterface.updateResources(self.player1)
                     print(string)
+                    sys.stdout.flush()
                 return (self.xCoord, self.yCoord)
             else:
                 return pg.mouse.get_pos() 
@@ -52,6 +53,7 @@ class Main():
         self.terrainobject.generateBoard(self.screen)
         self.userInterface = UserInterface.UserInterface(self.screen)
         self.userInterface.drawInterface()
+        self.userInterface.drawResourceBuildings()
         
         while(True):
             self.clock.tick(10)
