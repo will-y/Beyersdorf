@@ -162,10 +162,10 @@ class UserInterface():
     def updateResources(self, player):
         pg.draw.rect(self.screen, self.rectColor, (self.rectXPos, self.rectYPos, self.rectWidth, self.rectHeight))
         self.woodCount = self.resourceCountFont.render(str(player.playerWood), True, pg.Color('black'))
-        self.stoneCount = self.resourceCountFont.render(str(player.playerStone, True, pg.Color('black'))
+        self.stoneCount = self.resourceCountFont.render(str(player.playerStone), True, pg.Color('black'))
         self.oreCount = self.resourceCountFont.render(str(player.playerOre), True, pg.Color('black'))
         self.foodCount = self.resourceCountFont.render(str(player.playerFood), True, pg.Color('black'))
-        self.populationCount = self.resourceCountFont.render(str(player.playerCurPop + "/" + playerMaxPop), True, pg.Color('black'))
+        self.populationCount = self.resourceCountFont.render(str(player.playerCurPop + " / " +str(player.playerMaxPop)), True, pg.Color('black'))
 
 
     def drawResourceBuildings(self):
