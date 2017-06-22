@@ -15,6 +15,7 @@ class Main():
         self.inspect = InspectorGadget.Inspector()
         self.player1 = Player.Player()
         self.player2 = Player.Player()
+        self.selectedBuilding = 0
 
     def changeResources(self, player):
         return player.editWood(-self.building.woodCost) and player.editStone(-self.building.stoneCost) and player.editOre(-self.building.oreCost)
@@ -23,6 +24,8 @@ class Main():
         #for event in pg.event.get():
         if(pg.mouse.get_pressed()[0]):
             if(boardCoords):
+                self.realX = pg.mouse.get_pos()[0]
+                self.realY = pg.mouse.get_pos()[1]
                 self.xCoord = (int)(pg.mouse.get_pos()[0]/100)
                 self.yCoord = (int)(pg.mouse.get_pos()[1]/100)
                 #If click is in UI
@@ -39,6 +42,24 @@ class Main():
                     self.userInterface.updateResources(self.player1)
                     # print(string)
                     sys.stdout.flush()
+                else:
+                    if(1050 < self.realX < 1450):
+                        print("In Range X")
+                        sys.stdout.flush()
+                        if(516 < self.realY < 584):
+                            self.selectedBuilding = 0
+                        elif(596 < self.realY < 664):
+                            self.selectedBuilding = 1
+                        elif(676 < self.realY < 744):
+                            self.selectedBuilding = 2
+                        elif(756 < self.realY < 824):
+                            self.selectedBuilding = 3
+                        elif(836 < self.realY < 904):
+                            self.selectedBuilding = 4
+                        elif(916 < self.realY < 984):
+                            self.selectedBuilding = 5
+                print(self.selectedBuilding)
+                sys.stdout.flush()
                 return (self.xCoord, self.yCoord)
             else:
                 return pg.mouse.get_pos() 
