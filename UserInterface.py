@@ -270,7 +270,7 @@ class UserInterface():
         self.screen.blit(self.mineName, (1035 + self.buildingPadding * 2 + self.buildingWidth, 500 + self.buildingPadding * (23/4) + self.buildingWidth * (11/2)))
 
         
-        print("Drawing Resource Buildings")
+        #print("Drawing Resource Buildings")
         sys.stdout.flush()
     
     def drawMilitaryBuildings(self):
