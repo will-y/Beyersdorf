@@ -29,8 +29,6 @@ class Main():
                 if self.xCoord <= 9:
                     #If tile is already built on
                     self.inspect.inspectTile(self.terrainobject.board, self.xCoord, self.yCoord)
-                    self.building = Buildings.Building(0, self.xCoord*self.tilesize, self.yCoord*self.tilesize, self.tilesize, self.screen)
-                    self.changeResources(self.player1)
                     if not self.terrainobject.board[self.xCoord][self.yCoord].builtOn:
                         self.building = Buildings.Building(0, self.xCoord*self.tilesize, self.yCoord*self.tilesize, self.tilesize, self.screen)
                         #if player have resources to build
