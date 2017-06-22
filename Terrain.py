@@ -69,7 +69,7 @@ class Terrain():
     def generateOcean(self):
         """Generates the ocean zone"""
         # Change the chance of Ocean appearing
-        getType = random.randint(0,8)
+        getType = random.randint(0,6)
         if getType == 0:
             self.tileResourceColor = self.forestColor
             self.tileType = 0

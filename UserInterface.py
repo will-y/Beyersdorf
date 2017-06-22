@@ -73,12 +73,15 @@ class UserInterface():
         self.maxPopulation = 0
         self.currentPopulation = 0
 
-        #Variables for buildings in menus
-        self.buildingWidth = 50
+        #Variables for resources buildings in menus
+        self.buildingWidth = 60
+        self.buildingPadding = 20
 
     def drawInterface(self):
-        self.drawResourceBuildings()
         pg.draw.rect(self.screen, self.rectColor, (self.rectXPos, self.rectYPos, self.rectWidth, self.rectHeight))
+
+        if(self.currentBuildingTab == 0):  
+            self.drawResourceBuildings()
 
         #Draw resource names
         self.screen.blit(self.resourceText, (1125, 25))
@@ -138,6 +141,12 @@ class UserInterface():
         self.inspector = False
         pg.draw.rect(self.screen, self.rectColor, (self.rectXPos, self.rectYPos, self.rectWidth, self.rectHeight))
         self.drawInterface()
+        if(self.currentBuildingTab == 0):
+            self.drawResourceBuildings()
+        elif(self.currentBuildingTab == 1):
+            self.drawMilitaryBuildings()
+        elif(self.currentBuildingTab == 2):
+            self.drawInfrastructureBuildings()
 
     def goToInspectorTab(self):
         self.inspector = True
@@ -173,6 +182,12 @@ class UserInterface():
 
 
     def drawResourceBuildings(self):
+        pg.draw.rect(self.screen, pg.Color('red'), (1000 + self.buildingPadding, 475 + self.buildingPadding, self.buildingWidth, self.buildingWidth))
+        pg.draw.rect(self.screen, pg.Color('blue'), (1000 + self.buildingPadding, 475 + self.buildingPadding * 2 + self.buildingWidth, self.buildingWidth, self.buildingWidth))
+        pg.draw.rect(self.screen, pg.Color('orange'), (1000 + self.buildingPadding, 475 + self.buildingPadding * 3 + self.buildingWidth * 2, self.buildingWidth, self.buildingWidth))
+        pg.draw.rect(self.screen, pg.Color('green'), (1000 + self.buildingPadding, 475 + self.buildingPadding * 4 + self.buildingWidth * 3, self.buildingWidth, self.buildingWidth))
+        pg.draw.rect(self.screen, pg.Color('purple'), (1000 + self.buildingPadding, 475 + self.buildingPadding * 5 + self.buildingWidth * 4, self.buildingWidth, self.buildingWidth))
+        pg.draw.rect(self.screen, pg.Color('black'), (1000 + self.buildingPadding, 475 + self.buildingPadding * 6 + self.buildingWidth * 5, self.buildingWidth, self.buildingWidth))
         print("Drawing Resource Buildings")
         sys.stdout.flush()
     
