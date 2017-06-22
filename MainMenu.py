@@ -17,6 +17,8 @@ class Main_Menu:
         self.tile_height = None
         # Keys Pressed
         self.keys = []
+        # Fonts
+        self.titleFont = pg.font.SysFont("monospace", 50)
 
     def runScreen(self):
         pg.init()
