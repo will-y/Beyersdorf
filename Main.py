@@ -1,4 +1,4 @@
-import pygame as pg, sys, Health, Terrain, math, UserInterface, MainMenu, Buildings, Player
+import pygame as pg, sys, Health, Terrain, math, UserInterface, MainMenu, Buildings, Player, InspectorGadget
 
 class Main():
     def __init__(self):
@@ -12,6 +12,7 @@ class Main():
         self.xCoord = 0
         self.yCoord = 0
         self.tilesize = 100
+        self.inspect = InspectorGadget.Inspector()
         self.player1 = Player.Player()
         self.player2 = Player.Player()
 
@@ -36,6 +37,7 @@ class Main():
                     string = str.format("{} {} {}", self.player1.playerWood, self.player1.playerStone, self.player1.playerOre)
                     self.userInterface.updateResources(self.player1)
                     print(string)
+                    sys.stdout.flush()
                 return (self.xCoord, self.yCoord)
             else:
                 return pg.mouse.get_pos() 
@@ -50,6 +52,7 @@ class Main():
         self.terrainobject.generateBoard(self.screen)
         self.userInterface = UserInterface.UserInterface(self.screen)
         self.userInterface.drawInterface()
+        self.userInterface.drawResourceBuildings()
         
         while(True):
             self.clock.tick(10)
