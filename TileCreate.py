@@ -19,10 +19,6 @@ class GenerateTile:
         pg.draw.rect(screen, tilecolor, (x*tilesize, y*tilesize,tilesize, tilesize))
         healthBar = Health.Health((x*tilesize, y*tilesize), 100, screen)
         healthBar.drawHealth(100, 100)
-        # print("Tile")
-        # print(self.wood)
-        # print(self.stone)
-        # print(self.ore)
 
     def generateResources(self, tileType):
             #Forest
