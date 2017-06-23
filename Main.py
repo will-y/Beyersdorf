@@ -45,63 +45,67 @@ class Main():
 
                 if self.realX >= 1200 and self.realX <= 1300 and self.realY >= 350 and self.realY <= 450:
                     turnManager.endTurn()
+                
+                if (not self.userInterface.inspector):
 
                 #If click is outside UI
-                if self.xCoord <= 9:
+                    if self.xCoord <= 9:
 
-                    self.inspect.inspectTile(self.terrainobject.board, self.xCoord, self.yCoord)
+                        self.inspect.inspectTile(self.terrainobject.board, self.xCoord, self.yCoord)
 
-                    #If tile is already built on
-                    if self.terrainobject.board[self.xCoord][self.yCoord].builtOn == False:
+                        #If tile is already built on
+                        if self.terrainobject.board[self.xCoord][self.yCoord].builtOn == False:
 
-                        #if not on water or bridge
-                        if (not self.terrainobject.board[self.xCoord][self.yCoord].tileType == 4) or self.selectedBuilding == 9:
+                            #if not on water or bridge
+                            if (not self.terrainobject.board[self.xCoord][self.yCoord].tileType == 4) or self.selectedBuilding == 9:
 
-                                #if it is correct player's turn and they have enough actions
-                                if turnManager.playerOneTurn == True and not turnManager.playerOneActions == turnManager.playerOneActionsUsed:
-                                    self.building = Buildings.Building(self.selectedBuilding, self.xCoord*self.tilesize, self.yCoord*self.tilesize, self.tilesize, self.screen,1)
+                                    #if it is correct player's turn and they have enough actions
+                                    if turnManager.playerOneTurn == True and not turnManager.playerOneActions == turnManager.playerOneActionsUsed:
+                                        self.building = Buildings.Building(self.selectedBuilding, self.xCoord*self.tilesize, self.yCoord*self.tilesize, self.tilesize, self.screen,1)
 
-                                    #if player have resources to build
-                                    if self.changeResources(1):
+                                        #if player have resources to build
+                                        if self.changeResources(1):
 
-                                        self.building.drawBuilding(1)
-                                        self.terrainobject.board[self.xCoord][self.yCoord].builtOn = True
-                                        turnManager.useAction(1)
+                                            self.building.drawBuilding(1)
+                                            self.terrainobject.board[self.xCoord][self.yCoord].builtOn = True
+                                            turnManager.useAction(1)
+                                            self.player1.addBuilding(self.building)
 
-                                if turnManager.playerOneTurn == False and not turnManager.playerTwoActions == turnManager.playerTwoActionsUsed:
+                                    if turnManager.playerOneTurn == False and not turnManager.playerTwoActions == turnManager.playerTwoActionsUsed:
 
-                                    #if player have resources to build
-                                    self.building = Buildings.Building(self.selectedBuilding, self.xCoord*self.tilesize, self.yCoord*self.tilesize, self.tilesize, self.screen,2)
-                                    if self.changeResources(2):
+                                        #if player have resources to build
+                                        self.building = Buildings.Building(self.selectedBuilding, self.xCoord*self.tilesize, self.yCoord*self.tilesize, self.tilesize, self.screen,2)
+                                        if self.changeResources(2):
 
-                                        self.building.drawBuilding(2)
-                                        self.terrainobject.board[self.xCoord][self.yCoord].builtOn = True
-                                        turnManager.useAction(2)
+                                            self.building.drawBuilding(2)
+                                            self.terrainobject.board[self.xCoord][self.yCoord].builtOn = True
+                                            turnManager.useAction(2)
+                                            self.player2.addBuilding(self.building)
 
-                    string = str.format("{} {} {}", self.player1.playerWood, self.player1.playerStone, self.player1.playerOre)
-                    self.userInterface.updateResources(self.player1)
-                    # print(string)
-                    sys.stdout.flush()
-
-                else:
-                    #if click button
-                    if(1050 < self.realX < 1450):
+                        string = str.format("{} {} {}", self.player1.playerWood, self.player1.playerStone, self.player1.playerOre)
+                        self.userInterface.updateResources(self.player1)
+                        # print(string)
                         sys.stdout.flush()
-                        if(516 < self.realY < 584):
-                            self.selectedBuilding = 0
-                        elif(596 < self.realY < 664):
-                            self.selectedBuilding = 1
-                        elif(676 < self.realY < 744):
-                            self.selectedBuilding = 2
-                        elif(756 < self.realY < 824):
-                            self.selectedBuilding = 3
-                        elif(836 < self.realY < 904):
-                            self.selectedBuilding = 4
-                        elif(916 < self.realY < 984):
-                            self.selectedBuilding = 5
-                self.userInterface.switchSelectedBuilding(self.selectedBuilding)
-                sys.stdout.flush()
-                return (self.xCoord, self.yCoord)
+
+                    else:
+                        #if click button
+                        if(1050 < self.realX < 1450):
+                            sys.stdout.flush()
+                            if(516 < self.realY < 584):
+                                self.selectedBuilding = 0
+                            elif(596 < self.realY < 664):
+                                self.selectedBuilding = 1
+                            elif(676 < self.realY < 744):
+                                self.selectedBuilding = 2
+                            elif(756 < self.realY < 824):
+                                self.selectedBuilding = 3
+                            elif(836 < self.realY < 904):
+                                self.selectedBuilding = 4
+                            elif(916 < self.realY < 984):
+                                self.selectedBuilding = 5
+                    self.userInterface.switchSelectedBuilding(self.selectedBuilding)
+                    sys.stdout.flush()
+                    return (self.xCoord, self.yCoord)
             else:
                 return pg.mouse.get_pos() 
 
