@@ -46,11 +46,11 @@ class Main():
                 if self.realX >= 1200 and self.realX <= 1300 and self.realY >= 350 and self.realY <= 450:
                     turnManager.endTurn()
                 
-                if (not self.userInterface.inspector):
-
                 #If click is outside UI
-                    if self.xCoord <= 9:
+                if self.xCoord <= 9:
 
+                
+                    if (not self.userInterface.inspector):
                         self.inspect.inspectTile(self.terrainobject.board, self.xCoord, self.yCoord)
 
                         #If tile is already built on
@@ -88,23 +88,25 @@ class Main():
                         self.userInterface.updateResources(self.player1)
                         # print(string)
                         sys.stdout.flush()
-
                     else:
-                        #if click button
-                        if(1050 < self.realX < 1450):
-                            sys.stdout.flush()
-                            if(516 < self.realY < 584):
-                                self.selectedBuilding = 0
-                            elif(596 < self.realY < 664):
-                                self.selectedBuilding = 1
-                            elif(676 < self.realY < 744):
-                                self.selectedBuilding = 2
-                            elif(756 < self.realY < 824):
-                                self.selectedBuilding = 3
-                            elif(836 < self.realY < 904):
-                                self.selectedBuilding = 4
-                            elif(916 < self.realY < 984):
-                                self.selectedBuilding = 5
+                        self.userInterface.updateInspector(self.xCoord, self.yCoord, self.terrainobject.board)
+
+                else:
+                    #if click button
+                    if(1050 < self.realX < 1450):
+                        sys.stdout.flush()
+                        if(516 < self.realY < 584):
+                            self.selectedBuilding = 0
+                        elif(596 < self.realY < 664):
+                            self.selectedBuilding = 1
+                        elif(676 < self.realY < 744):
+                            self.selectedBuilding = 2
+                        elif(756 < self.realY < 824):
+                            self.selectedBuilding = 3
+                        elif(836 < self.realY < 904):
+                            self.selectedBuilding = 4
+                        elif(916 < self.realY < 984):
+                            self.selectedBuilding = 5
                     self.userInterface.switchSelectedBuilding(self.selectedBuilding)
                     sys.stdout.flush()
                     return (self.xCoord, self.yCoord)
@@ -122,7 +124,7 @@ class Main():
         self.userInterface = UserInterface.UserInterface(self.screen)
         self.terrainobject = Terrain.Terrain(10, self.width, self.tilesize)
         self.terrainobject.generateBoard(self.screen)
-        self.userInterface.updateInspector(0, 0, self.terrainobject.board)
+        
         self.building = Buildings.Building(10, 1*self.tilesize, 1*self.tilesize, self.tilesize, self.screen,1)
         self.building.drawBuilding(1)
         self.player1.buildings.append(self.building)
