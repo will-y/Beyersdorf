@@ -44,7 +44,6 @@ class Main():
                     sys.stdout.flush()
                 else:
                     if(1050 < self.realX < 1450):
-                        print("In Range X")
                         sys.stdout.flush()
                         if(516 < self.realY < 584):
                             self.selectedBuilding = 0
