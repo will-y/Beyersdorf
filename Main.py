@@ -58,6 +58,7 @@ class Main():
                             self.selectedBuilding = 4
                         elif(916 < self.realY < 984):
                             self.selectedBuilding = 5
+                self.userInterface.switchSelectedBuilding(self.selectedBuilding)
                 print(self.selectedBuilding)
                 sys.stdout.flush()
                 return (self.xCoord, self.yCoord)
