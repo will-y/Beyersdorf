@@ -71,7 +71,7 @@ class Main():
         self.screen.fill(pg.Color('white'))
         
         # main_menu.width = self.width
-        self.terrainobject = Terrain.Terrain(10, self.width)
+        self.terrainobject = Terrain.Terrain(10, self.width, self.tilesize)
         self.terrainobject.generateBoard(self.screen)
         self.userInterface = UserInterface.UserInterface(self.screen)
         self.userInterface.drawInterface()
