@@ -94,8 +94,8 @@ class Main():
                 return pg.mouse.get_pos() 
 
     def runGame(self):
-        #main_menu = MainMenu.Main_Menu()
-        #main_menu.runScreen()
+        self.main_menu = MainMenu.Main_Menu()
+        self.main_menu.runScreen()
         turnManager = TurnManager.Manager()
         self.screen = pg.display.set_mode((math.floor(self.width* 3/2), self.height))
         self.screen.fill(pg.Color('white'))
@@ -112,7 +112,7 @@ class Main():
         self.userInterface.drawResourceBuildings()
         pg.draw.rect(self.screen, pg.Color('black'), (0, 0, 1000, 1000), 5)
         
-        file = 'Sound/Music2.mp3'
+        file = 'Sound/Music2.wav'
         pg.mixer.init()
         pg.mixer.music.load(file)
         pg.mixer.music.play(-1)
