@@ -51,7 +51,7 @@ class Main():
                                     if self.changeResources(self.player1):
 
                                         self.building.drawBuilding(1)
-                                        self.terrainobject.board[self.xCoord][self.yCoord].builtOn = True
+                                        self.terrainobject.board[self.xCoord][self.yCoord].builtOn == True
                                         turnManager.useAction(1)
 
                                 if turnManager.playerOneTurn == False and not turnManager.playerTwoActions == turnManager.playerTwoActionsUsed:
