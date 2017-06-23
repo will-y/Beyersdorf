@@ -10,6 +10,7 @@ class Player():
         self.playerFood = 0
         self.playerCurPop = 0
         self.playerMaxPop = 10
+        self.buldings = []
 
     def canBuy(self, amountwood, amountstone, amountore, amountpop):
         return self.playerWood + amountwood >= 0 and self.playerStone + amountstone >= 0 and self.playerOre + amountore >= 0 and self.playerCurPop + amountpop <= self.playerMaxPop
@@ -43,4 +44,14 @@ class Player():
         self.playerMaxPop=amount
     def setCurPop(self,amount):
         self.playerMaxPop+=amount
-        
+    
+    def addBuilding(self,building):
+        self.buildings.append(building)
+
+    def canBuild(self,building):
+        for i in range(len(self.buldings))
+            if bulding.x+1 == self.buildings[i].x or bulding.x-1 == self.buildings[i].x
+                return True
+            if building.y+1 == self.buldings[i].y or building.y-1 == self.buldings[i].y
+                return True
+        return False
