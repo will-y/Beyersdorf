@@ -24,6 +24,8 @@ class UserInterface():
         self.tab1BuildingText = self.tab1Font.render("Buildings", True, pg.Color('black'))
         self.tab1InspectorText = self.tab1Font.render("Inspector", True, pg.Color('black'))
 
+        self.endTurnText = self.tab1Font.render("End Turn", True, pg.Color('black'))
+
         self.resourceTabText = self.tab2Font.render("Resource", True, pg.Color('black'))
         self.militaryTabText = self.tab2Font.render("Military", True, pg.Color('black'))
         self.infrastructureTabText = self.tab2Font.render("Other", True, pg.Color('black'))
@@ -72,7 +74,7 @@ class UserInterface():
         self.stoneCount = self.resourceCountFont.render("1000", True, pg.Color('black'))
         self.oreCount = self.resourceCountFont.render("100", True, pg.Color('black'))
         self.foodCount = self.resourceCountFont.render("0", True, pg.Color('black'))
-        self.populationCount = self.resourceCountFont.render("0", True, pg.Color('black'))
+        self.populationCount = self.resourceCountFont.render("0 / 0", True, pg.Color('black'))
 
         #Background rectangle dimensions
         self.rectXPos = 1000
@@ -164,7 +166,8 @@ class UserInterface():
         self.screen.blit(self.foodCount, (1210, 250))
         self.screen.blit(self.populationCount, (1305, 300))
 
-        pg.draw.rect(self.screen, pg.Color(120, 120, 120), (1200, 350, 100, 35))
+        pg.draw.rect(self.screen, pg.Color(159, 163, 206), (1175, 350, 150, 35))
+        self.screen.blit(self.endTurnText, (1190, 355))
 
         if(not self.inspector):
             #BUILDING SELECTED
@@ -196,6 +199,12 @@ class UserInterface():
             self.screen.blit(self.resourceTabText, (self.tabButton2XValue + 14, self.tabButton2YValue + 4))
             self.screen.blit(self.militaryTabText, (self.tabButton2XValue + 14 + self.tabButton2Width, self.tabButton2YValue + 4))
             self.screen.blit(self.infrastructureTabText, (self.tabButton2XValue + 14 + self.tabButton2Width * 2, self.tabButton2YValue + 4))
+
+            #DRAW RESOURCE COST ICONS
+            self.screen.blit(self.woodCostImage, (1225, 485))
+            self.screen.blit(self.stoneCostImage, (1225 + self.costPadding + 45, 485))
+            self.screen.blit(self.oreCostImage, (1225 + self.costPadding * 2 + 90, 485))
+            self.screen.blit(self.populationCostImage, (1225 + self.costPadding * 3 + 135, 485))
         else:
             #INSPECTOR SELECTED
             #LEFT TAB: BUILDING
@@ -210,6 +219,7 @@ class UserInterface():
         self.inspector = False
         pg.draw.rect(self.screen, self.rectColor, (self.rectXPos, self.rectYPos, self.rectWidth, self.rectHeight))
         self.drawInterface()
+        
         if(self.currentBuildingTab == 0):
             self.drawResourceBuildings()
         elif(self.currentBuildingTab == 1):
@@ -280,10 +290,7 @@ class UserInterface():
         self.mineName = self.buildingFont.render("Mine", True, pg.Color('black'))
         self.screen.blit(self.mineName, (1035 + self.buildingPadding * 2 + self.buildingWidth, 500 + self.buildingPadding * (23/4) + self.buildingWidth * (11/2)))
 
-        self.screen.blit(self.woodCostImage, (1225, 485))
-        self.screen.blit(self.stoneCostImage, (1225 + self.costPadding + 45, 485))
-        self.screen.blit(self.oreCostImage, (1225 + self.costPadding * 2 + 90, 485))
-        self.screen.blit(self.populationCostImage, (1225 + self.costPadding * 3 + 135, 485))
+        
 
         for i in range(6):
             self.drawResourceCosts(i)
@@ -319,7 +326,7 @@ class UserInterface():
         pg.draw.rect(self.screen, pg.Color(183, 183, 183), (1225, 500, 3, 490))
 
     def switchSelectedBuilding(self, buildingID):
-        if(self.currentBuildingTab == 0):
+        if(self.currentBuildingTab == 0 and not self.inspector):
             if(buildingID == 0):
                 pg.draw.rect(self.screen, self.tabButtonSelectedColor, (1050, 496 + self.buildingPadding, self.buildingRect1Width, self.buildingRect1Height + 8))
                 pg.draw.rect(self.screen, self.tabButtonColor,(1050, 496 + self.buildingPadding * 2 + self.buildingWidth, self.buildingRect1Width, self.buildingRect1Height + 8))

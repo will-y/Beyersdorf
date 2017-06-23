@@ -159,7 +159,7 @@ class Building:
             self.woodCost = 1000    
             self.stoneCost = 1000
             self.oreCost = 200
-            self.image = pg.image.load("Images/farm.png")
+            self.image = pg.image.load("Images/castle1.png")
             self.image = pg.transform.scale(self.image, (int(self.tilesize * (4/5)), int(self.tilesize * (4/5))))
 
             #Outpost
