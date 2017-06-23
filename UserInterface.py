@@ -348,7 +348,6 @@ class UserInterface():
         self.tileWoodAmount = inspector.inspectTile(board, x, y)[1]
         self.tileStoneAmount = inspector.inspectTile(board, x, y)[2]
         self.tileOreAmount = inspector.inspectTile(board, x, y)[3]
-        print(inspector.inspectTile(board, x, y))
         self.drawInspector()
     def drawResourceBuildings(self):
         
