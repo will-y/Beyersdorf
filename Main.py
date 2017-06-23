@@ -124,7 +124,7 @@ class Main():
         self.userInterface.drawResourceBuildings()
         pg.draw.rect(self.screen, pg.Color('black'), (0, 0, 1000, 1000), 5)
         
-        file = 'Sound/Music2.wav'
+        file = 'Sound/Music.mp3'
         pg.mixer.init()
         pg.mixer.music.load(file)
         pg.mixer.music.play(-1)
