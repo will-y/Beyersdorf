@@ -289,6 +289,9 @@ class UserInterface():
         #RIGHT TAB: INSPECTOR
         pg.draw.rect(self.screen, self.tabButtonSelectedColor, (self.tabButtonXValue + self.tabButtonWidth, self.tabButtonYValue, self.tabButtonWidth, self.tabButtonHeight))
 
+        self.screen.blit(self.tab1BuildingText, (self.tabButtonXValue + 30, self.tabButtonYValue + 5))
+        self.screen.blit(self.tab1InspectorText, (self.tabButtonXValue + self.tabButtonWidth + 30, self.tabButtonYValue + 5))
+
         #INSPECTOR TITLES
         self.tileTypeText = self.tab1Font.render("Tile Type: " + str(self.currentTile), True, pg.Color('black'))
         self.tileResources = self.tab1Font.render("Resources In Tile: ", True, pg.Color('black'))
@@ -325,18 +328,23 @@ class UserInterface():
         if(self.currentTileNumber == 0):
             self.currentTile = "Forest"
             self.prefBuildingName = "Lumber Mill"
+            self.costModiferNumber = "1.2"
         elif(self.currentTileNumber == 1):
             self.currentTile = "Mountain"
             self.prefBuildingName = "Quarry"
+            self.costModiferNumber = "1.5"
         elif(self.currentTileNumber == 2):
             self.currentTile = "Hill"
             self.prefBuildingName = "Farm"
+            self.costModiferNumber = "1.3"
         elif(self.currentTileNumber == 3):
             self.currentTile = "Plain"
             self.prefBuildingName = "Ranch"
+            self.costModiferNumber = "1"
         elif(self.currentTileNumber == 4):
             self.currentTile = "Water"
             self.prefBuildingName = "None"
+            self.costModiferNumber = "1"
         self.tileWoodAmount = inspector.inspectTile(board, x, y)[1]
         self.tileStoneAmount = inspector.inspectTile(board, x, y)[2]
         self.tileOreAmount = inspector.inspectTile(board, x, y)[3]
