@@ -9,5 +9,4 @@ class Inspector:
         self.tile_x = x
         self.tile_y = y
         currentTile = board[self.tile_x][self.tile_y]
-        # print(currentTile)
         return currentTile
