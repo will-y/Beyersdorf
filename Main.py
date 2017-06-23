@@ -33,7 +33,7 @@ class Main():
                     #If tile is already built on
                     self.inspect.inspectTile(self.terrainobject.board, self.xCoord, self.yCoord)
                     if not self.terrainobject.board[self.xCoord][self.yCoord].builtOn:
-                        self.building = Buildings.Building(0, self.xCoord*self.tilesize, self.yCoord*self.tilesize, self.tilesize, self.screen)
+                        self.building = Buildings.Building(self.selectedBuilding, self.xCoord*self.tilesize, self.yCoord*self.tilesize, self.tilesize, self.screen)
                         #if player have resources to build
                         if self.changeResources(self.player1):
                             self.building.drawBuilding()
