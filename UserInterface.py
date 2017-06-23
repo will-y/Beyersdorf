@@ -71,7 +71,7 @@ class UserInterface():
 
         #Resource Amounts
         self.woodCount = self.resourceCountFont.render("1000", True, pg.Color('black'))
-        self.stoneCount = self.resourceCountFont.render("1000", True, pg.Color('black'))
+        self.stoneCount = self.resourceCountFont.render("200", True, pg.Color('black'))
         self.oreCount = self.resourceCountFont.render("100", True, pg.Color('black'))
         self.foodCount = self.resourceCountFont.render("0", True, pg.Color('black'))
         self.populationCount = self.resourceCountFont.render("0 / 0", True, pg.Color('black'))

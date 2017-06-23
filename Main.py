@@ -18,7 +18,20 @@ class Main():
         self.selectedBuilding = 0
 
     def changeResources(self, player):
-        return player.editWood(-self.building.woodCost) and player.editStone(-self.building.stoneCost) and player.editOre(-self.building.oreCost)
+        if player == 1:
+            if self.player1.canBuy(-self.building.woodCost, -self.building.stoneCost, -self.building.oreCost, self.building.populationCost):
+                self.player1.editWood(-self.building.woodCost)
+                self.player1.editStone(-self.building.stoneCost)
+                self.player1.editOre(-self.building.oreCost)
+                self.player1.editCurPop(self.building.populationCost)
+                return True
+        if player == 2:
+            if self.player2.canBuy(-self.building.woodCost, -self.building.stoneCost, -self.building.oreCost, self.building.populationCost):
+                self.player2.editWood(-self.building.woodCost)
+                self.player2.editStone(-self.building.stoneCost)
+                self.player2.editOre(-self.building.oreCost)
+                self.player2.editCurPop(self.building.populationCost)
+                return True
 
     def detectClick(self, boardCoords, turnManager):
         #for event in pg.event.get():
@@ -38,27 +51,27 @@ class Main():
                     self.inspect.inspectTile(self.terrainobject.board, self.xCoord, self.yCoord)
 
                     #If tile is already built on
-                    if not self.terrainobject.board[self.xCoord][self.yCoord].builtOn:
+                    if self.terrainobject.board[self.xCoord][self.yCoord].builtOn == False:
 
                         #if not on water or bridge
-                        if not self.terrainobject.board[self.xCoord][self.yCoord].tileType == 4 or self.selectedBuilding == 9:
+                        if (not self.terrainobject.board[self.xCoord][self.yCoord].tileType == 4) or self.selectedBuilding == 9:
 
                                 #if it is correct player's turn and they have enough actions
                                 if turnManager.playerOneTurn == True and not turnManager.playerOneActions == turnManager.playerOneActionsUsed:
+                                    self.building = Buildings.Building(self.selectedBuilding, self.xCoord*self.tilesize, self.yCoord*self.tilesize, self.tilesize, self.screen,1)
 
                                     #if player have resources to build
-                                    self.building = Buildings.Building(self.selectedBuilding, self.xCoord*self.tilesize, self.yCoord*self.tilesize, self.tilesize, self.screen,1)
-                                    if self.changeResources(self.player1):
+                                    if self.changeResources(1):
 
                                         self.building.drawBuilding(1)
-                                        self.terrainobject.board[self.xCoord][self.yCoord].builtOn == True
+                                        self.terrainobject.board[self.xCoord][self.yCoord].builtOn = True
                                         turnManager.useAction(1)
 
                                 if turnManager.playerOneTurn == False and not turnManager.playerTwoActions == turnManager.playerTwoActionsUsed:
 
                                     #if player have resources to build
                                     self.building = Buildings.Building(self.selectedBuilding, self.xCoord*self.tilesize, self.yCoord*self.tilesize, self.tilesize, self.screen,2)
-                                    if self.changeResources(self.player2):
+                                    if self.changeResources(2):
 
                                         self.building.drawBuilding(2)
                                         self.terrainobject.board[self.xCoord][self.yCoord].builtOn = True
@@ -86,7 +99,6 @@ class Main():
                         elif(916 < self.realY < 984):
                             self.selectedBuilding = 5
                 self.userInterface.switchSelectedBuilding(self.selectedBuilding)
-                print(self.selectedBuilding)
                 sys.stdout.flush()
                 return (self.xCoord, self.yCoord)
             else:
