@@ -29,6 +29,9 @@ class Main():
                 self.xCoord = (int)(pg.mouse.get_pos()[0]/100)
                 self.yCoord = (int)(pg.mouse.get_pos()[1]/100)
 
+                if self.realX >= 1200 and self.realX <= 1300 and self.realY >= 350 and self.realY <= 450:
+                    turnManager.endTurn()
+
                 #If click is outside UI
                 if self.xCoord <= 9:
 
@@ -48,7 +51,7 @@ class Main():
                                     if self.changeResources(self.player1):
 
                                         self.building.drawBuilding(1)
-                                        self.terrainobject.board[self.xCoord][self.yCoord].builtOn == True
+                                        self.terrainobject.board[self.xCoord][self.yCoord].builtOn = True
                                         turnManager.useAction(1)
 
                                 if turnManager.playerOneTurn == False and not turnManager.playerTwoActions == turnManager.playerTwoActionsUsed:

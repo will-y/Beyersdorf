@@ -178,8 +178,8 @@ class Building:
             self.productionRate = 0
             self.populationCost = 0
             self.populationAdd = 10
-            self.woodCost = 1000    
-            self.stoneCost = 1000
-            self.oreCost = 200
+            self.woodCost = 700
+            self.stoneCost = 800
+            self.oreCost = 80
             self.image = pg.image.load("Images/farm.png")
             self.image = pg.transform.scale(self.image, (int(self.tilesize * (4/5)), int(self.tilesize * (4/5))))
