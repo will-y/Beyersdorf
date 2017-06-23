@@ -1,4 +1,4 @@
-import pygame as pg, sys, Health, Terrain, math, UserInterface, MainMenu, Buildings, Player, InspectorGadget
+import pygame as pg, sys, Health, Terrain, math, UserInterface, MainMenu, Buildings, Player, InspectorGadget, TurnManager
 
 class Main():
     def __init__(self):
@@ -20,7 +20,7 @@ class Main():
     def changeResources(self, player):
         return player.editWood(-self.building.woodCost) and player.editStone(-self.building.stoneCost) and player.editOre(-self.building.oreCost)
 
-    def detectClick(self, boardCoords):
+    def detectClick(self, boardCoords, turnManager):
         #for event in pg.event.get():
         if(pg.mouse.get_pressed()[0]):
             if(boardCoords):
@@ -28,24 +28,50 @@ class Main():
                 self.realY = pg.mouse.get_pos()[1]
                 self.xCoord = (int)(pg.mouse.get_pos()[0]/100)
                 self.yCoord = (int)(pg.mouse.get_pos()[1]/100)
-                #If click is in UI
+
+                if self.realX >= 1200 and self.realX <= 1300 and self.realY >= 350 and self.realY <= 450:
+                    turnManager.endTurn()
+
+                #If click is outside UI
                 if self.xCoord <= 9:
-                    #If tile is already built on
+
                     self.inspect.inspectTile(self.terrainobject.board, self.xCoord, self.yCoord)
+
+                    #If tile is already built on
                     if not self.terrainobject.board[self.xCoord][self.yCoord].builtOn:
-                        self.building = Buildings.Building(self.selectedBuilding, self.xCoord*self.tilesize, self.yCoord*self.tilesize, self.tilesize, self.screen)
-                        #if player have resources to build
+
+                        #if not on water or bridge
                         if not self.terrainobject.board[self.xCoord][self.yCoord].tileType == 4 or self.selectedBuilding == 9:
-                            if self.changeResources(self.player1):
-                                self.building.drawBuilding()
-                                self.terrainobject.board[self.xCoord][self.yCoord].builtOn = True
+
+                                #if it is correct player's turn and they have enough actions
+                                if turnManager.playerOneTurn == True and not turnManager.playerOneActions == turnManager.playerOneActionsUsed:
+
+                                    #if player have resources to build
+                                    self.building = Buildings.Building(self.selectedBuilding, self.xCoord*self.tilesize, self.yCoord*self.tilesize, self.tilesize, self.screen,1)
+                                    if self.changeResources(self.player1):
+
+                                        self.building.drawBuilding(1)
+                                        self.terrainobject.board[self.xCoord][self.yCoord].builtOn == True
+                                        turnManager.useAction(1)
+
+                                if turnManager.playerOneTurn == False and not turnManager.playerTwoActions == turnManager.playerTwoActionsUsed:
+
+                                    #if player have resources to build
+                                    self.building = Buildings.Building(self.selectedBuilding, self.xCoord*self.tilesize, self.yCoord*self.tilesize, self.tilesize, self.screen,2)
+                                    if self.changeResources(self.player2):
+
+                                        self.building.drawBuilding(2)
+                                        self.terrainobject.board[self.xCoord][self.yCoord].builtOn = True
+                                        turnManager.useAction(2)
+
                     string = str.format("{} {} {}", self.player1.playerWood, self.player1.playerStone, self.player1.playerOre)
                     self.userInterface.updateResources(self.player1)
                     # print(string)
                     sys.stdout.flush()
+
                 else:
+                    #if click button
                     if(1050 < self.realX < 1450):
-                        print("In Range X")
                         sys.stdout.flush()
                         if(516 < self.realY < 584):
                             self.selectedBuilding = 0
@@ -59,6 +85,7 @@ class Main():
                             self.selectedBuilding = 4
                         elif(916 < self.realY < 984):
                             self.selectedBuilding = 5
+                self.userInterface.switchSelectedBuilding(self.selectedBuilding)
                 print(self.selectedBuilding)
                 sys.stdout.flush()
                 return (self.xCoord, self.yCoord)
@@ -68,17 +95,27 @@ class Main():
     def runGame(self):
         #main_menu = MainMenu.Main_Menu()
         #main_menu.runScreen()
+        turnManager = TurnManager.Manager()
         self.screen = pg.display.set_mode((math.floor(self.width* 3/2), self.height))
         self.screen.fill(pg.Color('white'))
         
         # main_menu.width = self.width
         self.terrainobject = Terrain.Terrain(10, self.width, self.tilesize)
         self.terrainobject.generateBoard(self.screen)
+        self.building = Buildings.Building(10, 1*self.tilesize, 1*self.tilesize, self.tilesize, self.screen,1)
+        self.building.drawBuilding(1)
+        self.building = Buildings.Building(10, 8*self.tilesize, 8*self.tilesize, self.tilesize, self.screen,2)
+        self.building.drawBuilding(2)
         self.userInterface = UserInterface.UserInterface(self.screen)
         self.userInterface.drawInterface()
         self.userInterface.drawResourceBuildings()
         pg.draw.rect(self.screen, pg.Color('black'), (0, 0, 1000, 1000), 5)
         
+        file = 'Sound/Music2.mp3'
+        pg.mixer.init()
+        pg.mixer.music.load(file)
+        pg.mixer.music.play()
+
         while(True):
             self.clock.tick(10)
             
@@ -87,7 +124,7 @@ class Main():
                     sys.exit()
             pg.mouse.set_cursor(*pg.cursors.broken_x)
             pg.display.update()
-            self.detectClick(True)
+            self.detectClick(True, turnManager)
             self.userInterface.detectTabChange(0)
             self.userInterface.detectTabChange(1)
             #sys.stdout.flush()

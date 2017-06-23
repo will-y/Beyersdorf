@@ -4,10 +4,11 @@ import time
 import Terrain
 import Health
 import TileCreate
+import TurnManager
 
 class Building:
 
-    def __init__(self, buildingType, x, y, tilesize, screen):
+    def __init__(self, buildingType, x, y, tilesize, screen, player):
         self.buildingType = buildingType
         self.productionRate = None
         self.populationCost = None
@@ -20,15 +21,23 @@ class Building:
         self.screen = screen
         self.tilesize = tilesize
         self.image = None
-        self.createBuilding(x, y, tilesize, screen)
+        self.createBuilding(x, y, tilesize, screen, player)
+        self.playerOwned = None
 
-    def drawBuilding(self):
+    def drawBuilding(self, player):
         #pg.draw.rect(self.screen, pg.Color(244, 101, 66), (self.x, self.y, self.tilesize, self.tilesize))
         self.screen.blit(self.image, (self.x + self.tilesize/10, self.y + self.tilesize/10))
 
-    def createBuilding(self, x, y, tilesize, screen):
+        if player == 1:
+            pg.draw.rect(self.screen, pg.Color(255, 0, 0), (self.x, self.y, self.tilesize, self.tilesize), 1)
+
+        if player == 2:
+            pg.draw.rect(self.screen, pg.Color(0, 0, 255), (self.x, self.y, self.tilesize, self.tilesize), 1)
+
+    def createBuilding(self, x, y, tilesize, screen, player):
         self.building = pg.Rect(x, y, tilesize, tilesize)
-        #pg.draw.rect(screen, pg.Color(244, 101, 66), (x, y, tilesize, tilsize))
+        self.playerOwned = player
+        #pg.draw.rect(screen, pg.Color(244, 101, 66), (x, y, tilesize, tilesize))
         healthBar = Health.Health((x*tilesize, y*tilesize), 100, screen)
         healthBar.drawHealth(100, 100)
        
@@ -150,7 +159,7 @@ class Building:
             self.woodCost = 1000    
             self.stoneCost = 1000
             self.oreCost = 200
-            self.image = pg.image.load("Images/farm.png")
+            self.image = pg.image.load("Images/castle1.png")
             self.image = pg.transform.scale(self.image, (int(self.tilesize * (4/5)), int(self.tilesize * (4/5))))
 
             #Outpost
@@ -169,8 +178,8 @@ class Building:
             self.productionRate = 0
             self.populationCost = 0
             self.populationAdd = 10
-            self.woodCost = 1000    
-            self.stoneCost = 1000
-            self.oreCost = 200
+            self.woodCost = 700
+            self.stoneCost = 800
+            self.oreCost = 80
             self.image = pg.image.load("Images/farm.png")
             self.image = pg.transform.scale(self.image, (int(self.tilesize * (4/5)), int(self.tilesize * (4/5))))
