@@ -15,18 +15,32 @@ class Terrain():
         # self.mountainColor = (205,201,201)
         # self.waterColor = (30,144,255)
         # Tile Images
-        self.forestTile = pg.image.load("Images/forestTile.png")
-        self.forestTile = pg.transform.scale(self.forestTile, (int(self.tilesize), int(self.tilesize)))
-        self.mountainTile = pg.image.load("Images/mountainTile.png")
-        self.mountainTile = pg.transform.scale(self.mountainTile, (int(self.tilesize), int(self.tilesize)))
-        self.hillTile = pg.image.load("Images/hillTile.png")
-        self.hillTile = pg.transform.scale(self.hillTile, (int(self.tilesize), int(self.tilesize)))
-        self.plainTile = pg.image.load("Images/plainTile.png")
-        self.plainTile = pg.transform.scale(self.plainTile, (int(self.tilesize), int(self.tilesize)))
-        self.waterTile = pg.image.load("Images/waterTile.png")
-        self.waterTile = pg.transform.scale(self.waterTile, (int(self.tilesize), int(self.tilesize)))
-        self.tileType = None
+        hd = False
 
+        if hd:
+            self.forestTile = pg.image.load("Images/forestTileHiRes.png")
+            self.forestTile = pg.transform.scale(self.forestTile, (int(self.tilesize), int(self.tilesize)))
+            self.mountainTile = pg.image.load("Images/mountainTileHiRes.png")
+            self.mountainTile = pg.transform.scale(self.mountainTile, (int(self.tilesize), int(self.tilesize)))
+            self.hillTile = pg.image.load("Images/hillTileHiRes.png")
+            self.hillTile = pg.transform.scale(self.hillTile, (int(self.tilesize), int(self.tilesize)))
+            self.plainTile = pg.image.load("Images/plainTileHiRes.png")
+            self.plainTile = pg.transform.scale(self.plainTile, (int(self.tilesize), int(self.tilesize)))
+            self.waterTile = pg.image.load("Images/waterTileHiRes.png")
+            self.waterTile = pg.transform.scale(self.waterTile, (int(self.tilesize), int(self.tilesize)))
+            self.tileType = None
+        else:
+            self.forestTile = pg.image.load("Images/forestTile.png")
+            self.forestTile = pg.transform.scale(self.forestTile, (int(self.tilesize), int(self.tilesize)))
+            self.mountainTile = pg.image.load("Images/mountainTile.png")
+            self.mountainTile = pg.transform.scale(self.mountainTile, (int(self.tilesize), int(self.tilesize)))
+            self.hillTile = pg.image.load("Images/hillTile.png")
+            self.hillTile = pg.transform.scale(self.hillTile, (int(self.tilesize), int(self.tilesize)))
+            self.plainTile = pg.image.load("Images/plainTile.png")
+            self.plainTile = pg.transform.scale(self.plainTile, (int(self.tilesize), int(self.tilesize)))
+            self.waterTile = pg.image.load("Images/waterTile.png")
+            self.waterTile = pg.transform.scale(self.waterTile, (int(self.tilesize), int(self.tilesize)))
+            self.tileType = None
     def generateBoard(self, screen):
         """Generates the board with different tiles"""
         self.board = []
