@@ -63,24 +63,26 @@ class Main():
                                     if turnManager.playerOneTurn == True and not turnManager.playerOneActions == turnManager.playerOneActionsUsed:
                                         self.building = Buildings.Building(self.selectedBuilding, self.xCoord*self.tilesize, self.yCoord*self.tilesize, self.tilesize, self.screen,1)
 
-                                        #if player have resources to build
-                                        if self.changeResources(1):
+                                        if self.player1.canBuild(self.building):
 
-                                            self.building.drawBuilding(1)
-                                            self.terrainobject.board[self.xCoord][self.yCoord].builtOn = True
-                                            turnManager.useAction(1)
-                                            self.player1.addBuilding(self.building)
+                                            #if player have resources to build
+                                            if self.changeResources(1):
+                                                self.building.drawBuilding(1)
+                                                self.terrainobject.board[self.xCoord][self.yCoord].builtOn = True
+                                                turnManager.useAction(1)
+                                                self.player1.addBuilding(self.building)
 
                                     if turnManager.playerOneTurn == False and not turnManager.playerTwoActions == turnManager.playerTwoActionsUsed:
 
-                                        #if player have resources to build
                                         self.building = Buildings.Building(self.selectedBuilding, self.xCoord*self.tilesize, self.yCoord*self.tilesize, self.tilesize, self.screen,2)
-                                        if self.changeResources(2):
+                                        if self.player2.canBuild(self.building):
 
-                                            self.building.drawBuilding(2)
-                                            self.terrainobject.board[self.xCoord][self.yCoord].builtOn = True
-                                            turnManager.useAction(2)
-                                            self.player2.addBuilding(self.building)
+                                            #if player have resources to build
+                                            if self.changeResources(2):
+                                                self.building.drawBuilding(2)
+                                                self.terrainobject.board[self.xCoord][self.yCoord].builtOn = True
+                                                turnManager.useAction(2)
+                                                self.player2.addBuilding(self.building)
 
                         string = str.format("{} {} {}", self.player1.playerWood, self.player1.playerStone, self.player1.playerOre)
                         self.userInterface.updateResources(self.player1)
@@ -123,8 +125,11 @@ class Main():
         self.userInterface.updateInspector(0, 0, self.terrainobject.board)
         self.building = Buildings.Building(10, 1*self.tilesize, 1*self.tilesize, self.tilesize, self.screen,1)
         self.building.drawBuilding(1)
+        self.player1.buildings.append(self.building)
         self.building = Buildings.Building(10, 8*self.tilesize, 8*self.tilesize, self.tilesize, self.screen,2)
         self.building.drawBuilding(2)
+        self.player2.buildings.append(self.building)
+        print(self.player1.buildings[0])
         
         self.userInterface.drawInterface()
         self.userInterface.drawResourceBuildings()

@@ -50,7 +50,7 @@ class Player():
         print(self.buildings)
 
     def canBuild(self,building):
-        for i in range(len(self.buldings)):
-            if building.x+1 == self.buildings[i].x or building.x-1 == self.buildings[i].x or building.y+1 == self.buildings[i].y or building.y-1 == self.buldings[i].y:
+        for i in range(len(self.buildings)):
+            if building.x == self.buildings[i].x+1 or building.x == self.buildings[i].x-1 or building.y == self.buildings[i].y+1 or building.y == self.buildings[i].y-1:
                 return True
         return False

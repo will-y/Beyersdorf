@@ -34,6 +34,9 @@ class Building:
         if player == 2:
             pg.draw.rect(self.screen, pg.Color(0, 0, 255), (self.x, self.y, self.tilesize, self.tilesize), 1)
 
+    def __str__(self):
+        return str(self.x)
+
     def createBuilding(self, x, y, tilesize, screen, player):
         self.building = pg.Rect(x, y, tilesize, tilesize)
         self.playerOwned = player
