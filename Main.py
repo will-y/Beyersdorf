@@ -114,7 +114,7 @@ class Main():
         file = 'Sound/Music2.mp3'
         pg.mixer.init()
         pg.mixer.music.load(file)
-        pg.mixer.music.play()
+        pg.mixer.music.play(-1)
 
         while(True):
             self.clock.tick(10)
