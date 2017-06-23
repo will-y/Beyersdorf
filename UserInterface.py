@@ -1,6 +1,8 @@
 import pygame as pg
 import sys
 import Player
+import InspectorGadget
+import Terrain
 
 class UserInterface():
     def __init__(self, screen):
@@ -148,9 +150,7 @@ class UserInterface():
         self.currentBuildingName = "None"
         self.woodPerTurnInspector = " +0/Turn"
         self.stonePerTurnInspector = " +0/Turn"
-        self.orePerTurnInspector = " +0/Turn"
-
-        
+        self.orePerTurnInspector = " +0/Turn" 
 
     def drawInterface(self):
         pg.draw.rect(self.screen, self.rectColor, (self.rectXPos, self.rectYPos, self.rectWidth, self.rectHeight))
@@ -282,13 +282,14 @@ class UserInterface():
         self.drawInterface()
 
     def drawInspector(self):
-         #LEFT TAB: BUILDING
+        pg.draw.rect(self.screen, self.rectColor, (1005, 450, 490, 500))
+        #LEFT TAB: BUILDING
         pg.draw.rect(self.screen, self.tabButtonColor, (self.tabButtonXValue, self.tabButtonYValue, self.tabButtonWidth, self.tabButtonHeight))
         #RIGHT TAB: INSPECTOR
         pg.draw.rect(self.screen, self.tabButtonSelectedColor, (self.tabButtonXValue + self.tabButtonWidth, self.tabButtonYValue, self.tabButtonWidth, self.tabButtonHeight))
 
         #INSPECTOR TITLES
-        self.tileTypeText = self.tab1Font.render("Tile Type: " + self.currentTile, True, pg.Color('black'))
+        self.tileTypeText = self.tab1Font.render("Tile Type: " + str(self.currentTile), True, pg.Color('black'))
         self.tileResources = self.tab1Font.render("Resources In Tile: ", True, pg.Color('black'))
         self.tileBuilding = self.tab1Font.render("Building: " + self.currentBuildingName, True, pg.Color('black'))
         self.costMod = self.tab1Font.render("Building Cost Modifier: " + self.costModiferNumber, True, pg.Color('black'))
@@ -298,9 +299,9 @@ class UserInterface():
         self.stoneInTileImage = pg.transform.scale(self.stoneImage, (35, 23))
         self.oreInTileImage = pg.transform.scale(self.oreImage, (35, 23))
 
-        self.woodInTile = self.tab2Font.render(self.tileWoodAmount + self.woodPerTurnInspector, True, pg.Color('black'))
-        self.stoneInTile = self.tab2Font.render(self.tileStoneAmount + self.stonePerTurnInspector, True, pg.Color('black'))
-        self.oreInTile = self.tab2Font.render(self.tileOreAmount + self.orePerTurnInspector, True, pg.Color('black'))
+        self.woodInTile = self.tab2Font.render(str(self.tileWoodAmount) + self.woodPerTurnInspector, True, pg.Color('black'))
+        self.stoneInTile = self.tab2Font.render(str(self.tileStoneAmount) + self.stonePerTurnInspector, True, pg.Color('black'))
+        self.oreInTile = self.tab2Font.render(str(self.tileOreAmount) + self.orePerTurnInspector, True, pg.Color('black'))
 
         self.screen.blit(self.tileTypeText, (1050, 465))
         self.screen.blit(self.costMod, (1050, 510))
@@ -316,6 +317,30 @@ class UserInterface():
         self.screen.blit(self.stoneInTile, (1150, 720))
         self.screen.blit(self.oreInTile, (1150, 750))
 
+    def updateInspector(self, x, y, board):
+        inspector = InspectorGadget.Inspector()
+        # terrain = Terrain.Terrain(10, 1000, 100)
+        self.currentTileNumber = inspector.inspectTile(board, x, y)[0]
+        if(self.currentTileNumber == 0):
+            self.currentTile = "Forest"
+            self.prefBuildingName = "Lumber Mill"
+        elif(self.currentTileNumber == 1):
+            self.currentTile = "Mountain"
+            self.prefBuildingName = "Quarry"
+        elif(self.currentTileNumber == 2):
+            self.currentTile = "Hill"
+            self.prefBuildingName = "Farm"
+        elif(self.currentTileNumber == 3):
+            self.currentTile = "Plain"
+            self.prefBuildingName = "Ranch"
+        elif(self.currentTileNumber == 4):
+            self.currentTile = "Water"
+            self.prefBuildingName = "None"
+        self.tileWoodAmount = inspector.inspectTile(board, x, y)[1]
+        self.tileStoneAmount = inspector.inspectTile(board, x, y)[2]
+        self.tileOreAmount = inspector.inspectTile(board, x, y)[3]
+        print(inspector.inspectTile(board, x, y))
+        self.drawInspector()
     def drawResourceBuildings(self):
         
         self.screen.blit(self.farmImage, (1050 + self.buildingPadding, 500 + self.buildingPadding))
@@ -342,8 +367,6 @@ class UserInterface():
 
         self.mineName = self.buildingFont.render("Mine", True, pg.Color('black'))
         self.screen.blit(self.mineName, (1035 + self.buildingPadding * 2 + self.buildingWidth, 500 + self.buildingPadding * (23/4) + self.buildingWidth * (11/2)))
-
-        
 
         for i in range(6):
             self.drawResourceCosts(i)

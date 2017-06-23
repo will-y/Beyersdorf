@@ -9,4 +9,4 @@ class Inspector:
         self.tile_x = x
         self.tile_y = y
         currentTile = board[self.tile_x][self.tile_y]
-        return currentTile
+        return currentTile.tileType, currentTile.wood, currentTile.stone, currentTile.ore

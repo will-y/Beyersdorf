@@ -101,13 +101,15 @@ class Main():
         self.screen.fill(pg.Color('white'))
         
         # main_menu.width = self.width
+        self.userInterface = UserInterface.UserInterface(self.screen)
         self.terrainobject = Terrain.Terrain(10, self.width, self.tilesize)
         self.terrainobject.generateBoard(self.screen)
+        self.userInterface.updateInspector(0, 0, self.terrainobject.board)
         self.building = Buildings.Building(10, 1*self.tilesize, 1*self.tilesize, self.tilesize, self.screen,1)
         self.building.drawBuilding(1)
         self.building = Buildings.Building(10, 8*self.tilesize, 8*self.tilesize, self.tilesize, self.screen,2)
         self.building.drawBuilding(2)
-        self.userInterface = UserInterface.UserInterface(self.screen)
+        
         self.userInterface.drawInterface()
         self.userInterface.drawResourceBuildings()
         pg.draw.rect(self.screen, pg.Color('black'), (0, 0, 1000, 1000), 5)
