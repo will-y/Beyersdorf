@@ -8,6 +8,7 @@ class Main_Menu:
         self.width = 800
         self.height = 800
         self.startscreen = pg.display.set_mode((self.width, self.height))
+        pg.display.set_caption("Beyersdörf")
         self.background = pg.Surface(self.startscreen.get_size())
         self.background = self.background.convert()
         self.screen_color = (128, 0, 0)
