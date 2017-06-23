@@ -35,7 +35,7 @@ class Main():
                     if not self.terrainobject.board[self.xCoord][self.yCoord].builtOn:
                         self.building = Buildings.Building(self.selectedBuilding, self.xCoord*self.tilesize, self.yCoord*self.tilesize, self.tilesize, self.screen)
                         #if player have resources to build
-                        if not self.terrainobject.board[self.xCoord][self.yCoord].tileType == 4:
+                        if not self.terrainobject.board[self.xCoord][self.yCoord].tileType == 4 or self.selectedBuilding == 9:
                             if self.changeResources(self.player1):
                                 self.building.drawBuilding()
                                 self.terrainobject.board[self.xCoord][self.yCoord].builtOn = True
