@@ -69,7 +69,6 @@ class Main():
                 else:
                     #if click button
                     if(1050 < self.realX < 1450):
-                        print("In Range X")
                         sys.stdout.flush()
                         if(516 < self.realY < 584):
                             self.selectedBuilding = 0
@@ -83,6 +82,7 @@ class Main():
                             self.selectedBuilding = 4
                         elif(916 < self.realY < 984):
                             self.selectedBuilding = 5
+                self.userInterface.switchSelectedBuilding(self.selectedBuilding)
                 print(self.selectedBuilding)
                 sys.stdout.flush()
                 return (self.xCoord, self.yCoord)
