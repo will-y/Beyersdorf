@@ -78,7 +78,7 @@ class UserInterface():
         self.outpostImage = pg.transform.scale(self.outpostImage, (60, 60))
 
         self.cannonImage = pg.image.load("Images/cannonTower.png")
-        self.cannonImage = pg.transform.scale(self.cannonImage, (50, 80))
+        self.cannonImage = pg.transform.scale(self.cannonImage, (30, 60))
 
         #Resources Per Turn
         self.playerWoodPerTurn = " +0/Turn"
