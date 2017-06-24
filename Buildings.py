@@ -159,7 +159,7 @@ class Building:
             self.productionRate = 0
             self.populationCost = 0
             self.populationAdd = 10
-            self.woodCost = 1000    
+            self.woodCost = 1000  
             self.stoneCost = 1000
             self.oreCost = 200
             self.image = pg.image.load("Images/castle1.png")
