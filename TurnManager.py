@@ -21,8 +21,10 @@ class Manager:
         if player == 2:
             self.playerTwoActionsUsed = self.playerTwoActionsUsed + 1
 
-    def endTurn(self):
+    def endTurn(self, player):
         if self.playerOneTurn == True:
+            player.addResourceToCache()
+            player.popConsumeFood()
             self.playerOneTurn = False
             self.playerTwoActionsUsed = 0
             print("Player Two Turn Starts!")

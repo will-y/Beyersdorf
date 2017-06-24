@@ -1,4 +1,5 @@
-import pygame as pg, sys, Health, Terrain, math, UserInterface, MainMenu, Buildings, Player, InspectorGadget, TurnManager
+import pygame as pg
+import sys, Health, Terrain, math, UserInterface, MainMenu, Buildings, Player, InspectorGadget, TurnManager
 
 class Main():
     def __init__(self):
@@ -44,7 +45,11 @@ class Main():
                 self.yCoord = (int)(pg.mouse.get_pos()[1]/100)
 
                 if self.realX >= 1200 and self.realX <= 1300 and self.realY >= 350 and self.realY <= 450:
-                    turnManager.endTurn()
+                    if turnManager.playerOneTurn == True:
+                        turnManager.endTurn(self.player1)
+
+                    elif turnManager.playerOneTurn == False:
+                        turnManager.endTurn(self.player2)
                 
                 #If click is outside UI
                 if self.xCoord <= 9:
