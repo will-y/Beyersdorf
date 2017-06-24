@@ -15,6 +15,8 @@ class Terrain():
         # self.mountainColor = (205,201,201)
         # self.waterColor = (30,144,255)
         # Tile Images
+        
+        # hd = True
         hd = False
 
         if hd:

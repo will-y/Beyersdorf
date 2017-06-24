@@ -80,6 +80,7 @@ class Main():
                                     if turnManager.playerOneTurn == False and not turnManager.playerTwoActions == turnManager.playerTwoActionsUsed:
 
                                         self.building = Buildings.Building(self.selectedBuilding, self.xCoord*self.tilesize, self.yCoord*self.tilesize, self.tilesize, self.screen,2)
+                                        # print('testing')
                                         if self.player2.canBuild(self.building):
 
                                             #if player have resources to build
@@ -99,7 +100,6 @@ class Main():
                 else:
                     #if click button
                     if(1050 < self.realX < 1450):
-                        sys.stdout.flush()
                         if(516 < self.realY < 584):
                             self.selectedBuilding = 0
                         elif(596 < self.realY < 664):
@@ -113,7 +113,6 @@ class Main():
                         elif(916 < self.realY < 984):
                             self.selectedBuilding = 5
                     self.userInterface.switchSelectedBuilding(self.selectedBuilding)
-                    sys.stdout.flush()
                     return (self.xCoord, self.yCoord)
             else:
                 return pg.mouse.get_pos() 
@@ -132,11 +131,10 @@ class Main():
         
         self.building = Buildings.Building(10, 1*self.tilesize, 1*self.tilesize, self.tilesize, self.screen,1)
         self.building.drawBuilding(1)
-        self.player1.buildings.append(self.building)
+        self.player1.addBuilding(self.building)
         self.building = Buildings.Building(10, 8*self.tilesize, 8*self.tilesize, self.tilesize, self.screen,2)
         self.building.drawBuilding(2)
-        self.player2.buildings.append(self.building)
-        print(self.player1.buildings[0])
+        self.player2.addBuilding(self.building)
         
         self.userInterface.drawInterface()
         self.userInterface.drawResourceBuildings()
