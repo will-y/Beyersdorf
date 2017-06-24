@@ -1,5 +1,5 @@
 from pygame.locals import *
-import pygame as pg, eztext, sys, time
+import pygame as pg, sys, time
 
 class Main_Menu:
 
