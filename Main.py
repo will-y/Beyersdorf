@@ -46,10 +46,14 @@ class Main():
 
                 if self.realX >= 1200 and self.realX <= 1300 and self.realY >= 350 and self.realY <= 450:
                     if turnManager.playerOneTurn == True:
-                        turnManager.endTurn(self.player1)
+                        self.player1.addResourcesToCache()
+                        self.player1.popConsumeFood()
+                        turnManager.endTurn()
 
                     elif turnManager.playerOneTurn == False:
-                        turnManager.endTurn(self.player2)
+                        self.player2.addResourcesToCache()
+                        self.player2.popConsumeFood()
+                        turnManager.endTurn()
                 
                 #If click is outside UI
                 if self.xCoord <= 9:
@@ -132,9 +136,13 @@ class Main():
         self.building = Buildings.Building(10, 1*self.tilesize, 1*self.tilesize, self.tilesize, self.screen,1)
         self.building.drawBuilding(1)
         self.player1.addBuilding(self.building)
+        self.terrainobject.board[1][1].builtOn = True
+
         self.building = Buildings.Building(10, 8*self.tilesize, 8*self.tilesize, self.tilesize, self.screen,2)
         self.building.drawBuilding(2)
         self.player2.addBuilding(self.building)
+        self.terrainobject.board[8][8].builtOn = True
+
         
         self.userInterface.drawInterface()
         self.userInterface.drawResourceBuildings()
