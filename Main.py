@@ -19,7 +19,20 @@ class Main():
         self.selectedBuilding = 0
 
     def changeResources(self, player):
-        return player.editWood(-self.building.woodCost) and player.editStone(-self.building.stoneCost) and player.editOre(-self.building.oreCost)
+        if player == 1:
+            if self.player1.canBuy(-self.building.woodCost, -self.building.stoneCost, -self.building.oreCost, self.building.populationCost):
+                self.player1.editWood(-self.building.woodCost)
+                self.player1.editStone(-self.building.stoneCost)
+                self.player1.editOre(-self.building.oreCost)
+                self.player1.editCurPop(self.building.populationCost)
+                return True
+        if player == 2:
+            if self.player2.canBuy(-self.building.woodCost, -self.building.stoneCost, -self.building.oreCost, self.building.populationCost):
+                self.player2.editWood(-self.building.woodCost)
+                self.player2.editStone(-self.building.stoneCost)
+                self.player2.editOre(-self.building.oreCost)
+                self.player2.editCurPop(self.building.populationCost)
+                return True
 
     def detectClick(self, boardCoords, turnManager):
         #for event in pg.event.get():
@@ -32,43 +45,51 @@ class Main():
 
                 if self.realX >= 1200 and self.realX <= 1300 and self.realY >= 350 and self.realY <= 450:
                     turnManager.endTurn()
-
+                
                 #If click is outside UI
                 if self.xCoord <= 9:
 
-                    self.inspect.inspectTile(self.terrainobject.board, self.xCoord, self.yCoord)
+                
+                    if (not self.userInterface.inspector):
+                        self.inspect.inspectTile(self.terrainobject.board, self.xCoord, self.yCoord)
 
-                    #If tile is already built on
-                    if not self.terrainobject.board[self.xCoord][self.yCoord].builtOn:
+                        #If tile is already built on
+                        if self.terrainobject.board[self.xCoord][self.yCoord].builtOn == False:
 
-                        #if not on water or bridge
-                        if not self.terrainobject.board[self.xCoord][self.yCoord].tileType == 4 or self.selectedBuilding == 9:
+                            #if not on water or bridge
+                            if (not self.terrainobject.board[self.xCoord][self.yCoord].tileType == 4) or self.selectedBuilding == 9:
 
-                                #if it is correct player's turn and they have enough actions
-                                if turnManager.playerOneTurn == True and not turnManager.playerOneActions == turnManager.playerOneActionsUsed:
+                                    #if it is correct player's turn and they have enough actions
+                                    if turnManager.playerOneTurn == True and not turnManager.playerOneActions == turnManager.playerOneActionsUsed:
+                                        self.building = Buildings.Building(self.selectedBuilding, self.xCoord*self.tilesize, self.yCoord*self.tilesize, self.tilesize, self.screen,1)
 
-                                    #if player have resources to build
-                                    self.building = Buildings.Building(self.selectedBuilding, self.xCoord*self.tilesize, self.yCoord*self.tilesize, self.tilesize, self.screen,1)
-                                    if self.changeResources(self.player1):
+                                        if self.player1.canBuild(self.building):
 
-                                        self.building.drawBuilding(1)
-                                        self.terrainobject.board[self.xCoord][self.yCoord].builtOn == True
-                                        turnManager.useAction(1)
+                                            #if player have resources to build
+                                            if self.changeResources(1):
+                                                self.building.drawBuilding(1)
+                                                self.terrainobject.board[self.xCoord][self.yCoord].builtOn = True
+                                                turnManager.useAction(1)
+                                                self.player1.addBuilding(self.building)
 
-                                if turnManager.playerOneTurn == False and not turnManager.playerTwoActions == turnManager.playerTwoActionsUsed:
+                                    if turnManager.playerOneTurn == False and not turnManager.playerTwoActions == turnManager.playerTwoActionsUsed:
 
-                                    #if player have resources to build
-                                    self.building = Buildings.Building(self.selectedBuilding, self.xCoord*self.tilesize, self.yCoord*self.tilesize, self.tilesize, self.screen,2)
-                                    if self.changeResources(self.player2):
+                                        self.building = Buildings.Building(self.selectedBuilding, self.xCoord*self.tilesize, self.yCoord*self.tilesize, self.tilesize, self.screen,2)
+                                        if self.player2.canBuild(self.building):
 
-                                        self.building.drawBuilding(2)
-                                        self.terrainobject.board[self.xCoord][self.yCoord].builtOn = True
-                                        turnManager.useAction(2)
+                                            #if player have resources to build
+                                            if self.changeResources(2):
+                                                self.building.drawBuilding(2)
+                                                self.terrainobject.board[self.xCoord][self.yCoord].builtOn = True
+                                                turnManager.useAction(2)
+                                                self.player2.addBuilding(self.building)
 
-                    string = str.format("{} {} {}", self.player1.playerWood, self.player1.playerStone, self.player1.playerOre)
-                    self.userInterface.updateResources(self.player1)
-                    # print(string)
-                    sys.stdout.flush()
+                        string = str.format("{} {} {}", self.player1.playerWood, self.player1.playerStone, self.player1.playerOre)
+                        self.userInterface.updateResources(self.player1)
+                        # print(string)
+                        sys.stdout.flush()
+                    else:
+                        self.userInterface.updateInspector(self.xCoord, self.yCoord, self.terrainobject.board)
 
                 else:
                     #if click button
@@ -86,10 +107,9 @@ class Main():
                             self.selectedBuilding = 4
                         elif(916 < self.realY < 984):
                             self.selectedBuilding = 5
-                self.userInterface.switchSelectedBuilding(self.selectedBuilding)
-                print(self.selectedBuilding)
-                sys.stdout.flush()
-                return (self.xCoord, self.yCoord)
+                    self.userInterface.switchSelectedBuilding(self.selectedBuilding)
+                    sys.stdout.flush()
+                    return (self.xCoord, self.yCoord)
             else:
                 return pg.mouse.get_pos() 
 
@@ -101,13 +121,18 @@ class Main():
         self.screen.fill(pg.Color('white'))
         
         # main_menu.width = self.width
+        self.userInterface = UserInterface.UserInterface(self.screen)
         self.terrainobject = Terrain.Terrain(10, self.width, self.tilesize)
         self.terrainobject.generateBoard(self.screen)
+        
         self.building = Buildings.Building(10, 1*self.tilesize, 1*self.tilesize, self.tilesize, self.screen,1)
         self.building.drawBuilding(1)
+        self.player1.buildings.append(self.building)
         self.building = Buildings.Building(10, 8*self.tilesize, 8*self.tilesize, self.tilesize, self.screen,2)
         self.building.drawBuilding(2)
-        self.userInterface = UserInterface.UserInterface(self.screen)
+        self.player2.buildings.append(self.building)
+        print(self.player1.buildings[0])
+        
         self.userInterface.drawInterface()
         self.userInterface.drawResourceBuildings()
         pg.draw.rect(self.screen, pg.Color('black'), (0, 0, 1000, 1000), 5)

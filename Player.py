@@ -5,37 +5,30 @@ class Player():
     def __init__(self):
         self.team = 0
         self.playerWood = 1000
-        self.playerStone = 1000
+        self.playerStone = 200
         self.playerOre = 100
         self.playerFood = 0
         self.playerCurPop = 0
-        self.playerMaxPop = 0
-        
+        self.playerMaxPop = 10
+        self.buildings = []
+
+    def canBuy(self, amountwood, amountstone, amountore, amountpop):
+        return self.playerWood + amountwood >= 0 and self.playerStone + amountstone >= 0 and self.playerOre + amountore >= 0 and self.playerCurPop + amountpop <= self.playerMaxPop
+
     def setWood(self,amount):
         self.playerWood=amount
     def editWood(self,amount):
-        if self.playerWood + amount < 0:
-            return False 
         self.playerWood+=amount
-        return True
 
     def setStone(self,amount):
         self.playerStone=amount
     def editStone(self,amount):
-        if self.playerStone + amount < 0:
-            return False 
-        self.playerStone+=amount
-        return True
         self.playerStone+=amount
 
     def setOre(self,amount):
         self.playerOre=amount
     def editOre(self,amount):
         self.playerOre+=amount
-        if self.playerOre + amount < 0:
-            return False 
-        self.playerOre+=amount
-        return True
 
     def setFood(self,amount):
         self.playerFood=amount
@@ -44,10 +37,20 @@ class Player():
 
     def setCurPop(self,amount):
         self.playerCurPop=amount
-    def editCurPop(self,theFood):
+    def editCurPop(self,amount):
         self.playerCurPop+=amount
 
     def setMaxPop(self,amount):
         self.playerMaxPop=amount
     def setCurPop(self,amount):
         self.playerMaxPop+=amount
+    
+    def addBuilding(self,building):
+        self.buildings.append(building)
+        print(self.buildings)
+
+    def canBuild(self,building):
+        for i in range(len(self.buildings)):
+            if building.x == self.buildings[i].x+1 or building.x == self.buildings[i].x-1 or building.y == self.buildings[i].y+1 or building.y == self.buildings[i].y-1:
+                return True
+        return False
