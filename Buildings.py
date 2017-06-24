@@ -173,16 +173,17 @@ class Building:
             self.woodCost = 300 
             self.stoneCost = 100
             self.oreCost = 10
-            self.image = pg.image.load("Images/farm.png")
+            self.image = pg.image.load("Images/outpost.png")
             self.image = pg.transform.scale(self.image, (int(self.tilesize * (4/5)), int(self.tilesize * (4/5))))
 
             #CannonTower
         if self.buildingType == 12:
             self.productionRate = 0
-            self.populationCost = 0
+            self.populationCost = 2
             self.populationAdd = 10
             self.woodCost = 700
             self.stoneCost = 800
             self.oreCost = 80
-            self.image = pg.image.load("Images/farm.png")
+            # self.image = pg.image.load("Images/cannonTower.png")
+            self.image = pg.image.load("Images/Dr._Rupakheti.png")
             self.image = pg.transform.scale(self.image, (int(self.tilesize * (4/5)), int(self.tilesize * (4/5))))
