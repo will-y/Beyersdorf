@@ -54,3 +54,17 @@ class Player():
             if (m.fabs(self.buildings[i].x-building.x)/100==1 and self.buildings[i].y/100==building.y/100) or (m.fabs(self.buildings[i].y-building.y)/100==1 and self.buildings[i].x/100==building.x/100):
                 return True
         return False
+
+    def addResourcesToCache(self):
+        for i in range (len(self.buildings)):
+            if self.buildings[i].buildingType == 0 or self.buildings[i].buildingType == 1 or self.buildings[i].buildingType == 2:
+                self.playerFood = self.playerFood + self.buildings[i].productionRate
+            if self.buildings[i].buildingType == 3:
+                self.playerWood = self.playerWood + self.buildings[i].productionRate
+            if self.buildings[i].buildingType == 4:
+                self.playerStone = self.playerStone + self.buildings[i].productionRate
+            if self.buildings[i].buildingType == 5:
+                self.playerOre = self.playerore + self.buildings[i].productionRate
+        
+    def popConsumeFood(self):
+        self.playerFood = self.playerFood - self.playerCurPop
