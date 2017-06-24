@@ -1,4 +1,4 @@
-import math
+import math as m
 
 """Player class keeps track of that players wood, stone, ore, and food stores"""
 class Player():
@@ -51,6 +51,6 @@ class Player():
 
     def canBuild(self,building):
         for i in range(len(self.buildings)):
-            if building.x == self.buildings[i].x+1 or building.x == self.buildings[i].x-1 or building.y == self.buildings[i].y+1 or building.y == self.buildings[i].y-1:
+            if (m.fabs(self.buildings[i].x-building.x)/100==1 and self.buildings[i].y/100==building.y/100) or (m.fabs(self.buildings[i].y-building.y)/100==1 and self.buildings[i].x/100==building.x/100):
                 return True
         return False

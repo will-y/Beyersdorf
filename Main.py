@@ -125,10 +125,10 @@ class Main():
         
         self.building = Buildings.Building(10, 1*self.tilesize, 1*self.tilesize, self.tilesize, self.screen,1)
         self.building.drawBuilding(1)
-        self.player1.buildings.append(self.building)
+        self.player1.addBuilding(self.building)
         self.building = Buildings.Building(10, 8*self.tilesize, 8*self.tilesize, self.tilesize, self.screen,2)
         self.building.drawBuilding(2)
-        self.player2.buildings.append(self.building)
+        self.player2.addBuilding(self.building)
         print(self.player1.buildings[0])
         
         self.userInterface.drawInterface()
