@@ -49,11 +49,13 @@ class Main():
                         self.player1.addResourcesToCache()
                         self.player1.popConsumeFood()
                         turnManager.endTurn()
+                        self.userInterface.updateResources(self.player2)
 
                     elif turnManager.playerOneTurn == False:
                         self.player2.addResourcesToCache()
                         self.player2.popConsumeFood()
                         turnManager.endTurn()
+                        self.userInterface.updateResources(self.player1)
                 
                 #If click is outside UI
                 if self.xCoord <= 9:
