@@ -185,5 +185,5 @@ class Building:
             self.stoneCost = 800
             self.oreCost = 80
             # self.image = pg.image.load("Images/cannonTower.png")
-            self.image = pg.image.load("Images/Dr._Rupakheti.png")
+            self.image = pg.image.load("Images/cannonTower.png")
             self.image = pg.transform.scale(self.image, (int(self.tilesize * (4/5)), int(self.tilesize * (4/5))))
