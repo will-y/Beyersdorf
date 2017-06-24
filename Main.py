@@ -106,7 +106,8 @@ class Main():
                             self.selectedBuilding = 4
                         elif(916 < self.realY < 984):
                             self.selectedBuilding = 5
-                    self.userInterface.switchSelectedBuilding(self.selectedBuilding)
+                    if(self.userInterface.currentBuildingTab == 0 and not self.userInterface.inspector):
+                        self.userInterface.drawResourceBuildings(self.selectedBuilding)
                     return (self.xCoord, self.yCoord)
             else:
                 return pg.mouse.get_pos() 
@@ -132,7 +133,7 @@ class Main():
         print(self.player1.buildings[0])
         
         self.userInterface.drawInterface()
-        self.userInterface.drawResourceBuildings()
+        #self.userInterface.drawResourceBuildings()
         pg.draw.rect(self.screen, pg.Color('black'), (0, 0, 1000, 1000), 5)
         
         file = 'Sound/Music2.wav'

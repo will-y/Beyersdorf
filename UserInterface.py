@@ -153,18 +153,20 @@ class UserInterface():
         self.stonePerTurnInspector = " +0/Turn"
         self.orePerTurnInspector = " +0/Turn" 
 
+        self.buildingID = 0
+
     def drawInterface(self):
         pg.draw.rect(self.screen, self.rectColor, (self.rectXPos, self.rectYPos, self.rectWidth, self.rectHeight))
         pg.draw.rect(self.screen, pg.Color('black'), (self.rectXPos, self.rectYPos, self.rectWidth,self.rectHeight), 5)
 
-        if(self.currentBuildingTab == 0 and not self.inspector):
+        #if(self.currentBuildingTab == 0 and not self.inspector):
             #Draw surrounding rectangles
-            pg.draw.rect(self.screen, self.tabButtonSelectedColor, (1050, 496 + self.buildingPadding, self.buildingRect1Width, self.buildingRect1Height + 8))
-            pg.draw.rect(self.screen, self.tabButtonColor,(1050, 496 + self.buildingPadding * 2 + self.buildingWidth, self.buildingRect1Width, self.buildingRect1Height + 8))
-            pg.draw.rect(self.screen, self.tabButtonColor, (1050, 496 + self.buildingPadding * 3 + self.buildingWidth * 2, self.buildingRect1Width, self.buildingRect1Height + 8))
-            pg.draw.rect(self.screen, self.tabButtonColor, (1050, 496 + self.buildingPadding * 4 + self.buildingWidth * 3, self.buildingRect1Width, self.buildingRect1Height + 8))
-            pg.draw.rect(self.screen, self.tabButtonColor, (1050, 496 + self.buildingPadding * 5 + self.buildingWidth * 4, self.buildingRect1Width, self.buildingRect1Height + 8))
-            pg.draw.rect(self.screen, self.tabButtonColor, (1050, 496 + self.buildingPadding * 6 + self.buildingWidth * 5, self.buildingRect1Width, self.buildingRect1Height + 8))
+            # pg.draw.rect(self.screen, self.tabButtonSelectedColor, (1050, 496 + self.buildingPadding, self.buildingRect1Width, self.buildingRect1Height + 8))
+            # pg.draw.rect(self.screen, self.tabButtonColor,(1050, 496 + self.buildingPadding * 2 + self.buildingWidth, self.buildingRect1Width, self.buildingRect1Height + 8))
+            # pg.draw.rect(self.screen, self.tabButtonColor, (1050, 496 + self.buildingPadding * 3 + self.buildingWidth * 2, self.buildingRect1Width, self.buildingRect1Height + 8))
+            # pg.draw.rect(self.screen, self.tabButtonColor, (1050, 496 + self.buildingPadding * 4 + self.buildingWidth * 3, self.buildingRect1Width, self.buildingRect1Height + 8))
+            # pg.draw.rect(self.screen, self.tabButtonColor, (1050, 496 + self.buildingPadding * 5 + self.buildingWidth * 4, self.buildingRect1Width, self.buildingRect1Height + 8))
+            # pg.draw.rect(self.screen, self.tabButtonColor, (1050, 496 + self.buildingPadding * 6 + self.buildingWidth * 5, self.buildingRect1Width, self.buildingRect1Height + 8))
 
         #Draw resource names
         self.screen.blit(self.resourceText, (1125, 25))
@@ -188,6 +190,7 @@ class UserInterface():
         self.screen.blit(self.foodCount, (1210, 250))
         self.screen.blit(self.populationCount, (1305, 300))
 
+        #End turn button
         pg.draw.rect(self.screen, pg.Color(159, 163, 206), (1175, 350, 150, 35))
         self.screen.blit(self.endTurnText, (1190, 355))
 
@@ -205,6 +208,8 @@ class UserInterface():
                 pg.draw.rect(self.screen, self.tabButtonColor, (self.tabButton2XValue + self.tabButton2Width, self.tabButton2YValue, self.tabButton2Width, self.tabButton2Height))
                 pg.draw.rect(self.screen, self.tabButtonColor, (self.tabButton2XValue + self.tabButton2Width * 2, self.tabButton2YValue, self.tabButton2Width, self.tabButton2Height))
 
+                self.drawResourceBuildings(self.buildingID)
+
             elif(self.currentBuildingTab == 1):
                 pg.draw.rect(self.screen, self.tabButtonColor, (self.tabButton2XValue, self.tabButton2YValue, self.tabButton2Width, self.tabButton2Height))
                 pg.draw.rect(self.screen, self.tabButtonSelectedColor, (self.tabButton2XValue + self.tabButton2Width, self.tabButton2YValue, self.tabButton2Width, self.tabButton2Height))
@@ -218,6 +223,7 @@ class UserInterface():
             pg.draw.rect(self.screen, self.tabButtonSelectedColor, (self.tabButton2XValue + self.tabButton2Width, self.tabButton2YValue, 2, self.tabButton2Height))
             pg.draw.rect(self.screen, self.tabButtonSelectedColor, (self.tabButton2XValue + self.tabButton2Width * 2, self.tabButton2YValue, 2, self.tabButton2Height))
 
+            #BOTTOM TAB NAMES
             self.screen.blit(self.resourceTabText, (self.tabButton2XValue + 14, self.tabButton2YValue + 4))
             self.screen.blit(self.militaryTabText, (self.tabButton2XValue + 14 + self.tabButton2Width, self.tabButton2YValue + 4))
             self.screen.blit(self.infrastructureTabText, (self.tabButton2XValue + 14 + self.tabButton2Width * 2, self.tabButton2YValue + 4))
@@ -240,7 +246,7 @@ class UserInterface():
         self.drawInterface()
         
         if(self.currentBuildingTab == 0):
-            self.drawResourceBuildings()
+            self.drawResourceBuildings(self.buildingID)
         elif(self.currentBuildingTab == 1):
             self.drawMilitaryBuildings()
         elif(self.currentBuildingTab == 2):
@@ -259,7 +265,7 @@ class UserInterface():
         self.currentBuildingTab = 0
         pg.draw.rect(self.screen, self.rectColor, (self.rectXPos, self.rectYPos, self.rectWidth, self.rectHeight))
         self.drawInterface()
-        self.drawResourceBuildings()
+        self.drawResourceBuildings(self.buildingID)
 
     def goToMilitaryBuildings(self):
         self.currentBuildingTab = 1
@@ -349,8 +355,11 @@ class UserInterface():
         self.tileStoneAmount = inspector.inspectTile(board, x, y)[2]
         self.tileOreAmount = inspector.inspectTile(board, x, y)[3]
         self.drawInspector()
-    def drawResourceBuildings(self):
-        
+    def drawResourceBuildings(self, buildingID):
+        self.buildingID = buildingID
+
+        self.switchSelectedBuilding(self.buildingID)
+
         self.screen.blit(self.farmImage, (1050 + self.buildingPadding, 500 + self.buildingPadding))
         self.screen.blit(self.ranchImage, (1050 + self.buildingPadding, 500 + self.buildingPadding * 2 + self.buildingWidth))
         self.screen.blit(self.fishImage, (1050 + self.buildingPadding, 500 + self.buildingPadding * 3 + self.buildingWidth * 2))
@@ -410,6 +419,7 @@ class UserInterface():
         pg.draw.rect(self.screen, pg.Color(183, 183, 183), (1225, 500, 3, 490))
 
     def switchSelectedBuilding(self, buildingID):
+        
         if(self.currentBuildingTab == 0 and not self.inspector):
             if(buildingID == 0):
                 pg.draw.rect(self.screen, self.tabButtonSelectedColor, (1050, 496 + self.buildingPadding, self.buildingRect1Width, self.buildingRect1Height + 8))
@@ -454,9 +464,9 @@ class UserInterface():
                 pg.draw.rect(self.screen, self.tabButtonColor, (1050, 496 + self.buildingPadding * 5 + self.buildingWidth * 4, self.buildingRect1Width, self.buildingRect1Height + 8))
                 pg.draw.rect(self.screen, self.tabButtonSelectedColor, (1050, 496 + self.buildingPadding * 6 + self.buildingWidth * 5, self.buildingRect1Width, self.buildingRect1Height + 8))
 
-            self.drawResourceBuildings()
-            for i in range(6):
-                self.drawResourceCosts(i)
+            # self.drawResourceBuildings()
+            # for i in range(6):
+            #     self.drawResourceCosts(i)
 
     def detectClick(self, boardCoords):
         if(pg.mouse.get_pressed()[0]):
