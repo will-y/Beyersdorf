@@ -94,7 +94,6 @@ class Main():
                 else:
                     #if click button
                     if(1050 < self.realX < 1450):
-                        sys.stdout.flush()
                         if(516 < self.realY < 584):
                             self.selectedBuilding = 0
                         elif(596 < self.realY < 664):
@@ -108,7 +107,6 @@ class Main():
                         elif(916 < self.realY < 984):
                             self.selectedBuilding = 5
                     self.userInterface.switchSelectedBuilding(self.selectedBuilding)
-                    sys.stdout.flush()
                     return (self.xCoord, self.yCoord)
             else:
                 return pg.mouse.get_pos() 
