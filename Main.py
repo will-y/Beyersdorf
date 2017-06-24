@@ -96,17 +96,23 @@ class Main():
                     #if click button
                     if(1050 < self.realX < 1450):
                         if(516 < self.realY < 584):
-                            self.selectedBuilding = 0
+                            if(self.userInterface.currentBuildingTab == 0):
+                                self.selectedBuilding = 0
                         elif(596 < self.realY < 664):
-                            self.selectedBuilding = 1
+                            if(self.userInterface.currentBuildingTab == 0):
+                                self.selectedBuilding = 1
                         elif(676 < self.realY < 744):
-                            self.selectedBuilding = 2
+                            if(self.userInterface.currentBuildingTab == 0):
+                                self.selectedBuilding = 2
                         elif(756 < self.realY < 824):
-                            self.selectedBuilding = 3
+                            if(self.userInterface.currentBuildingTab == 0):
+                                self.selectedBuilding = 3
                         elif(836 < self.realY < 904):
-                            self.selectedBuilding = 4
+                            if(self.userInterface.currentBuildingTab == 0):
+                                self.selectedBuilding = 4
                         elif(916 < self.realY < 984):
-                            self.selectedBuilding = 5
+                            if(self.userInterface.currentBuildingTab == 0):
+                                self.selectedBuilding = 5
                     if(self.userInterface.currentBuildingTab == 0 and not self.userInterface.inspector):
                         self.userInterface.drawResourceBuildings(self.selectedBuilding)
                     return (self.xCoord, self.yCoord)
