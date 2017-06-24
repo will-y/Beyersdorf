@@ -84,6 +84,7 @@ class Main():
                                                 self.terrainobject.board[self.xCoord][self.yCoord].builtOn = True
                                                 turnManager.useAction(1)
                                                 self.player1.addBuilding(self.building)
+                                                self.userInterface.updateResources(self.player1)
 
                                     if turnManager.playerOneTurn == False and not turnManager.playerTwoActions == turnManager.playerTwoActionsUsed:
 
@@ -97,11 +98,8 @@ class Main():
                                                 self.terrainobject.board[self.xCoord][self.yCoord].builtOn = True
                                                 turnManager.useAction(2)
                                                 self.player2.addBuilding(self.building)
-
-                        string = str.format("{} {} {}", self.player1.playerWood, self.player1.playerStone, self.player1.playerOre)
-                        self.userInterface.updateResources(self.player1)
-                        # print(string)
-                        sys.stdout.flush()
+                                                self.userInterface.updateResources(self.player2)
+                    
                     else:
                         self.userInterface.updateInspector(self.xCoord, self.yCoord, self.terrainobject.board)
 
@@ -109,19 +107,33 @@ class Main():
                     #if click button
                     if(1050 < self.realX < 1450):
                         if(516 < self.realY < 584):
-                            self.selectedBuilding = 0
+                            if(self.userInterface.currentBuildingTab == 0):
+                                self.selectedBuilding = 0
+                            elif(self.userInterface.currentBuildingTab == 1):
+                                self.selectedBuilding = 10
                         elif(596 < self.realY < 664):
-                            self.selectedBuilding = 1
+                            if(self.userInterface.currentBuildingTab == 0):
+                                self.selectedBuilding = 1
+                            elif(self.userInterface.currentBuildingTab == 1):
+                                self.selectedBuilding = 11
                         elif(676 < self.realY < 744):
-                            self.selectedBuilding = 2
+                            if(self.userInterface.currentBuildingTab == 0):
+                                self.selectedBuilding = 2
+                            elif(self.userInterface.currentBuildingTab == 1):
+                                self.selectedBuilding = 12
                         elif(756 < self.realY < 824):
-                            self.selectedBuilding = 3
+                            if(self.userInterface.currentBuildingTab == 0):
+                                self.selectedBuilding = 3
                         elif(836 < self.realY < 904):
-                            self.selectedBuilding = 4
+                            if(self.userInterface.currentBuildingTab == 0):
+                                self.selectedBuilding = 4
                         elif(916 < self.realY < 984):
-                            self.selectedBuilding = 5
+                            if(self.userInterface.currentBuildingTab == 0):
+                                self.selectedBuilding = 5
                     if(self.userInterface.currentBuildingTab == 0 and not self.userInterface.inspector):
                         self.userInterface.drawResourceBuildings(self.selectedBuilding)
+                    elif(self.userInterface.currentBuildingTab == 1 and not self.userInterface.inspector):
+                        self.userInterface.drawMilitaryBuildings(self.selectedBuilding)
                     return (self.xCoord, self.yCoord)
             else:
                 return pg.mouse.get_pos() 
