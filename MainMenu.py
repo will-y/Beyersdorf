@@ -39,7 +39,7 @@ class Main_Menu:
         pg.font.init()
         # textBox = eztext.Input(maxlength=45, color=(0,0,0), prompt="Board Size: ")
         while True:
-            self.clock.tick(10)
+            self.clock.tick(30)
             events = pg.event.get()
             key = pg.key.get_pressed()
             if key[pg.K_RETURN]:
