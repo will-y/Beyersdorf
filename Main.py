@@ -48,12 +48,14 @@ class Main():
                     if turnManager.playerOneTurn == True:
                         self.player1.addResourcesToCache()
                         self.player1.popConsumeFood()
+                        self.player1.subtractResourceFromTile(self.terrainobject)
                         turnManager.endTurn()
                         self.userInterface.updateResources(self.player2)
 
                     elif turnManager.playerOneTurn == False:
                         self.player2.addResourcesToCache()
                         self.player2.popConsumeFood()
+                        self.player2.subtractResourceFromTile(self.terrainobject)
                         turnManager.endTurn()
                         self.userInterface.updateResources(self.player1)
                 
