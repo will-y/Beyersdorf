@@ -44,6 +44,7 @@ class Main():
                 self.xCoord = (int)(pg.mouse.get_pos()[0]/100)
                 self.yCoord = (int)(pg.mouse.get_pos()[1]/100)
 
+                #End Turn Stuff
                 if self.realX >= 1200 and self.realX <= 1300 and self.realY >= 350 and self.realY <= 450:
                     if turnManager.playerOneTurn == True:
                         self.player1.subtractResourceFromTile(self.terrainobject)
@@ -51,6 +52,7 @@ class Main():
                         self.player1.popConsumeFood()
                         turnManager.endTurn()
                         self.userInterface.updateResources(self.player2)
+                        self.player1.buildings[1].takeDamage(20)
 
                     elif turnManager.playerOneTurn == False:
                         self.player2.subtractResourceFromTile(self.terrainobject)
@@ -62,7 +64,6 @@ class Main():
                 #If click is outside UI
                 if self.xCoord <= 9:
 
-                
                     if (not self.userInterface.inspector):
                         self.inspect.inspectTile(self.terrainobject.board, self.xCoord, self.yCoord)
 
@@ -99,7 +100,7 @@ class Main():
                                                 turnManager.useAction(2)
                                                 self.player2.addBuilding(self.building)
                                                 self.userInterface.updateResources(self.player2)
-                    
+
                     else:
                         self.userInterface.updateInspector(self.xCoord, self.yCoord, self.terrainobject.board)
 

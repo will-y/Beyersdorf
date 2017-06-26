@@ -44,8 +44,8 @@ class Building:
         self.currentHealth = self.currentHealth - amount
         if self.currentHealth <= 0:
             self.destroyed = True
-        health = Health((self.x, self.y), self.tilesize, self.screen)
-        health.drawhealth(self.maxHealth, self.currentHealth)
+        health = Health.Health((self.x, self.y), self.tilesize, self.screen)
+        health.drawHealth(self.maxHealth, self.currentHealth)
        
     def createBuilding(self, x, y, tilesize, screen, player):
         self.building = pg.Rect(x, y, tilesize, tilesize)
@@ -210,3 +210,5 @@ class Building:
             # self.image = pg.image.load("Images/cannonTower.png")
             self.image = pg.image.load("Images/cannonTower.png")
             self.image = pg.transform.scale(self.image, (int(self.tilesize * (4/5)), int(self.tilesize * (4/5))))
+
+        self.currentHealth = self.maxHealth
