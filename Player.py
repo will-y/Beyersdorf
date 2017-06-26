@@ -79,7 +79,7 @@ class Player():
                 return True
         return False
 
-    def addResourcesToCache(self):
+    def addResourcesToCache(self, terrain):
         for i in range (len(self.buildings)):
             if self.buildings[i].buildingType == 0 or self.buildings[i].buildingType == 1 or self.buildings[i].buildingType == 2:
                 self.playerFood = self.playerFood + self.buildings[i].productionRate
@@ -88,7 +88,7 @@ class Player():
             if self.buildings[i].buildingType == 4 and not terrain.board[m.floor(self.buildings[i].x/100)][m.floor(self.buildings[i].y/100)].stone == 0:
                 self.playerStone = self.playerStone + self.buildings[i].productionRate
             if self.buildings[i].buildingType == 5 and not terrain.board[m.floor(self.buildings[i].x/100)][m.floor(self.buildings[i].y/100)].ore == 0:
-                self.playerOre = self.playerore + self.buildings[i].productionRate
+                self.playerOre = self.playerOre + self.buildings[i].productionRate
         
     def popConsumeFood(self):
         self.playerFood = self.playerFood - self.playerCurPop

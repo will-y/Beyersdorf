@@ -40,13 +40,6 @@ class Building:
     def __str__(self):
         return str(self.buildingType)
 
-    def createBuilding(self, x, y, tilesize, screen, player):
-        self.building = pg.Rect(x, y, tilesize, tilesize)
-        self.playerOwned = player
-        #pg.draw.rect(screen, pg.Color(244, 101, 66), (x, y, tilesize, tilesize))
-        healthBar = Health.Health((x*tilesize, y*tilesize), 100, screen)
-        healthBar.drawHealth(100, 100)
-
     def takeDamage(self, amount):
         self.currentHealth = self.currentHealth - amount
         if self.currentHealth <= 0:
@@ -54,6 +47,13 @@ class Building:
         health = Health((self.x, self.y), self.tilesize, self.screen)
         health.drawhealth(self.maxHealth, self.currentHealth)
        
+    def createBuilding(self, x, y, tilesize, screen, player):
+        self.building = pg.Rect(x, y, tilesize, tilesize)
+        self.playerOwned = player
+        #pg.draw.rect(screen, pg.Color(244, 101, 66), (x, y, tilesize, tilesize))
+        healthBar = Health.Health((x*tilesize, y*tilesize), 100, screen)
+        healthBar.drawHealth(100, 100)
+
             #Farm
         if self.buildingType == 0:
             self.productionRate = 5
