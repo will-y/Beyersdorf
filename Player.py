@@ -49,7 +49,31 @@ class Player():
         self.buildings.append(building)
         print(self.buildings)
 
-    def canBuild(self,building):
+    def canBuild(self,building,tileMap):
+
+        if building.buildingType == 2
+            hasWater = False
+
+            hasLeft =building.x>0
+            hasRight = building.x<9
+            hasUp = building.y>0
+            hasDown = buibuilding.yldingY<9
+            if hasLeft and not hasWater
+                hasWater = (tileMap[building.x-1][building.y] == 4)
+            if hasRight and not hasWater
+                hasWater = (tileMap[building.x+1][building.y] == 4)
+            if hasUp and not hasWater
+                hasWater = (tileMap[building.x][building.y-1] == 4)
+            if hasDown and not hasWater
+                hasWater = (tileMap[building.x][building.y+1] == 4)
+            
+            if hasWater
+                for i in range(len(self.buildings)):
+                    if (m.fabs(self.buildings[i].x-building.x)/100==1 and self.buildings[i].y/100==building.y/100) or (m.fabs(self.buildings[i].y-building.y)/100==1 and self.buildings[i].x/100==building.x/100):
+                        return True
+            else:
+                return False
+
         for i in range(len(self.buildings)):
             if (m.fabs(self.buildings[i].x-building.x)/100==1 and self.buildings[i].y/100==building.y/100) or (m.fabs(self.buildings[i].y-building.y)/100==1 and self.buildings[i].x/100==building.x/100):
                 return True
