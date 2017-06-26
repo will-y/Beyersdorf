@@ -76,7 +76,7 @@ class Main():
                                     if turnManager.playerOneTurn == True and not turnManager.playerOneActions == turnManager.playerOneActionsUsed:
                                         self.building = Buildings.Building(self.selectedBuilding, self.xCoord*self.tilesize, self.yCoord*self.tilesize, self.tilesize, self.screen,1)
 
-                                        if self.player1.canBuild(self.building):
+                                        if self.player1.canBuild(self.building,self.terrainobject.board):
 
                                             #if player have resources to build
                                             if self.changeResources(1):
@@ -90,7 +90,7 @@ class Main():
 
                                         self.building = Buildings.Building(self.selectedBuilding, self.xCoord*self.tilesize, self.yCoord*self.tilesize, self.tilesize, self.screen,2)
                                         # print('testing')
-                                        if self.player2.canBuild(self.building):
+                                        if self.player2.canBuild(self.building,self.terrainobject.board):
 
                                             #if player have resources to build
                                             if self.changeResources(2):
