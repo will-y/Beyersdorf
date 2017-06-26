@@ -171,7 +171,7 @@ class Building:
             self.stoneCost = 100
             self.oreCost = 0
             self.maxHealth = 200
-            self.image = pg.image.load("Images/farm.png")
+            self.image = pg.image.load("Images/bridge.png")
             self.image = pg.transform.scale(self.image, (int(self.tilesize), int(self.tilesize)))
 
             #Castle

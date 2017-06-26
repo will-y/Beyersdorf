@@ -90,7 +90,7 @@ class UserInterface():
         self.cityImage = pg.transform.scale(self.cityImage, (60, 60))
 
         self.bridgeImage = pg.image.load("Images/bridge.png")
-        self.bridgeImage = pg.transform.scale(self.bridgeImage, (100, 100))
+        self.bridgeImage = pg.transform.scale(self.bridgeImage, (60, 60))
 
         #Resources Per Turn   [wood, stone, ore, food]
         self.resourcesPerTurn = [0,0,0,0]
