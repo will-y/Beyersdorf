@@ -172,7 +172,7 @@ class Building:
             self.oreCost = 0
             self.maxHealth = 200
             self.image = pg.image.load("Images/farm.png")
-            self.image = pg.transform.scale(self.image, (int(self.tilesize * (4/5)), int(self.tilesize * (4/5))))
+            self.image = pg.transform.scale(self.image, (int(self.tilesize), int(self.tilesize)))
 
             #Castle
         if self.buildingType == 10:
