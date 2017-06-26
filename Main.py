@@ -46,16 +46,16 @@ class Main():
 
                 if self.realX >= 1200 and self.realX <= 1300 and self.realY >= 350 and self.realY <= 450:
                     if turnManager.playerOneTurn == True:
+                        self.player1.subtractResourceFromTile(self.terrainobject)
                         self.player1.addResourcesToCache()
                         self.player1.popConsumeFood()
-                        self.player1.subtractResourceFromTile(self.terrainobject)
                         turnManager.endTurn()
                         self.userInterface.updateResources(self.player2)
 
                     elif turnManager.playerOneTurn == False:
+                        self.player2.subtractResourceFromTile(self.terrainobject)
                         self.player2.addResourcesToCache()
                         self.player2.popConsumeFood()
-                        self.player2.subtractResourceFromTile(self.terrainobject)
                         turnManager.endTurn()
                         self.userInterface.updateResources(self.player1)
                 
