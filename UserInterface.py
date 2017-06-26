@@ -89,20 +89,25 @@ class UserInterface():
         self.cityImage = pg.image.load("Images/pop.png")
         self.cityImage = pg.transform.scale(self.cityImage, (60, 60))
 
-        self.bridgeImage = pg.image.load("Images/pop.png")
-        self.bridgeImage = pg.transform.scale(self.bridgeImage, (60, 60))
+        self.bridgeImage = pg.image.load("Images/bridge.png")
+        self.bridgeImage = pg.transform.scale(self.bridgeImage, (100, 100))
 
-        #Resources Per Turn
+        #Resources Per Turn   [wood, stone, ore, food]
+        self.resourcesPerTurn = [0,0,0,0]
         self.playerWoodPerTurn = " +0/Turn"
         self.playerStonePerTurn = " +0/Turn"
         self.playerOrePerTurn = " +0/Turn"
         self.playerFoodPerTurn = " +0/Turn"
 
         #Resource Amounts
-        self.woodCount = self.resourceCountFont.render("1000" + self.playerWoodPerTurn, True, pg.Color('black'))
-        self.stoneCount = self.resourceCountFont.render("200" + self.playerStonePerTurn, True, pg.Color('black'))
-        self.oreCount = self.resourceCountFont.render("100" + self.playerOrePerTurn, True, pg.Color('black'))
-        self.foodCount = self.resourceCountFont.render("0" + self.playerOrePerTurn, True, pg.Color('black'))
+        # self.woodCount = self.resourceCountFont.render("1000" + self.playerWoodPerTurn, True, pg.Color('black'))
+        # self.stoneCount = self.resourceCountFont.render("200" + self.playerStonePerTurn, True, pg.Color('black'))
+        # self.oreCount = self.resourceCountFont.render("100" + self.playerOrePerTurn, True, pg.Color('black'))
+        # self.foodCount = self.resourceCountFont.render("0" + self.playerOrePerTurn, True, pg.Color('black'))
+        self.woodCount = self.resourceCountFont.render("1000" + " " + str(self.resourcesPerTurn[0]) + '/Turn', True, pg.Color('black'))
+        self.stoneCount = self.resourceCountFont.render("200" + " " + str(self.resourcesPerTurn[1]) + '/Turn', True, pg.Color('black'))
+        self.oreCount = self.resourceCountFont.render("100" + " " + str(self.resourcesPerTurn[2]) + '/Turn', True, pg.Color('black'))
+        self.foodCount = self.resourceCountFont.render("0" + " " + str(self.resourcesPerTurn[3]) + '/Turn', True, pg.Color('black'))
 
         self.populationCount = self.resourceCountFont.render("0 / 0", True, pg.Color('black'))
 
@@ -289,7 +294,7 @@ class UserInterface():
         elif(self.currentBuildingTab == 1):
             self.drawMilitaryBuildings(self.buildingID)
         elif(self.currentBuildingTab == 2):
-            self.drawInfrastructureBuildings()
+            self.drawInfrastructureBuildings(self.buildingID)
 
         self.screen.blit(self.resourceTabText, (self.tabButton2XValue + 14, self.tabButton2YValue + 4))
         self.screen.blit(self.militaryTabText, (self.tabButton2XValue + 14 + self.tabButton2Width, self.tabButton2YValue + 4))
@@ -319,11 +324,30 @@ class UserInterface():
         self.drawInfrastructureBuildings(self.buildingID)
 
     def updateResources(self, player):
+        tempW = 0
+        tempS = 0
+        tempO = 0
+        tempF = 0
+        for i in range(len(player.buildings)):
+            if player.buildings[i].buildingType == 3:     #IF LUMBERMILL
+                tempW += player.buildings[i].productionRate
+            elif player.buildings[i].buildingType == 4:     #IF QUARRY
+                tempS += player.buildings[i].productionRate
+            elif player.buildings[i].buildingType == 5:     #IF MINE
+                tempO += player.buildings[i].productionRate
+            if player.buildings[i].buildingType == 0 or player.buildings[i].buildingType == 1 or player.buildings[i].buildingType == 2:     #IF FARM, RANCH, OR FISH HUT
+                tempF += player.buildings[i].productionRate
+        
+        self.resourcesPerTurn[0] = tempW
+        self.resourcesPerTurn[1] = tempS
+        self.resourcesPerTurn[2] = tempO
+        self.resourcesPerTurn[3] = tempF
+
         pg.draw.rect(self.screen, self.rectColor, (self.rectXPos, self.rectYPos, self.rectWidth, self.rectHeight))
-        self.woodCount = self.resourceCountFont.render(str(player.playerWood) + self.playerWoodPerTurn, True, pg.Color('black'))
-        self.stoneCount = self.resourceCountFont.render(str(player.playerStone) + self.playerStonePerTurn, True, pg.Color('black'))
-        self.oreCount = self.resourceCountFont.render(str(player.playerOre) + self.playerOrePerTurn, True, pg.Color('black'))
-        self.foodCount = self.resourceCountFont.render(str(player.playerFood) + self.playerFoodPerTurn, True, pg.Color('black'))
+        self.woodCount = self.resourceCountFont.render(str(player.playerWood) + " " + str(self.resourcesPerTurn[0]) + "/Turn", True, pg.Color('black'))
+        self.stoneCount = self.resourceCountFont.render(str(player.playerStone) + " " + str(self.resourcesPerTurn[1]) + "/Turn", True, pg.Color('black'))
+        self.oreCount = self.resourceCountFont.render(str(player.playerOre) + " " + str(self.resourcesPerTurn[2]) + "/Turn", True, pg.Color('black'))
+        self.foodCount = self.resourceCountFont.render(str(player.playerFood) + " " + str(self.resourcesPerTurn[3]) + "/Turn", True, pg.Color('black'))
         self.populationCount = self.resourceCountFont.render(str(player.playerCurPop) + " / " + str(player.playerMaxPop), True, pg.Color('black'))
         self.drawInterface()
 
@@ -493,6 +517,24 @@ class UserInterface():
         if(buildingID == 5):
             self.resources = self.tab2Font.render(self.mineCost, True, pg.Color('black'))
             self.screen.blit(self.resources, (1230, 500 + self.buildingPadding * (23/4) + self.buildingWidth * (11/2)))
+
+
+
+        if(buildingID == 6):
+            self.resources = self.tab2Font.render(self.houseCost, True, pg.Color('black'))
+            self.screen.blit(self.resources, (1230, 545))
+        if(buildingID == 7):
+            self.resources = self.tab2Font.render(self.townCost, True, pg.Color('black'))
+            self.screen.blit(self.resources, (1230, 500 + self.buildingPadding * (7/4) + self.buildingWidth * (3/2)))
+        if(buildingID == 8):
+            self.resources = self.tab2Font.render(self.cityCost, True, pg.Color('black'))
+            self.screen.blit(self.resources, (1230, 500 + self.buildingPadding * (11/4) + self.buildingWidth * (5/2)))
+        if(buildingID == 9):
+            self.resources = self.tab2Font.render(self.bridgeCost, True, pg.Color('black'))
+            self.screen.blit(self.resources, (1230, 500 + self.buildingPadding * (15/4) + self.buildingWidth * (7/2)))
+
+
+
         if(buildingID == 10):
             self.resources = self.tab2Font.render(self.castleCost, True, pg.Color('black'))
             self.screen.blit(self.resources, (1230, 545))
@@ -597,3 +639,6 @@ class UserInterface():
                     print("Switched to Infrastructure Buildings")
                     sys.stdout.flush()
                     self.goToInfrastructureBuildings()
+    def updateResourcesPerTurn(self):
+
+        pass
