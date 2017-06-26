@@ -111,19 +111,27 @@ class Main():
                                 self.selectedBuilding = 0
                             elif(self.userInterface.currentBuildingTab == 1):
                                 self.selectedBuilding = 10
+                            elif(self.userInterface.currentBuildingTab == 2):
+                                self.selectedBuilding = 6
                         elif(596 < self.realY < 664):
                             if(self.userInterface.currentBuildingTab == 0):
                                 self.selectedBuilding = 1
                             elif(self.userInterface.currentBuildingTab == 1):
                                 self.selectedBuilding = 11
+                            elif(self.userInterface.currentBuildingTab == 2):
+                                self.selectedBuilding = 7
                         elif(676 < self.realY < 744):
                             if(self.userInterface.currentBuildingTab == 0):
                                 self.selectedBuilding = 2
                             elif(self.userInterface.currentBuildingTab == 1):
                                 self.selectedBuilding = 12
+                            elif(self.userInterface.currentBuildingTab == 2):
+                                self.selectedBuilding = 8
                         elif(756 < self.realY < 824):
                             if(self.userInterface.currentBuildingTab == 0):
                                 self.selectedBuilding = 3
+                            elif(self.userInterface.currentBuildingTab == 2):
+                                self.selectedBuilding = 9
                         elif(836 < self.realY < 904):
                             if(self.userInterface.currentBuildingTab == 0):
                                 self.selectedBuilding = 4

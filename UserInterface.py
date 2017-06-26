@@ -80,6 +80,18 @@ class UserInterface():
         self.cannonImage = pg.image.load("Images/cannonTower.png")
         self.cannonImage = pg.transform.scale(self.cannonImage, (30, 60))
 
+        self.houseImage = pg.image.load("Images/house.png")
+        self.houseImage = pg.transform.scale(self.houseImage, (60, 60))
+
+        self.townImage = pg.image.load("Images/pop.png")
+        self.townImage = pg.transform.scale(self.townImage, (60, 60))
+
+        self.cityImage = pg.image.load("Images/pop.png")
+        self.cityImage = pg.transform.scale(self.cityImage, (60, 60))
+
+        self.bridgeImage = pg.image.load("Images/pop.png")
+        self.bridgeImage = pg.transform.scale(self.bridgeImage, (60, 60))
+
         #Resources Per Turn
         self.playerWoodPerTurn = " +0/Turn"
         self.playerStonePerTurn = " +0/Turn"
@@ -149,6 +161,14 @@ class UserInterface():
         self.quarryCost =     "100    25    5     2"
         #ID = 5
         self.mineCost =       "300    200   5     5"
+        #ID = 6
+        self.houseCost =      "100    50    0     0"
+        #ID = 7
+        self.townCost =       "250    100   5     0"
+        #ID = 8
+        self.cityCost =       "500    300   50    0"
+        #ID = 9
+        self.bridgeCost =     "200    100   0     0"
         #ID = 10
         self.castleCost =     "1000   1000  200   0"
         #ID = 11
@@ -166,7 +186,7 @@ class UserInterface():
         self.currentBuildingName = "None"
         self.woodPerTurnInspector = " +0/Turn"
         self.stonePerTurnInspector = " +0/Turn"
-        self.orePerTurnInspector = " +0/Turn" 
+        self.orePerTurnInspector = " +0/Turn"
 
         self.buildingID = 0
 
@@ -236,6 +256,8 @@ class UserInterface():
                 pg.draw.rect(self.screen, self.tabButtonColor, (self.tabButton2XValue, self.tabButton2YValue, self.tabButton2Width, self.tabButton2Height))
                 pg.draw.rect(self.screen, self.tabButtonColor, (self.tabButton2XValue + self.tabButton2Width, self.tabButton2YValue, self.tabButton2Width, self.tabButton2Height))
                 pg.draw.rect(self.screen, self.tabButtonSelectedColor, (self.tabButton2XValue + self.tabButton2Width * 2, self.tabButton2YValue, self.tabButton2Width, self.tabButton2Height))
+
+                self.drawInfrastructureBuildings(self.buildingID)
             #DRAW DIVIDERS
             pg.draw.rect(self.screen, self.tabButtonSelectedColor, (self.tabButton2XValue + self.tabButton2Width, self.tabButton2YValue, 2, self.tabButton2Height))
             pg.draw.rect(self.screen, self.tabButtonSelectedColor, (self.tabButton2XValue + self.tabButton2Width * 2, self.tabButton2YValue, 2, self.tabButton2Height))
@@ -294,7 +316,7 @@ class UserInterface():
         self.currentBuildingTab = 2
         pg.draw.rect(self.screen, self.rectColor, (self.rectXPos, self.rectYPos, self.rectWidth, self.rectHeight))
         self.drawInterface()
-        self.drawInfrastructureBuildings()
+        self.drawInfrastructureBuildings(self.buildingID)
 
     def updateResources(self, player):
         pg.draw.rect(self.screen, self.rectColor, (self.rectXPos, self.rectYPos, self.rectWidth, self.rectHeight))
@@ -407,7 +429,6 @@ class UserInterface():
     
     def drawMilitaryBuildings(self, buildingID):
         self.buildingID = buildingID
-        print("This is the current building ID: " + str(buildingID))
         self.switchSelectedBuilding(self.buildingID)
 
         self.screen.blit(self.castleImage, (1050 + self.buildingPadding, 500 + self.buildingPadding))
@@ -426,10 +447,30 @@ class UserInterface():
         for i in range(10, 13):
             self.drawResourceCosts(i)
 
-        print("Drawing Military Buildings")
-        sys.stdout.flush()
+    def drawInfrastructureBuildings(self, buildingID):
+        self.buildingID = buildingID
+        self.switchSelectedBuilding(self.buildingID)
 
-    def drawInfrastructureBuildings(self):
+        self.screen.blit(self.houseImage, (1050 + self.buildingPadding, 500 + self.buildingPadding))
+        self.screen.blit(self.townImage, (1050 + self.buildingPadding, 500 + self.buildingPadding * 2 + self.buildingWidth))
+        self.screen.blit(self.cityImage, (1050 + self.buildingPadding, 500 + self.buildingPadding * 3 + self.buildingWidth * 2))
+        self.screen.blit(self.bridgeImage, (1050 + self.buildingPadding, 500 + self.buildingPadding * 4 + self.buildingWidth * 3))
+
+        self.houseName = self.buildingFont.render("House", True, pg.Color('black'))
+        self.screen.blit(self.houseName, (1035 + self.buildingPadding * 2 + self.buildingWidth, 500 + self.buildingPadding * (3/4) + self.buildingWidth * (1/2)))
+
+        self.townName = self.buildingFont.render("Town", True, pg.Color('black'))
+        self.screen.blit(self.townName, (1035 + self.buildingPadding * 2 + self.buildingWidth, 500 + self.buildingPadding * (7/4) + self.buildingWidth * (3/2)))
+
+        self.cityName = self.buildingFont.render("City", True, pg.Color('black'))
+        self.screen.blit(self.houseName, (1035 + self.buildingPadding * 2 + self.buildingWidth, 500 + self.buildingPadding * (11/4) + self.buildingWidth * (5/2)))
+
+        self.bridgeName = self.buildingFont.render("Bridge", True, pg.Color('black'))
+        self.screen.blit(self.bridgeName, (1035 + self.buildingPadding * 2 + self.buildingWidth, 500 + self.buildingPadding * (15/4) + self.buildingWidth * (7/2)))
+
+        for i in range(6, 10):
+            self.drawResourceCosts(i)
+
         print("Drawing Other Buildings")
         sys.stdout.flush()
 
