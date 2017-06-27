@@ -26,8 +26,6 @@ class Building:
         self.createBuilding(x, y, tilesize, screen, player)
         self.playerOwned = None
         self.destroyed = False
-        self.damage = 0
-        self.range = 0
 
     def drawBuilding(self, player):
         #pg.draw.rect(self.screen, pg.Color(244, 101, 66), (self.x, self.y, self.tilesize, self.tilesize))

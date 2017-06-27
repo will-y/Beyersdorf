@@ -1,5 +1,5 @@
 import pygame as pg
-import sys, Health, Terrain, math, UserInterface, MainMenu, Buildings, Player, InspectorGadget, TurnManager,time
+import sys, Health, Terrain, math, UserInterface, MainMenu, Buildings, Player, InspectorGadget, TurnManager,time,DamageManager
 
 class Main():
 
@@ -106,6 +106,15 @@ class Main():
                                                 turnManager.useAction(2)
                                                 self.player2.addBuilding(self.building)
                                                 self.userInterface.updateResources(self.player2)
+                        elif self.Handler.needToDealDam == True:
+                            if turnManager.playerOneTurn == True:
+                                self.Handler.manageDamageDelt(self.xCoord, self.yCoord, self.player1, self.player2, self.terrainobject)
+                            if turnManager.playerOneTurn == False:
+                                self.Handler.manageDamageDelt(self.xCoord, self.yCoord, self.player2, self.player1, self.terrainobject)
+                        elif turnManager.playerOneTurn == True:
+                            self.Handler.findShooter(self.xCoord, self.yCoord, self.player1, self.player2, self.terrainobject)
+                        elif turnManager.playerOneTurn == False:
+                            self.Handler.findShooter(self.xCoord, self.yCoord, self.player2, self.player1, self.terrainobject)
                     else:
                         self.userInterface.updateInspector(self.xCoord, self.yCoord, self.terrainobject.board)
 
@@ -167,6 +176,8 @@ class Main():
         self.userInterface = UserInterface.UserInterface(self.screen)
         self.terrainobject = Terrain.Terrain(10, self.width, self.tilesize)
         self.terrainobject.generateBoard(self.screen)
+
+        self.Handler = DamageManager.DamageHandler()
         
         self.building = Buildings.Building(10, 1*self.tilesize, 1*self.tilesize, self.tilesize, self.screen,1)
         self.building.drawBuilding(1)
