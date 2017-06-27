@@ -206,13 +206,14 @@ class Main():
             elif self.player2.buildings[0].destroyed == True:
                 winner = "Player 2"
                 break
-        self.end_screen = EndScreen.End_Screen("Player 1")
+        self.end_screen = EndScreen.End_Screen(winner)
         self.end_screen.runScreen()
         pg.display.update()
 
 def main():
     pg.init()
     main = Main()
-    main.runGame()
+    while True:
+        main.runGame()
 
 main()

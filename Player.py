@@ -54,18 +54,18 @@ class Player():
         if building.buildingType == 2:
             hasWater = False
 
-            hasLeft =building.x>0
-            hasRight = building.x<9
-            hasUp = building.y>0
-            hasDown = building.y<9
+            hasLeft = building.x/100>0
+            hasRight = building.x/100<9
+            hasUp = building.y/100>0
+            hasDown = building.y/100<9
             if hasLeft and not hasWater:
-                hasWater = (tileMap[building.x-1][building.y] == 4)
+                hasWater = (tileMap[(int)((building.x/100)-1)][(int)(building.y/100)].tileType == 4)
             if hasRight and not hasWater:
-                hasWater = (tileMap[building.x+1][building.y] == 4)
+                hasWater = (tileMap[(int)((building.x/100)+1)][(int)(building.y/100)].tileType == 4)
             if hasUp and not hasWater:
-                hasWater = (tileMap[building.x][building.y-1] == 4)
+                hasWater = (tileMap[(int)(building.x/100)][(int)((building.y/100)-1)].tileType == 4)
             if hasDown and not hasWater:
-                hasWater = (tileMap[building.x][building.y+1] == 4)
+                hasWater = (tileMap[(int)((building.x/100))][(int)((building.y/100)+1)].tileType == 4)
             
             if hasWater:
                 for i in range(len(self.buildings)):
