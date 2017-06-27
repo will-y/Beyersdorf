@@ -41,10 +41,3 @@ class End_Screen:
             self.endscreen.blit(self.text4, (110, 340))
             self.endscreen.blit(self.text5, (210, 400))
             pg.display.update()
-
-def main():
-    pg.init
-    endScreen = End_Screen("Player 1")
-    endScreen.runScreen()
-
-main()

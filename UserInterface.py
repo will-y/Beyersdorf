@@ -394,7 +394,6 @@ class UserInterface():
 
     def updateInspector(self, x, y, board):
         inspector = InspectorGadget.Inspector()
-        # terrain = Terrain.Terrain(10, 1000, 100)
         self.currentTileNumber = inspector.inspectTile(board, x, y)[0]
         if(self.currentTileNumber == 0):
             self.currentTile = "Forest"
