@@ -195,6 +195,8 @@ class UserInterface():
 
         self.buildingID = 0
 
+        self.currentTurn = "red"
+
     def drawInterface(self):
         pg.draw.rect(self.screen, self.rectColor, (self.rectXPos, self.rectYPos, self.rectWidth, self.rectHeight))
         pg.draw.rect(self.screen, pg.Color('black'), (self.rectXPos, self.rectYPos, self.rectWidth,self.rectHeight), 5)
@@ -231,8 +233,10 @@ class UserInterface():
         self.screen.blit(self.populationCount, (1305, 300))
 
         #End turn button
-        pg.draw.rect(self.screen, pg.Color(159, 163, 206), (1050, 350, 150, 35))
-        self.screen.blit(self.endTurnText, (1065, 355))
+        self.switchEndTurnButton(self.currentTurn)
+
+        #Error box
+        pg.draw.rect(self.screen, pg.Color('white'), (1230, 347, 220, 38))
 
         if(not self.inspector):
             #BUILDING SELECTED
@@ -652,8 +656,21 @@ class UserInterface():
     def updateResourcesPerTurn(self):
 
         pass
-    def switchEndTurnButton(self):
-        pass
+    def switchEndTurnButton(self, color):
+        self.currentTurn = color
+        if(self.currentTurn == "blue"):
+            pg.draw.rect(self.screen, self.rectColor, (1050, 350, 150, 35))
+            pg.draw.rect(self.screen, pg.Color(159, 163, 206), (1050, 350, 150, 35))
+            pg.draw.rect(self.screen, pg.Color(97, 125, 147), (1050, 350, 150, 35), 3)
+            self.screen.blit(self.endTurnText, (1065, 355))
+        elif(self.currentTurn == "red"):
+            pg.draw.rect(self.screen, self.rectColor, (1050, 350, 150, 35))
+            pg.draw.rect(self.screen, pg.Color(168, 25, 25), (1050, 350, 150, 35))
+            pg.draw.rect(self.screen, pg.Color(112, 15, 15), (1050, 350, 150, 35), 3)
+            self.screen.blit(self.endTurnText, (1065, 355))
 
     def displayError(self, message):
-        pass
+        pg.draw.rect(self.screen, pg.Color('white'), (1230, 347, 220, 38))
+        pg.draw.rect(self.screen, pg.Color('black'), (1230, 347, 220, 38), 3)
+        errorMessage = self.tab2Font.render(message, True, pg.Color('black'))
+        self.screen.blit(errorMessage, (1249, 360))
