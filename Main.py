@@ -125,8 +125,8 @@ class Main():
                                                 self.userInterface.displayError("")
                                                 if self.building.buildingType == 10:
                                                     turnManager.addActionToPlayer(2)
-                                                else:
-                                                    self.userInterface.displayError("Not Enough Resources")
+                                            else:
+                                                self.userInterface.displayError("Not Enough Resources")
                         elif self.Handler.needToDealDam == True:
                             if turnManager.playerOneTurn == True and turnManager.playerOneActionsUsed < turnManager.playerOneActions:
                                 turnManager.useAction(1)
