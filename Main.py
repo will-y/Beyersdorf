@@ -50,7 +50,8 @@ class Main():
                 self.yCoord = (int)(pg.mouse.get_pos()[1]/100)
 
                 #End Turn Stuff
-                if self.realX >= 1200 and self.realX <= 1300 and self.realY >= 350 and self.realY <= 450:
+                if 1050 <= self.realX <= 1200 and 350 <= self.realY <= 385:
+                    
                     if turnManager.playerOneTurn == True:
                         self.player1.subtractResourceFromTile(self.terrainobject)
                         self.player1.addResourcesToCache(self.terrainobject)
@@ -59,6 +60,8 @@ class Main():
                         time.sleep(1)
                         self.userInterface.updateResources(self.player2)
                         #self.player1.buildings[1].takeDamage(20, self.terrainobject)
+                        self.userInterface.switchEndTurnButton("blue")
+                        self.userInterface.displayError("")
 
                     elif turnManager.playerOneTurn == False:
                         self.player2.subtractResourceFromTile(self.terrainobject)
@@ -67,6 +70,8 @@ class Main():
                         turnManager.endTurn()
                         time.sleep(1)
                         self.userInterface.updateResources(self.player1)
+                        self.userInterface.switchEndTurnButton("red")
+                        self.userInterface.displayError("")
                 
                 #If click is outside UI
                 if self.xCoord <= 9:
@@ -94,6 +99,13 @@ class Main():
                                                 turnManager.useAction(1)
                                                 self.player1.addBuilding(self.building)
                                                 self.userInterface.updateResources(self.player1)
+                                                self.userInterface.displayError("")
+                                            else:
+                                                self.userInterface.displayError("Not Enough Resources")
+                                        else:
+                                            self.userInterface.displayError("Cannot Build Here")
+                                    if turnManager.playerOneActions == turnManager.playerOneActionsUsed:
+                                        self.userInterface.displayError("No More Actions")
 
                                     if turnManager.playerOneTurn == False and not turnManager.playerTwoActions == turnManager.playerTwoActionsUsed:
 
@@ -108,12 +120,8 @@ class Main():
                                                 turnManager.useAction(2)
                                                 self.player2.addBuilding(self.building)
                                                 self.userInterface.updateResources(self.player2)
-                        if self.terrainobject.board[self.xCoord][self.yCoord].builtOn == True:
-                            for i in range(len(self.player1.buildings)):
-                                print(self.xCoord)
-                                print(math.floor(self.player1.buildings[i].x/100))
-                                if math.floor(self.player1.buildings[i].x/100) == math.floor(self.xCoord) and math.floor(self.player1.buildings[i].y/100) == math.floor(self.yCoord) and self.terrainobject.board[self.xCoord][self.yCoord].builtOn == True and self.player1.buildings[i].canFire == True:
-                                    print("clicked on a building")
+                        else:
+                            self.userInterface.displayError("Cannot Build Here")
                     else:
                         self.userInterface.updateInspector(self.xCoord, self.yCoord, self.terrainobject.board)
 

@@ -195,18 +195,11 @@ class UserInterface():
 
         self.buildingID = 0
 
+        self.currentTurn = "red"
+
     def drawInterface(self):
         pg.draw.rect(self.screen, self.rectColor, (self.rectXPos, self.rectYPos, self.rectWidth, self.rectHeight))
         pg.draw.rect(self.screen, pg.Color('black'), (self.rectXPos, self.rectYPos, self.rectWidth,self.rectHeight), 5)
-
-        #if(self.currentBuildingTab == 0 and not self.inspector):
-            #Draw surrounding rectangles
-            # pg.draw.rect(self.screen, self.tabButtonSelectedColor, (1050, 496 + self.buildingPadding, self.buildingRect1Width, self.buildingRect1Height + 8))
-            # pg.draw.rect(self.screen, self.tabButtonColor,(1050, 496 + self.buildingPadding * 2 + self.buildingWidth, self.buildingRect1Width, self.buildingRect1Height + 8))
-            # pg.draw.rect(self.screen, self.tabButtonColor, (1050, 496 + self.buildingPadding * 3 + self.buildingWidth * 2, self.buildingRect1Width, self.buildingRect1Height + 8))
-            # pg.draw.rect(self.screen, self.tabButtonColor, (1050, 496 + self.buildingPadding * 4 + self.buildingWidth * 3, self.buildingRect1Width, self.buildingRect1Height + 8))
-            # pg.draw.rect(self.screen, self.tabButtonColor, (1050, 496 + self.buildingPadding * 5 + self.buildingWidth * 4, self.buildingRect1Width, self.buildingRect1Height + 8))
-            # pg.draw.rect(self.screen, self.tabButtonColor, (1050, 496 + self.buildingPadding * 6 + self.buildingWidth * 5, self.buildingRect1Width, self.buildingRect1Height + 8))
 
         #Draw resource names
         self.screen.blit(self.resourceText, (1125, 25))
@@ -231,8 +224,11 @@ class UserInterface():
         self.screen.blit(self.populationCount, (1305, 300))
 
         #End turn button
-        pg.draw.rect(self.screen, pg.Color(159, 163, 206), (1175, 350, 150, 35))
-        self.screen.blit(self.endTurnText, (1190, 355))
+        self.switchEndTurnButton(self.currentTurn)
+
+        #Error box
+        pg.draw.rect(self.screen, pg.Color('white'), (1230, 347, 220, 38))
+        pg.draw.rect(self.screen, pg.Color('black'), (1230, 347, 220, 38), 3)
 
         if(not self.inspector):
             #BUILDING SELECTED
@@ -652,3 +648,21 @@ class UserInterface():
     def updateResourcesPerTurn(self):
 
         pass
+    def switchEndTurnButton(self, color):
+        self.currentTurn = color
+        if(self.currentTurn == "blue"):
+            pg.draw.rect(self.screen, self.rectColor, (1050, 350, 150, 35))
+            pg.draw.rect(self.screen, pg.Color(159, 163, 206), (1050, 350, 150, 35))
+            pg.draw.rect(self.screen, pg.Color(97, 125, 147), (1050, 350, 150, 35), 3)
+            self.screen.blit(self.endTurnText, (1065, 355))
+        elif(self.currentTurn == "red"):
+            pg.draw.rect(self.screen, self.rectColor, (1050, 350, 150, 35))
+            pg.draw.rect(self.screen, pg.Color(168, 25, 25), (1050, 350, 150, 35))
+            pg.draw.rect(self.screen, pg.Color(112, 15, 15), (1050, 350, 150, 35), 3)
+            self.screen.blit(self.endTurnText, (1065, 355))
+
+    def displayError(self, message):
+        pg.draw.rect(self.screen, pg.Color('white'), (1230, 347, 220, 38))
+        pg.draw.rect(self.screen, pg.Color('black'), (1230, 347, 220, 38), 3)
+        errorMessage = self.tab2Font.render(message, True, pg.Color('black'))
+        self.screen.blit(errorMessage, (1249, 360))

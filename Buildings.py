@@ -26,7 +26,6 @@ class Building:
         self.createBuilding(x, y, tilesize, screen, player)
         self.playerOwned = None
         self.destroyed = False
-        self.canFire = False
         self.damage = 0
         self.range = 0
 
@@ -246,6 +245,7 @@ class Building:
             self.canFire = True
             self.damage = 10
             self.range = 4
+            print(self.canFire)
 
             #CannonTower
         if self.buildingType == 12:
