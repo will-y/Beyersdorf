@@ -5,8 +5,8 @@ class Player():
     def __init__(self):
         self.team = 0
         self.playerWood = 1000
-        self.playerStone = 200
-        self.playerOre = 100
+        self.playerStone = 500
+        self.playerOre = 75
         self.playerFood = 20
         self.playerCurPop = 0
         self.playerMaxPop = 10
