@@ -8,17 +8,7 @@ class Terrain():
         self.screenWidth = screenWidth
         self.tileWidth = math.floor(self.screenWidth/self.boardNum)
         self.tilesize = tilesize
-        # Tile Colors
-        # self.forestColor = (34,139,34)
-        # self.hillColor = (152,251,152)
-        # self.plainColor = (247,218,61)
-        # self.mountainColor = (205,201,201)
-        # self.waterColor = (30,144,255)
-        # Tile Images
-        
-        # hd = True
         hd = False
-
         if hd:
             self.forestTile = pg.image.load("Images/forestTileHiRes.png")
             self.forestTile = pg.transform.scale(self.forestTile, (int(self.tilesize), int(self.tilesize)))
