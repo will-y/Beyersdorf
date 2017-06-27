@@ -146,43 +146,46 @@ class Main():
                 return pg.mouse.get_pos() 
 
     def runGame(self):
+        # Starts the main menu
         self.main_menu = MainMenu.Main_Menu()
         self.main_menu.runScreen()
+        # Creates the Turn Manager object
         turnManager = TurnManager.Manager()
+        # Resizes the screen from main menu
         self.screen = pg.display.set_mode((math.floor(self.width* 3/2), self.height))
         self.screen.fill(pg.Color('white'))
-        
-        # main_menu.width = self.width
+        # Creates the UI
         self.userInterface = UserInterface.UserInterface(self.screen)
+        # Generates the Terrain
         self.terrainobject = Terrain.Terrain(10, self.width, self.tilesize)
         self.terrainobject.generateBoard(self.screen)
-        
+        # Creates Player 1's Castle
         self.building = Buildings.Building(10, 1*self.tilesize, 1*self.tilesize, self.tilesize, self.screen,1)
         self.building.drawBuilding(1)
         self.player1.addBuilding(self.building)
         self.terrainobject.board[1][1].builtOn = True
-
+        # Creates Player 2's Castle
         self.building = Buildings.Building(10, 8*self.tilesize, 8*self.tilesize, self.tilesize, self.screen,2)
         self.building.drawBuilding(2)
         self.player2.addBuilding(self.building)
         self.terrainobject.board[8][8].builtOn = True
-
-        
+        # Draws the UI
         self.userInterface.drawInterface()
         #self.userInterface.drawResourceBuildings()
         pg.draw.rect(self.screen, pg.Color('black'), (0, 0, 1000, 1000), 5)
-        
+        # Starts the music
         file = 'Sound/Music2.wav'
         pg.mixer.init()
         pg.mixer.music.load(file)
         pg.mixer.music.play(-1)
-
+        # Starts the game clock
         while(True):
             self.clock.tick(10)
-            
+            # Makes sure it doesn't crash when exited
             for event in pg.event.get():
                 if(event.type == pg.QUIT):
                     sys.exit()
+            # Sets the mouse cursor image
             pg.mouse.set_cursor(*pg.cursors.broken_x)
             pg.display.update()
             self.detectClick(True, turnManager)
