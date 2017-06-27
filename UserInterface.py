@@ -189,9 +189,9 @@ class UserInterface():
         self.prefBuildingName = "Lumber Mill"
         self.costModiferNumber = "1"
         self.currentBuildingName = "None"
-        self.woodPerTurnInspector = " +0/Turn"
-        self.stonePerTurnInspector = " +0/Turn"
-        self.orePerTurnInspector = " +0/Turn"
+        self.woodPerTurnInspector = ""
+        self.stonePerTurnInspector = ""
+        self.orePerTurnInspector = ""
 
         self.buildingID = 0
 
@@ -309,19 +309,25 @@ class UserInterface():
         self.currentBuildingTab = 0
         pg.draw.rect(self.screen, self.rectColor, (self.rectXPos, self.rectYPos, self.rectWidth, self.rectHeight))
         self.drawInterface()
+        self.switchSelectedBuilding(0)
         self.drawResourceBuildings(self.buildingID)
+        
 
     def goToMilitaryBuildings(self):
         self.currentBuildingTab = 1
         pg.draw.rect(self.screen, self.rectColor, (self.rectXPos, self.rectYPos, self.rectWidth, self.rectHeight))
         self.drawInterface()
+        self.switchSelectedBuilding(10)
         self.drawMilitaryBuildings(self.buildingID)
+        
 
     def goToInfrastructureBuildings(self):
         self.currentBuildingTab = 2
         pg.draw.rect(self.screen, self.rectColor, (self.rectXPos, self.rectYPos, self.rectWidth, self.rectHeight))
         self.drawInterface()
+        self.switchSelectedBuilding(6)
         self.drawInfrastructureBuildings(self.buildingID)
+        
 
     def updateResources(self, player):
         tempW = 0
@@ -366,7 +372,7 @@ class UserInterface():
         self.tileResources = self.tab1Font.render("Resources In Tile: ", True, pg.Color('black'))
         self.tileBuilding = self.tab1Font.render("Building: " + self.currentBuildingName, True, pg.Color('black'))
         self.costMod = self.tab1Font.render("Building Cost Modifier: " + self.costModiferNumber, True, pg.Color('black'))
-        self.prefBuilding = self.tab1Font.render("Prefered Building: " + self.prefBuildingName, True, pg.Color('black'))
+        self.prefBuilding = self.tab1Font.render("Preferred Building: " + self.prefBuildingName, True, pg.Color('black'))
 
         self.woodInTileImage = pg.transform.scale(self.woodImage, (35, 23))
         self.stoneInTileImage = pg.transform.scale(self.stoneImage, (35, 23))
@@ -487,7 +493,7 @@ class UserInterface():
         self.screen.blit(self.townName, (1035 + self.buildingPadding * 2 + self.buildingWidth, 500 + self.buildingPadding * (7/4) + self.buildingWidth * (3/2)))
 
         self.cityName = self.buildingFont.render("City", True, pg.Color('black'))
-        self.screen.blit(self.houseName, (1035 + self.buildingPadding * 2 + self.buildingWidth, 500 + self.buildingPadding * (11/4) + self.buildingWidth * (5/2)))
+        self.screen.blit(self.cityName, (1035 + self.buildingPadding * 2 + self.buildingWidth, 500 + self.buildingPadding * (11/4) + self.buildingWidth * (5/2)))
 
         self.bridgeName = self.buildingFont.render("Bridge", True, pg.Color('black'))
         self.screen.blit(self.bridgeName, (1035 + self.buildingPadding * 2 + self.buildingWidth, 500 + self.buildingPadding * (15/4) + self.buildingWidth * (7/2)))
