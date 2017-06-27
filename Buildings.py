@@ -69,6 +69,13 @@ class Building:
             self.image = pg.transform.scale(self.image, (int(self.tilesize * (4/5)), int(self.tilesize * (2/5))))
             self.screen.blit(self.image, (self.x + self.tilesize/10, self.y + self.tilesize/2))
             terrain.board[math.floor(self.x/100)][math.floor(self.y/100)].builtOn = False
+            self.productionRate = None
+            self.populationCost = None
+            self.populationAdd = None
+            self.woodCost = None
+            self.stoneCost = None
+            self.oreCost = None
+            self.canFire = False
         else:
             health = Health.Health((self.x, self.y), self.tilesize, self.screen)
             health.drawHealth(self.maxHealth, self.currentHealth)

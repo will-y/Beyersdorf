@@ -7,7 +7,7 @@ class Player():
         self.playerWood = 1000
         self.playerStone = 200
         self.playerOre = 100
-        self.playerFood = 0
+        self.playerFood = 20
         self.playerCurPop = 0
         self.playerMaxPop = 10
         self.buildings = []
