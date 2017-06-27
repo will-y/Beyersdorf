@@ -32,6 +32,8 @@ class End_Screen:
                     sys.exit()
             if key[pg.K_RETURN]: #If Return key is pressed, end game.
                 break
+            if key[pg.K_ESCAPE]:
+                sys.exit()
             self.endscreen.fill(self.screen_color)
             self.endscreen.blit(self.text1, (133, 200))
             self.endscreen.blit(self.text2, (110, 280))
@@ -39,7 +41,6 @@ class End_Screen:
             self.endscreen.blit(self.text4, (110, 340))
             self.endscreen.blit(self.text5, (210, 400))
             pg.display.update()
-
 
 def main():
     pg.init

@@ -116,19 +116,6 @@ class Main():
                                                 turnManager.useAction(2)
                                                 self.player2.addBuilding(self.building)
                                                 self.userInterface.updateResources(self.player2)
-                                                self.userInterface.displayError("")
-                                            else:
-                                                self.userInterface.displayError("Not Enough Resources")
-                                    if turnManager.playerTwoActions == turnManager.playerTwoActionsUsed:
-                                        self.userInterface.displayError("No More Actions")
-
-                        if self.terrainobject.board[self.xCoord][self.yCoord].builtOn == True:
-                            for i in range(len(self.player1.buildings)):
-                                print(self.xCoord)
-                                print(math.floor(self.player1.buildings[i].x/100))
-                                if math.floor(self.player1.buildings[i].x/100) == math.floor(self.xCoord) and math.floor(self.player1.buildings[i].y/100) == math.floor(self.yCoord) and self.terrainobject.board[self.xCoord][self.yCoord].builtOn == True and self.player1.buildings[i].canFire == True:
-                                    print("clicked on a building")
-                                    self.userInterface.displayError("Cannot build here")
                     else:
                         self.userInterface.updateInspector(self.xCoord, self.yCoord, self.terrainobject.board)
 
@@ -229,13 +216,14 @@ class Main():
             elif self.player2.buildings[0].destroyed == True:
                 winner = "Player 2"
                 break
-        self.end_screen = EndScreen.End_Screen("Player 1")
+        self.end_screen = EndScreen.End_Screen(winner)
         self.end_screen.runScreen()
         pg.display.update()
 
 def main():
     pg.init()
     main = Main()
-    main.runGame()
+    while True:
+        main.runGame()
 
 main()

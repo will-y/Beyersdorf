@@ -53,6 +53,10 @@ class Player():
 
         if building.buildingType == 2:
             hasWater = False
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5186b1a4f8f692b1b5ae99f003ae14d3ae732de4
             hasLeft = building.x/100>0
             hasRight = building.x/100<9
             hasUp = building.y/100>0
