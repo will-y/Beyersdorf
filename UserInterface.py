@@ -161,25 +161,25 @@ class UserInterface():
         #ID = 2
         self.fishCost =       "200    100   5     1"
         #ID = 3
-        self.lumberMillCost = "100    50    2     1"
+        self.lumberMillCost = "50     50    2     1"
         #ID = 4
-        self.quarryCost =     "100    25    5     2"
+        self.quarryCost =     "100    0     5     2"
         #ID = 5
-        self.mineCost =       "300    200   5     5"
+        self.mineCost =       "200    150   0     5"
         #ID = 6
-        self.houseCost =      "100    50    0     0"
+        self.houseCost =      "100    50    0     +5"
         #ID = 7
-        self.townCost =       "250    100   5     0"
+        self.townCost =       "250    100   5     +10"
         #ID = 8
-        self.cityCost =       "500    300   50    0"
+        self.cityCost =       "500    300   50    +20"
         #ID = 9
-        self.bridgeCost =     "200    100   0     0"
+        self.bridgeCost =     "150    50    0     0"
         #ID = 10
-        self.castleCost =     "1000   1000  200   0"
+        self.castleCost =     "1000   800   100   +10"
         #ID = 11
         self.outpostCost =    "300    100   10    1"
         #ID = 12
-        self.cannonCost =     "700    800   80    2"
+        self.cannonCost =     "400    500   50    3"
 
         #INSPECTOR THINGS
         self.currentTile = "Forest"
