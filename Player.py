@@ -49,22 +49,67 @@ class Player():
         self.buildings.append(building)
         print(self.buildings)
 
-    def canBuild(self,building):
+    def canBuild(self,building,tileMap):
+
+        if building.buildingType == 2:
+            hasWater = False
+
+            hasLeft =building.x>0
+            hasRight = building.x<9
+            hasUp = building.y>0
+            hasDown = buibuilding.yldingY<9
+            if hasLeft and not hasWater:
+                hasWater = (tileMap[building.x-1][building.y] == 4)
+            if hasRight and not hasWater:
+                hasWater = (tileMap[building.x+1][building.y] == 4)
+            if hasUp and not hasWater:
+                hasWater = (tileMap[building.x][building.y-1] == 4)
+            if hasDown and not hasWater:
+                hasWater = (tileMap[building.x][building.y+1] == 4)
+            
+            if hasWater:
+                for i in range(len(self.buildings)):
+                    if (m.fabs(self.buildings[i].x-building.x)/100==1 and self.buildings[i].y/100==building.y/100) or (m.fabs(self.buildings[i].y-building.y)/100==1 and self.buildings[i].x/100==building.x/100):
+                        return True
+            else:
+                return False
+        
         for i in range(len(self.buildings)):
             if (m.fabs(self.buildings[i].x-building.x)/100==1 and self.buildings[i].y/100==building.y/100) or (m.fabs(self.buildings[i].y-building.y)/100==1 and self.buildings[i].x/100==building.x/100):
                 return True
         return False
 
-    def addResourcesToCache(self):
+    def addResourcesToCache(self, terrain):
         for i in range (len(self.buildings)):
             if self.buildings[i].buildingType == 0 or self.buildings[i].buildingType == 1 or self.buildings[i].buildingType == 2:
                 self.playerFood = self.playerFood + self.buildings[i].productionRate
-            if self.buildings[i].buildingType == 3:
+            if self.buildings[i].buildingType == 3 and not terrain.board[m.floor(self.buildings[i].x/100)][m.floor(self.buildings[i].y/100)].wood == 0:
                 self.playerWood = self.playerWood + self.buildings[i].productionRate
-            if self.buildings[i].buildingType == 4:
+            if self.buildings[i].buildingType == 4 and not terrain.board[m.floor(self.buildings[i].x/100)][m.floor(self.buildings[i].y/100)].stone == 0:
                 self.playerStone = self.playerStone + self.buildings[i].productionRate
-            if self.buildings[i].buildingType == 5:
-                self.playerOre = self.playerore + self.buildings[i].productionRate
+            if self.buildings[i].buildingType == 5 and not terrain.board[m.floor(self.buildings[i].x/100)][m.floor(self.buildings[i].y/100)].ore == 0:
+                self.playerOre = self.playerOre + self.buildings[i].productionRate
         
     def popConsumeFood(self):
         self.playerFood = self.playerFood - self.playerCurPop
+
+    def subtractResourceFromTile(self, terrain):
+        
+        for i in range (len(self.buildings)):
+            if self.buildings[i].buildingType == 3 and terrain.board[m.floor(self.buildings[i].x/100)][m.floor(self.buildings[i].y/100)].wood >= self.buildings[i].productionRate:
+                terrain.board[m.floor(self.buildings[i].x/100)][m.floor(self.buildings[i].y/100)].wood = terrain.board[m.floor(self.buildings[i].x/100)][m.floor(self.buildings[i].y/100)].wood - self.buildings[i].productionRate
+            else:
+                self.playerWood = self.playerWood + terrain.board[m.floor(self.buildings[i].x/100)][m.floor(self.buildings[i].y/100)].wood
+                terrain.board[m.floor(self.buildings[i].x/100)][m.floor(self.buildings[i].y/100)].wood = 0
+
+            if self.buildings[i].buildingType == 4 and terrain.board[m.floor(self.buildings[i].x/100)][m.floor(self.buildings[i].y/100)].stone >= self.buildings[i].productionRate:
+                terrain.board[m.floor(self.buildings[i].x/100)][m.floor(self.buildings[i].y/100)].stone = terrain.board[m.floor(self.buildings[i].x/100)][m.floor(self.buildings[i].y/100)].stone - self.buildings[i].productionRate
+            else:
+                self.playerStone = self.playerStone + terrain.board[m.floor(self.buildings[i].x/100)][m.floor(self.buildings[i].y/100)].stone
+                terrain.board[m.floor(self.buildings[i].x/100)][m.floor(self.buildings[i].y/100)].stone = 0
+
+            if self.buildings[i].buildingType == 5 and terrain.board[m.floor(self.buildings[i].x/100)][m.floor(self.buildings[i].y/100)].ore >= self.buildings[i].productionRate:
+                terrain.board[m.floor(self.buildings[i].x/100)][m.floor(self.buildings[i].y/100)].ore = terrain.board[m.floor(self.buildings[i].x/100)][m.floor(self.buildings[i].y/100)].ore - self.buildings[i].productionRate
+            else:
+                self.playerOre = self.playerOre + terrain.board[m.floor(self.buildings[i].x/100)][m.floor(self.buildings[i].y/100)].ore
+                terrain.board[m.floor(self.buildings[i].x/100)][m.floor(self.buildings[i].y/100)].ore = 0
