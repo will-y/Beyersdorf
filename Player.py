@@ -57,7 +57,7 @@ class Player():
             hasLeft =building.x>0
             hasRight = building.x<9
             hasUp = building.y>0
-            hasDown = buibuilding.yldingY<9
+            hasDown = building.y<9
             if hasLeft and not hasWater:
                 hasWater = (tileMap[building.x-1][building.y] == 4)
             if hasRight and not hasWater:

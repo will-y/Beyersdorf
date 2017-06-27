@@ -48,7 +48,7 @@ class Main():
                 self.yCoord = (int)(pg.mouse.get_pos()[1]/100)
 
                 #End Turn Stuff
-                if self.realX >= 1200 and self.realX <= 1300 and self.realY >= 350 and self.realY <= 450:
+                if 1050 <= self.realX <= 1200 and 350 <= self.realY <= 385:
                     if turnManager.playerOneTurn == True:
                         self.player1.subtractResourceFromTile(self.terrainobject)
                         self.player1.addResourcesToCache(self.terrainobject)

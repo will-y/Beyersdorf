@@ -231,8 +231,8 @@ class UserInterface():
         self.screen.blit(self.populationCount, (1305, 300))
 
         #End turn button
-        pg.draw.rect(self.screen, pg.Color(159, 163, 206), (1175, 350, 150, 35))
-        self.screen.blit(self.endTurnText, (1190, 355))
+        pg.draw.rect(self.screen, pg.Color(159, 163, 206), (1050, 350, 150, 35))
+        self.screen.blit(self.endTurnText, (1065, 355))
 
         if(not self.inspector):
             #BUILDING SELECTED
@@ -651,4 +651,9 @@ class UserInterface():
                     self.goToInfrastructureBuildings()
     def updateResourcesPerTurn(self):
 
+        pass
+    def switchEndTurnButton(self):
+        pass
+
+    def displayError(self, message):
         pass
