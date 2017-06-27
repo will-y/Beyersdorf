@@ -1,5 +1,5 @@
 import pygame as pg
-import sys, Health, Terrain, math, UserInterface, MainMenu, Buildings, Player, InspectorGadget, TurnManager,time,DamageManager
+import sys, Health, Terrain, math, UserInterface, MainMenu, Buildings, Player, InspectorGadget, TurnManager,time,DamageManager, EndScreen
 
 class Main():
 
@@ -235,7 +235,6 @@ class Main():
             self.detectClick(True, turnManager)
             self.userInterface.detectTabChange(0)
             self.userInterface.detectTabChange(1)
-            #sys.stdout.flush()
             if self.player1.buildings[0].destroyed == True:
                 winner = "Player 1"
                 break
