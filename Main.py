@@ -2,6 +2,7 @@ import pygame as pg
 import sys, Health, Terrain, math, UserInterface, MainMenu, Buildings, Player, InspectorGadget, TurnManager
 
 class Main():
+
     def __init__(self):
         self.width = 1000
         self.height = 1000
@@ -146,6 +147,7 @@ class Main():
                 return pg.mouse.get_pos() 
 
     def runGame(self):
+        """Runs the game"""
         # Starts the main menu
         self.main_menu = MainMenu.Main_Menu()
         self.main_menu.runScreen()
@@ -192,6 +194,15 @@ class Main():
             self.userInterface.detectTabChange(0)
             self.userInterface.detectTabChange(1)
             #sys.stdout.flush()
+            if self.player1.buildings[0].destroyed == True:
+                winner = "Player 1"
+                break
+            elif self.player2.buildings[0].destroyed == True:
+                winner = "Player 2"
+                break
+        self.end_screen = EndScreen.End_Screen("Player 1")
+        self.end_screen.runScreen()
+        pg.display.update()
 
 def main():
     pg.init()
