@@ -645,7 +645,6 @@ class UserInterface():
                     sys.stdout.flush()
                     self.goToInfrastructureBuildings()
     def updateResourcesPerTurn(self):
-
         pass
     def switchEndTurnButton(self, color):
         self.currentTurn = color

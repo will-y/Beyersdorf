@@ -100,6 +100,8 @@ class Main():
                                                 self.player1.addBuilding(self.building)
                                                 self.userInterface.updateResources(self.player1)
                                                 self.userInterface.displayError("")
+                                                if self.building.buildingType == 10:
+                                                    turnManager.addActionToPlayer(1)
                                             else:
                                                 self.userInterface.displayError("Not Enough Resources")
                                         else:
@@ -120,6 +122,11 @@ class Main():
                                                 turnManager.useAction(2)
                                                 self.player2.addBuilding(self.building)
                                                 self.userInterface.updateResources(self.player2)
+                                                self.userInterface.displayError("")
+                                                if self.building.buildingType == 10:
+                                                    turnManager.addActionToPlayer(2)
+                                                else:
+                                                    self.userInterface.displayError("Not Enough Resources")
                         elif self.Handler.needToDealDam == True:
                             if turnManager.playerOneTurn == True:
                                 self.Handler.manageDamageDelt(self.xCoord, self.yCoord, self.player1, self.player2, self.terrainobject)
@@ -127,8 +134,10 @@ class Main():
                                 self.Handler.manageDamageDelt(self.xCoord, self.yCoord, self.player2, self.player1, self.terrainobject)
                         elif turnManager.playerOneTurn == True:
                             self.Handler.findShooter(self.xCoord, self.yCoord, self.player1, self.player2, self.terrainobject)
+                            turnManager.useAction(1)
                         elif turnManager.playerOneTurn == False:
                             self.Handler.findShooter(self.xCoord, self.yCoord, self.player2, self.player1, self.terrainobject)
+                            turnManager.useAction(2)
                         else:
                             self.userInterface.displayError("Cannot Build Here")
                     else:
