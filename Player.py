@@ -42,7 +42,7 @@ class Player():
 
     def setMaxPop(self,amount):
         self.playerMaxPop=amount
-    def setCurPop(self,amount):
+    def editMaxPop(self,amount):
         self.playerMaxPop+=amount
     
     def addBuilding(self,building):
