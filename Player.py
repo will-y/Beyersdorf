@@ -54,18 +54,10 @@ class Player():
         if building.buildingType == 2:
             hasWater = False
 
-<<<<<<< HEAD
-=======
-
->>>>>>> ac4fc589723416308cdca3165a74fc9e871b5a93
             hasLeft = building.x/100>0
             hasRight = building.x/100<9
             hasUp = building.y/100>0
             hasDown = building.y/100<9
-<<<<<<< HEAD
-=======
-
->>>>>>> ac4fc589723416308cdca3165a74fc9e871b5a93
             if hasLeft and not hasWater:
                 hasWater = (tileMap[(int)((building.x/100)-1)][(int)(building.y/100)].tileType == 4)
             if hasRight and not hasWater:
