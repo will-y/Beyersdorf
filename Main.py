@@ -127,8 +127,10 @@ class Main():
                                 self.Handler.manageDamageDelt(self.xCoord, self.yCoord, self.player2, self.player1, self.terrainobject)
                         elif turnManager.playerOneTurn == True:
                             self.Handler.findShooter(self.xCoord, self.yCoord, self.player1, self.player2, self.terrainobject)
+                            turnManager.useAction(1)
                         elif turnManager.playerOneTurn == False:
                             self.Handler.findShooter(self.xCoord, self.yCoord, self.player2, self.player1, self.terrainobject)
+                            turnManager.useAction(2)
                         else:
                             self.userInterface.displayError("Cannot Build Here")
                     else:
