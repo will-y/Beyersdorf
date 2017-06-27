@@ -22,19 +22,21 @@ class Main():
 
     def changeResources(self, player):
         if player == 1:
-            if self.player1.canBuy(-self.building.woodCost, -self.building.stoneCost, -self.building.oreCost, self.building.populationCost):
+            if self.player1.canBuy(-self.building.woodCost, -self.building.stoneCost, -self.building.oreCost, -self.building.populationCost):
                 self.player1.editWood(-self.building.woodCost)
                 self.player1.editStone(-self.building.stoneCost)
                 self.player1.editOre(-self.building.oreCost)
                 self.player1.editCurPop(self.building.populationCost)
+                self.player1.editCurPop(-self.building.populationAdd)
                 self.player1.editMaxPop(self.building.populationAdd)
                 return True
         if player == 2:
-            if self.player2.canBuy(-self.building.woodCost, -self.building.stoneCost, -self.building.oreCost, self.building.populationCost):
+            if self.player2.canBuy(-self.building.woodCost, -self.building.stoneCost, -self.building.oreCost, -self.building.populationCost):
                 self.player2.editWood(-self.building.woodCost)
                 self.player2.editStone(-self.building.stoneCost)
                 self.player2.editOre(-self.building.oreCost)
                 self.player2.editCurPop(self.building.populationCost)
+                self.player1.editCurPop(-self.building.populationAdd)
                 self.player2.editMaxPop(self.building.populationAdd)
                 return True
 
