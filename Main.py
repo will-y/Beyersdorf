@@ -26,6 +26,7 @@ class Main():
                 self.player1.editStone(-self.building.stoneCost)
                 self.player1.editOre(-self.building.oreCost)
                 self.player1.editCurPop(self.building.populationCost)
+                self.player1.editMaxPop(self.building.populationAdd)
                 return True
         if player == 2:
             if self.player2.canBuy(-self.building.woodCost, -self.building.stoneCost, -self.building.oreCost, self.building.populationCost):
@@ -33,6 +34,7 @@ class Main():
                 self.player2.editStone(-self.building.stoneCost)
                 self.player2.editOre(-self.building.oreCost)
                 self.player2.editCurPop(self.building.populationCost)
+                self.player2.editMaxPop(self.building.populationAdd)
                 return True
 
     def detectClick(self, boardCoords, turnManager):
@@ -53,7 +55,7 @@ class Main():
                         turnManager.endTurn()
                         time.sleep(1)
                         self.userInterface.updateResources(self.player2)
-                        self.player1.buildings[1].takeDamage(20, self.terrainobject)
+                        #self.player1.buildings[1].takeDamage(20, self.terrainobject)
 
                     elif turnManager.playerOneTurn == False:
                         self.player2.subtractResourceFromTile(self.terrainobject)
@@ -102,8 +104,11 @@ class Main():
                                                 turnManager.useAction(2)
                                                 self.player2.addBuilding(self.building)
                                                 self.userInterface.updateResources(self.player2)
+                        if self.terrainobject.board[self.xCoord][self.yCoord].builtOn == True:
                             for i in range(len(self.player1.buildings)):
-                                if self.player1.buildings[i].x == self.xCoord and self.player1.buildings[i].y == self.yCoord and self.terrainobject.board[self.xCoord][self.yCoord].builtOn == True and self.player1.buildings[i].canFire == True:
+                                print(self.xCoord)
+                                print(math.floor(self.player1.buildings[i].x/100))
+                                if math.floor(self.player1.buildings[i].x/100) == math.floor(self.xCoord) and math.floor(self.player1.buildings[i].y/100) == math.floor(self.yCoord) and self.terrainobject.board[self.xCoord][self.yCoord].builtOn == True and self.player1.buildings[i].canFire == True:
                                     print("clicked on a building")
                     else:
                         self.userInterface.updateInspector(self.xCoord, self.yCoord, self.terrainobject.board)
