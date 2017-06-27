@@ -1,5 +1,5 @@
 import pygame as pg
-import sys, Health, Terrain, math, UserInterface, MainMenu, Buildings, Player, InspectorGadget, TurnManager
+import sys, Health, Terrain, math, UserInterface, MainMenu, Buildings, Player, InspectorGadget, TurnManager,time
 
 class Main():
     def __init__(self):
@@ -51,14 +51,16 @@ class Main():
                         self.player1.addResourcesToCache(self.terrainobject)
                         self.player1.popConsumeFood()
                         turnManager.endTurn()
+                        time.sleep(1)
                         self.userInterface.updateResources(self.player2)
-                        self.player1.buildings[1].takeDamage(20)
+                        self.player1.buildings[1].takeDamage(20, self.terrainobject)
 
                     elif turnManager.playerOneTurn == False:
                         self.player2.subtractResourceFromTile(self.terrainobject)
                         self.player2.addResourcesToCache(self.terrainobject)
                         self.player2.popConsumeFood()
                         turnManager.endTurn()
+                        time.sleep(1)
                         self.userInterface.updateResources(self.player1)
                 
                 #If click is outside UI
@@ -101,7 +103,9 @@ class Main():
                                                 turnManager.useAction(2)
                                                 self.player2.addBuilding(self.building)
                                                 self.userInterface.updateResources(self.player2)
-
+                            for i in range(len(self.player1.buildings)):
+                                if self.player1.buildings[i].x == self.xCoord and self.player1.buildings[i].y == self.yCoord and self.terrainobject.board[self.xCoord][self.yCoord].builtOn == True and self.player1.buildings[i].canFire == True:
+                                    print("clicked on a building")
                     else:
                         self.userInterface.updateInspector(self.xCoord, self.yCoord, self.terrainobject.board)
 

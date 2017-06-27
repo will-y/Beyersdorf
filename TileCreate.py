@@ -17,14 +17,16 @@ class GenerateTile:
         mystr = str.format("{}, {}, {}, {}", self.tileType, self.wood, self.stone, self.ore)
         return mystr
         
-    def generate_tile(self, tilesize, tileimage):
-        self.image = tileimage
-        self.screen.blit(self.image, (self.x * tilesize, self.y * tilesize))
+    def generate_tile(self):
         # self.tile = pg.Rect((x*tilesize, y*tilesize),(tilesize, tilesize))
         self.generateResources(self.tileType)
         # pg.draw.rect(self.screen, tilecolor, (x*tilesize, y*tilesize,tilesize, tilesize))
         # healthBar = Health.Health((x*tilesize, y*tilesize), 100, screen)
         # healthBar.drawHealth(100, 100)
+
+    def drawTile(self, tilesize, tileimage):
+        self.image = tileimage
+        self.screen.blit(self.image, (self.x * tilesize, self.y * tilesize))
 
     def generateResources(self, tileType):
             #Forest

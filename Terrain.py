@@ -8,7 +8,17 @@ class Terrain():
         self.screenWidth = screenWidth
         self.tileWidth = math.floor(self.screenWidth/self.boardNum)
         self.tilesize = tilesize
+        # Tile Colors
+        # self.forestColor = (34,139,34)
+        # self.hillColor = (152,251,152)
+        # self.plainColor = (247,218,61)
+        # self.mountainColor = (205,201,201)
+        # self.waterColor = (30,144,255)
+        # Tile Images
+        
+        # hd = True
         hd = False
+
         if hd:
             self.forestTile = pg.image.load("Images/forestTileHiRes.png")
             self.forestTile = pg.transform.scale(self.forestTile, (int(self.tilesize), int(self.tilesize)))
@@ -45,7 +55,8 @@ class Terrain():
                 else:
                     self.generateLand()
                 tile = tc.GenerateTile(self.tileType, i, j, screen)
-                tile.generate_tile(self.tileWidth, self.tileImage)
+                tile.generate_tile()
+                tile.drawTile(self.tileWidth, self.tileImage)
                 row.append(tile)
             self.board.append(row)
 
@@ -74,7 +85,8 @@ class Terrain():
                                 self.tileImage = self.hillTile
                             else:#IF RAND==3
                                 self.tileImage = self.plainTile
-                            newTile.generate_tile(self.tileWidth, self.tileImage)
+                            newTile.generate_tile()
+                            newTile.drawTile(self.tileWidth, self.tileImage)
                             self.board[i][j] = newTile
 
         return self.board

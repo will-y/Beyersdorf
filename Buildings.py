@@ -26,6 +26,9 @@ class Building:
         self.createBuilding(x, y, tilesize, screen, player)
         self.playerOwned = None
         self.destroyed = False
+        self.canFire = False
+        self.damage = 0
+        self.range = 0
 
     def drawBuilding(self, player):
         #pg.draw.rect(self.screen, pg.Color(244, 101, 66), (self.x, self.y, self.tilesize, self.tilesize))
@@ -42,13 +45,33 @@ class Building:
 
     def __str__(self):
         return str(self.buildingType)
-
-    def takeDamage(self, amount):
+    
+    def takeDamage(self, amount, terrain):
         self.currentHealth = self.currentHealth - amount
         if self.currentHealth <= 0:
+            print("Building Destroyed!")
+            #redraws tile after finding tileimage then draws rubble.png
             self.destroyed = True
-        health = Health.Health((self.x, self.y), self.tilesize, self.screen)
-        health.drawHealth(self.maxHealth, self.currentHealth)
+            tileType = terrain.board[math.floor(self.x/100)][math.floor(self.y/100)].tileType
+            if tileType == 0:
+                tileimage = pg.image.load("Images/forestTile.png")
+            elif tileType == 1:
+                tileimage = pg.image.load("Images/mountainTile.png")
+            elif tileType == 2:
+                tileimage = pg.image.load("Images/hillTile.png")
+            elif tileType == 3:
+                tileimage = pg.image.load("Images/plainTile.png")
+            elif tileType >= 4:
+                tileimage = pg.image.load("Images/waterTile.png")
+            self.redraw = pg.transform.scale(tileimage, (int(self.tilesize), int(self.tilesize)))
+            self.screen.blit(self.redraw, (math.floor(self.x/100) * self.tilesize, math.floor(self.y/100) * self.tilesize))
+            self.image = pg.image.load("Images/rubble.png")
+            self.image = pg.transform.scale(self.image, (int(self.tilesize * (4/5)), int(self.tilesize * (2/5))))
+            self.screen.blit(self.image, (self.x + self.tilesize/10, self.y + self.tilesize/2))
+            terrain.board[math.floor(self.x/100)][math.floor(self.y/100)].builtOn = False
+        else:
+            health = Health.Health((self.x, self.y), self.tilesize, self.screen)
+            health.drawHealth(self.maxHealth, self.currentHealth)
        
     def createBuilding(self, x, y, tilesize, screen, player):
         self.building = pg.Rect(x, y, tilesize, tilesize)
@@ -68,6 +91,7 @@ class Building:
             self.maxHealth = 100
             self.image = pg.image.load("Images/farm.png")
             self.image = pg.transform.scale(self.image, (int(self.tilesize * (4/5)), int(self.tilesize * (4/5))))
+            self.canFire = False
 
             #Ranch
         if self.buildingType == 1:
@@ -80,6 +104,7 @@ class Building:
             self.maxHealth = 150
             self.image = pg.image.load("Images/ranch.png")
             self.image = pg.transform.scale(self.image, (int(self.tilesize * (4/5)), int(self.tilesize * (4/5))))
+            self.canFire = False
        
             #Fishhut
         if self.buildingType == 2:
@@ -92,6 +117,7 @@ class Building:
             self.maxHealth = 100
             self.image = pg.image.load("Images/fishingHut.png")
             self.image = pg.transform.scale(self.image, (int(self.tilesize * (4/5)), int(self.tilesize * (4/5))))
+            self.canFire = False
 
             #LumberMill
         if self.buildingType == 3:
@@ -104,6 +130,7 @@ class Building:
             self.maxHealth = 150
             self.image = pg.image.load("Images/lumberMill.png")
             self.image = pg.transform.scale(self.image, (int(self.tilesize * (4/5)), int(self.tilesize * (4/5))))
+            self.canFire = False
 
             #Quarry
         if self.buildingType == 4:
@@ -116,6 +143,7 @@ class Building:
             self.maxHealth = 200
             self.image = pg.image.load("Images/quarry.png")
             self.image = pg.transform.scale(self.image, (int(self.tilesize * (4/5)), int(self.tilesize * (4/5))))
+            self.canFire = False
 
             #Mine
         if self.buildingType == 5:
@@ -128,6 +156,7 @@ class Building:
             self.maxHealth = 200
             self.image = pg.image.load("Images/mine.png")
             self.image = pg.transform.scale(self.image, (int(self.tilesize * (4/5)), int(self.tilesize * (4/5))))
+            self.canFire = False
 
             #House
         if self.buildingType == 6:
@@ -140,6 +169,7 @@ class Building:
             self.maxHealth = 100
             self.image = pg.image.load("Images/house.png")
             self.image = pg.transform.scale(self.image, (int(self.tilesize * (4/5)), int(self.tilesize * (4/5))))
+            self.canFire = False
 
             #Town
         if self.buildingType == 7:
@@ -152,6 +182,7 @@ class Building:
             self.maxHealth = 200
             self.image = pg.image.load("Images/farm.png")
             self.image = pg.transform.scale(self.image, (int(self.tilesize * (4/5)), int(self.tilesize * (4/5))))
+            self.canFire = False
 
             #City
         if self.buildingType == 8:
@@ -164,6 +195,7 @@ class Building:
             self.maxHealth = 300
             self.image = pg.image.load("Images/farm.png")
             self.image = pg.transform.scale(self.image, (int(self.tilesize * (4/5)), int(self.tilesize * (4/5))))
+            self.canFire = False
 
             #Bridge
         if self.buildingType == 9:
@@ -176,6 +208,7 @@ class Building:
             self.maxHealth = 200
             self.image = pg.image.load("Images/bridge.png")
             self.image = pg.transform.scale(self.image, (int(self.tilesize), int(self.tilesize)))
+            self.canFire = False
 
             #Castle
         if self.buildingType == 10:
@@ -188,6 +221,9 @@ class Building:
             self.maxHealth = 500
             self.image = pg.image.load("Images/castle1.png")
             self.image = pg.transform.scale(self.image, (int(self.tilesize * (4/5)), int(self.tilesize * (4/5))))
+            self.canFire = True
+            self.damage = 50
+            self.range = 4
 
             #Outpost
         if self.buildingType == 11:
@@ -200,6 +236,9 @@ class Building:
             self.maxHealth = 200
             self.image = pg.image.load("Images/outpost.png")
             self.image = pg.transform.scale(self.image, (int(self.tilesize * (4/5)), int(self.tilesize * (4/5))))
+            self.canFire = True
+            self.damage = 10
+            self.range = 3
 
             #CannonTower
         if self.buildingType == 12:
@@ -213,5 +252,8 @@ class Building:
             # self.image = pg.image.load("Images/cannonTower.png")
             self.image = pg.image.load("Images/cannonTower.png")
             self.image = pg.transform.scale(self.image, (int(self.tilesize * (4/5)), int(self.tilesize * (4/5))))
+            self.canFire = True
+            self.damage = 25
+            self.range = 3
 
         self.currentHealth = self.maxHealth
