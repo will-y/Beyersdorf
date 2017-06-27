@@ -1,5 +1,5 @@
 import pygame as pg
-import sys, Health, Terrain, math, UserInterface, MainMenu, Buildings, Player, InspectorGadget, TurnManager
+import sys, Health, Terrain, math, UserInterface, MainMenu, Buildings, Player, InspectorGadget, TurnManager,time
 
 class Main():
     def __init__(self):
@@ -51,13 +51,16 @@ class Main():
                         self.player1.addResourcesToCache(self.terrainobject)
                         self.player1.popConsumeFood()
                         turnManager.endTurn()
+                        time.sleep(1)
                         self.userInterface.updateResources(self.player2)
+                        self.player1.buildings[1].takeDamage(20, self.terrainobject)
 
                     elif turnManager.playerOneTurn == False:
                         self.player2.subtractResourceFromTile(self.terrainobject)
                         self.player2.addResourcesToCache(self.terrainobject)
                         self.player2.popConsumeFood()
                         turnManager.endTurn()
+                        time.sleep(1)
                         self.userInterface.updateResources(self.player1)
                 
                 #If click is outside UI
@@ -89,6 +92,7 @@ class Main():
                                     if turnManager.playerOneTurn == False and not turnManager.playerTwoActions == turnManager.playerTwoActionsUsed:
 
                                         self.building = Buildings.Building(self.selectedBuilding, self.xCoord*self.tilesize, self.yCoord*self.tilesize, self.tilesize, self.screen,2)
+                                        # print('testing')
                                         if self.player2.canBuild(self.building,self.terrainobject.board):
 
                                             #if player have resources to build
@@ -98,7 +102,9 @@ class Main():
                                                 turnManager.useAction(2)
                                                 self.player2.addBuilding(self.building)
                                                 self.userInterface.updateResources(self.player2)
-
+                            for i in range(len(self.player1.buildings)):
+                                if self.player1.buildings[i].x == self.xCoord and self.player1.buildings[i].y == self.yCoord and self.terrainobject.board[self.xCoord][self.yCoord].builtOn == True and self.player1.buildings[i].canFire == True:
+                                    print("clicked on a building")
                     else:
                         self.userInterface.updateInspector(self.xCoord, self.yCoord, self.terrainobject.board)
 
@@ -146,46 +152,43 @@ class Main():
                 return pg.mouse.get_pos() 
 
     def runGame(self):
-        # Starts the main menu
         self.main_menu = MainMenu.Main_Menu()
         self.main_menu.runScreen()
-        # Creates the Turn Manager object
         turnManager = TurnManager.Manager()
-        # Resizes the screen from main menu
         self.screen = pg.display.set_mode((math.floor(self.width* 3/2), self.height))
         self.screen.fill(pg.Color('white'))
-        # Creates the UI
+        
+        # main_menu.width = self.width
         self.userInterface = UserInterface.UserInterface(self.screen)
-        # Generates the Terrain
         self.terrainobject = Terrain.Terrain(10, self.width, self.tilesize)
         self.terrainobject.generateBoard(self.screen)
-        # Creates Player 1's Castle
+        
         self.building = Buildings.Building(10, 1*self.tilesize, 1*self.tilesize, self.tilesize, self.screen,1)
         self.building.drawBuilding(1)
         self.player1.addBuilding(self.building)
         self.terrainobject.board[1][1].builtOn = True
-        # Creates Player 2's Castle
+
         self.building = Buildings.Building(10, 8*self.tilesize, 8*self.tilesize, self.tilesize, self.screen,2)
         self.building.drawBuilding(2)
         self.player2.addBuilding(self.building)
         self.terrainobject.board[8][8].builtOn = True
-        # Draws the UI
+
+        
         self.userInterface.drawInterface()
         #self.userInterface.drawResourceBuildings()
         pg.draw.rect(self.screen, pg.Color('black'), (0, 0, 1000, 1000), 5)
-        # Starts the music
+        
         file = 'Sound/Music2.wav'
         pg.mixer.init()
         pg.mixer.music.load(file)
         pg.mixer.music.play(-1)
-        # Starts the game clock
+
         while(True):
             self.clock.tick(10)
-            # Makes sure it doesn't crash when exited
+            
             for event in pg.event.get():
                 if(event.type == pg.QUIT):
                     sys.exit()
-            # Sets the mouse cursor image
             pg.mouse.set_cursor(*pg.cursors.broken_x)
             pg.display.update()
             self.detectClick(True, turnManager)

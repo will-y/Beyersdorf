@@ -8,9 +8,17 @@ class Terrain():
         self.screenWidth = screenWidth
         self.tileWidth = math.floor(self.screenWidth/self.boardNum)
         self.tilesize = tilesize
-        #Enables the HD Texture Pack if True
+        # Tile Colors
+        # self.forestColor = (34,139,34)
+        # self.hillColor = (152,251,152)
+        # self.plainColor = (247,218,61)
+        # self.mountainColor = (205,201,201)
+        # self.waterColor = (30,144,255)
+        # Tile Images
+        
+        # hd = True
         hd = False
-        #HD Texture Pack
+
         if hd:
             self.forestTile = pg.image.load("Images/forestTileHiRes.png")
             self.forestTile = pg.transform.scale(self.forestTile, (int(self.tilesize), int(self.tilesize)))
@@ -23,7 +31,7 @@ class Terrain():
             self.waterTile = pg.image.load("Images/waterTileHiRes.png")
             self.waterTile = pg.transform.scale(self.waterTile, (int(self.tilesize), int(self.tilesize)))
             self.tileType = None
-        else: #Regular Textures
+        else:
             self.forestTile = pg.image.load("Images/forestTile.png")
             self.forestTile = pg.transform.scale(self.forestTile, (int(self.tilesize), int(self.tilesize)))
             self.mountainTile = pg.image.load("Images/mountainTile.png")
@@ -35,26 +43,21 @@ class Terrain():
             self.waterTile = pg.image.load("Images/waterTile.png")
             self.waterTile = pg.transform.scale(self.waterTile, (int(self.tilesize), int(self.tilesize)))
             self.tileType = None
-
     def generateBoard(self, screen):
         """Generates the board with different tiles"""
-        #Saves all the rows in this array
         self.board = []
         for i in range(self.boardNum):
-            #Saves all the tiles in a row in this array
             row = []
             for j in range(self.boardNum):
                 tileResourceColor = None
-                if 6<i+j<12: #IF BOARD SIZE IS NOT 10, THEN THIS WILL NOT WORK AS EXPECTED
+                if 6<i+j<12:     #IF BOARD SIZE IS NOT 10, THEN THIS WILL NOT WORK AS EXPECTED
                     self.generateOcean()
                 else:
                     self.generateLand()
-                #Creates the tile object
                 tile = tc.GenerateTile(self.tileType, i, j, screen)
-                tile.generate_tile(self.tileWidth, self.tileImage)
-                #Saves the tile to the current row
+                tile.generate_tile()
+                tile.drawTile(self.tileWidth, self.tileImage)
                 row.append(tile)
-            #Saves the row to the board
             self.board.append(row)
 
         #COUNTS THE TYPES OF TILES IN THE TOP PLAYERS SIDE
@@ -82,7 +85,8 @@ class Terrain():
                                 self.tileImage = self.hillTile
                             else:#IF RAND==3
                                 self.tileImage = self.plainTile
-                            newTile.generate_tile(self.tileWidth, self.tileImage)
+                            newTile.generate_tile()
+                            newTile.drawTile(self.tileWidth, self.tileImage)
                             self.board[i][j] = newTile
 
         return self.board
@@ -103,7 +107,7 @@ class Terrain():
             self.tileImage = self.plainTile
             self.tileType = 3
         
-    def generateOcean(self): #ID'S: FOREST=0, MOUNTAIN=1, HILL=2, PLAIN=3, WATER=4
+    def generateOcean(self):
         """Generates the ocean zone"""
         # Change the chance of Ocean appearing
         getType = random.randint(0,6)
