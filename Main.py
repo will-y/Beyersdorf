@@ -22,19 +22,21 @@ class Main():
 
     def changeResources(self, player):
         if player == 1:
-            if self.player1.canBuy(-self.building.woodCost, -self.building.stoneCost, -self.building.oreCost, self.building.populationCost):
+            if self.player1.canBuy(-self.building.woodCost, -self.building.stoneCost, -self.building.oreCost, -self.building.populationCost):
                 self.player1.editWood(-self.building.woodCost)
                 self.player1.editStone(-self.building.stoneCost)
                 self.player1.editOre(-self.building.oreCost)
                 self.player1.editCurPop(self.building.populationCost)
+                self.player1.editCurPop(-self.building.populationAdd)
                 self.player1.editMaxPop(self.building.populationAdd)
                 return True
         if player == 2:
-            if self.player2.canBuy(-self.building.woodCost, -self.building.stoneCost, -self.building.oreCost, self.building.populationCost):
+            if self.player2.canBuy(-self.building.woodCost, -self.building.stoneCost, -self.building.oreCost, -self.building.populationCost):
                 self.player2.editWood(-self.building.woodCost)
                 self.player2.editStone(-self.building.stoneCost)
                 self.player2.editOre(-self.building.oreCost)
                 self.player2.editCurPop(self.building.populationCost)
+                self.player1.editCurPop(-self.building.populationAdd)
                 self.player2.editMaxPop(self.building.populationAdd)
                 return True
 
@@ -48,7 +50,8 @@ class Main():
                 self.yCoord = (int)(pg.mouse.get_pos()[1]/100)
 
                 #End Turn Stuff
-                if self.realX >= 1200 and self.realX <= 1300 and self.realY >= 350 and self.realY <= 450:
+                if 1050 <= self.realX <= 1200 and 350 <= self.realY <= 385:
+                    
                     if turnManager.playerOneTurn == True:
                         self.player1.subtractResourceFromTile(self.terrainobject)
                         self.player1.addResourcesToCache(self.terrainobject)
@@ -57,6 +60,8 @@ class Main():
                         time.sleep(1)
                         self.userInterface.updateResources(self.player2)
                         #self.player1.buildings[1].takeDamage(20, self.terrainobject)
+                        self.userInterface.switchEndTurnButton("blue")
+                        self.userInterface.displayError("")
 
                     elif turnManager.playerOneTurn == False:
                         self.player2.subtractResourceFromTile(self.terrainobject)
@@ -65,6 +70,8 @@ class Main():
                         turnManager.endTurn()
                         time.sleep(1)
                         self.userInterface.updateResources(self.player1)
+                        self.userInterface.switchEndTurnButton("red")
+                        self.userInterface.displayError("")
                 
                 #If click is outside UI
                 if self.xCoord <= 9:
@@ -92,6 +99,13 @@ class Main():
                                                 turnManager.useAction(1)
                                                 self.player1.addBuilding(self.building)
                                                 self.userInterface.updateResources(self.player1)
+                                                self.userInterface.displayError("")
+                                            else:
+                                                self.userInterface.displayError("Not Enough Resources")
+                                        else:
+                                            self.userInterface.displayError("Cannot Build Here")
+                                    if turnManager.playerOneActions == turnManager.playerOneActionsUsed:
+                                        self.userInterface.displayError("No More Actions")
 
                                     if turnManager.playerOneTurn == False and not turnManager.playerTwoActions == turnManager.playerTwoActionsUsed:
 
@@ -115,6 +129,8 @@ class Main():
                             self.Handler.findShooter(self.xCoord, self.yCoord, self.player1, self.player2, self.terrainobject)
                         elif turnManager.playerOneTurn == False:
                             self.Handler.findShooter(self.xCoord, self.yCoord, self.player2, self.player1, self.terrainobject)
+                        else:
+                            self.userInterface.displayError("Cannot Build Here")
                     else:
                         self.userInterface.updateInspector(self.xCoord, self.yCoord, self.terrainobject.board)
 

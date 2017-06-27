@@ -50,8 +50,8 @@ class Terrain():
             row = []
             for j in range(self.boardNum):
                 tileResourceColor = None
-                if 6<i+j<12:     #IF BOARD SIZE IS NOT 10, THEN THIS WILL NOT WORK AS EXPECTED
-                    self.generateOcean()
+                if 6<i+j<12:     #IF BOARD SIZE IS NOT 10 THEN THIS WILL NOT WORK AS EXPECTED
+                    self.generateOcean()    #CREATES THE CENTER AREA
                 else:
                     self.generateLand()
                 tile = tc.GenerateTile(self.tileType, i, j, screen)
@@ -60,34 +60,50 @@ class Terrain():
                 row.append(tile)
             self.board.append(row)
 
+            # SETS TILE UNDER CASTLE TO BE PLAINS
+        newTile = tc.GenerateTile(3, 1, 1, screen)
+        self.tileImage = self.plainTile
+        newTile.generate_tile()
+        newTile.drawTile(self.tileWidth, self.tileImage)
+        self.board[1][1] = newTile
+
         #COUNTS THE TYPES OF TILES IN THE TOP PLAYERS SIDE
         count = [0,0,0,0] #FOREST, MOUNTAIN, HILL, PLAIN
         for i in range(7):
             for j in range(7):
-                if i+j<7: #IF ABOVE THE WEIRD ARBITRARY LINE THAT SEPARAES NO MAN LAND FROM PLAYER LAND
+                if i==1 and j==1:
+                    pass
+                elif i+j<7: #IF ABOVE THE WEIRD ARBITRARY LINE THAT SEPARAES NO MAN LAND FROM PLAYER LAND
                     count[self.board[i][j].tileType]+=1
                     
         for i in range(3,self.boardNum):
             for j in range (3,self.boardNum):
-                if i+j>11:
-                    tryAgain = True
-                    while tryAgain:
-                        rand = random.randint(0,3)
-                        if count[rand]>0:
-                            tryAgain = False
-                            count[rand]-=1
-                            newTile = tc.GenerateTile(rand, i, j, screen)
-                            if rand==0:
-                                self.tileImage = self.forestTile
-                            elif rand==1:
-                                self.tileImage = self.mountainTile
-                            elif rand==2:
-                                self.tileImage = self.hillTile
-                            else:#IF RAND==3
-                                self.tileImage = self.plainTile
-                            newTile.generate_tile()
-                            newTile.drawTile(self.tileWidth, self.tileImage)
-                            self.board[i][j] = newTile
+                if i+j>11:  #IF ON P2'S SIDE
+                    if i==self.boardNum-2 and j==self.boardNum-2:   #IF UNDER THE CASTLE
+                        newTile = tc.GenerateTile(3, 8, 8, screen)
+                        self.tileImage = self.plainTile
+                        newTile.generate_tile()
+                        newTile.drawTile(self.tileWidth, self.tileImage)
+                        self.board[self.boardNum-2][self.boardNum-2] = newTile
+                    else:
+                        tryAgain = True
+                        while tryAgain:
+                            rand = random.randint(0,3) 
+                            if count[rand]>0:
+                                tryAgain = False
+                                count[rand]-=1
+                                newTile = tc.GenerateTile(rand, i, j, screen)
+                                if rand==0:
+                                    self.tileImage = self.forestTile
+                                elif rand==1:
+                                    self.tileImage = self.mountainTile
+                                elif rand==2:
+                                    self.tileImage = self.hillTile
+                                else:#IF RAND==3
+                                    self.tileImage = self.plainTile
+                                newTile.generate_tile()
+                                newTile.drawTile(self.tileWidth, self.tileImage)
+                                self.board[i][j] = newTile
 
         return self.board
 

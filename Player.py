@@ -8,7 +8,7 @@ class Player():
         self.playerStone = 500
         self.playerOre = 75
         self.playerFood = 20
-        self.playerCurPop = 0
+        self.playerCurPop = 10
         self.playerMaxPop = 10
         self.buildings = []
 
@@ -38,7 +38,7 @@ class Player():
     def setCurPop(self,amount):
         self.playerCurPop=amount
     def editCurPop(self,amount):
-        self.playerCurPop+=amount
+        self.playerCurPop-=amount
 
     def setMaxPop(self,amount):
         self.playerMaxPop=amount
@@ -53,7 +53,6 @@ class Player():
 
         if building.buildingType == 2:
             hasWater = False
-
             hasLeft = building.x/100>0
             hasRight = building.x/100<9
             hasUp = building.y/100>0
