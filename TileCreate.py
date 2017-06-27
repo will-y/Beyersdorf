@@ -14,18 +14,21 @@ class GenerateTile:
         self.screen = screen
     
     def __str__(self):
-        """Returns the values saved in the tile"""
         mystr = str.format("{}, {}, {}, {}", self.tileType, self.wood, self.stone, self.ore)
         return mystr
         
-    def generate_tile(self, tilesize, tileimage):
-        """Creates a new tile"""
+    def generate_tile(self):
+        # self.tile = pg.Rect((x*tilesize, y*tilesize),(tilesize, tilesize))
+        self.generateResources(self.tileType)
+        # pg.draw.rect(self.screen, tilecolor, (x*tilesize, y*tilesize,tilesize, tilesize))
+        # healthBar = Health.Health((x*tilesize, y*tilesize), 100, screen)
+        # healthBar.drawHealth(100, 100)
+
+    def drawTile(self, tilesize, tileimage):
         self.image = tileimage
         self.screen.blit(self.image, (self.x * tilesize, self.y * tilesize))
-        self.generateResources(self.tileType)
 
     def generateResources(self, tileType):
-        """Generates resources within the tile object"""
             #Forest
         if self.tileType == 0:
             self.wood = random.randint(750, 1250)
@@ -53,7 +56,6 @@ class GenerateTile:
             self.ore = 0
 
     def changeResourceAmount(self,type,amount):
-        """Changes the amount of a resource in a tile"""
         if type == "wood":
             self.wood += amount
         elif type == "stone":

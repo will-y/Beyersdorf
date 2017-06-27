@@ -31,6 +31,7 @@ class Main_Menu:
     def runScreen(self):
         pg.init()
         pg.font.init()
+        # textBox = eztext.Input(maxlength=45, color=(0,0,0), prompt="Board Size: ")
         while True:
             self.clock.tick(30)
             events = pg.event.get()
