@@ -15,10 +15,6 @@ class DamageHandler():
         #if player clicks on enemy tile to attack
         if not math.floor(self.shooter.x/100) == x and not math.floor(self.shooter.y/100) == y:
             print("found building")
-            self.realX = pg.mouse.get_pos()[0]
-            self.realY = pg.mouse.get_pos()[1]
-            self.xint = (int)(pg.mouse.get_pos()[0]/100)
-            self.yint = (int)(pg.mouse.get_pos()[1]/100)
 
             if terrain.board[self.xint][self.yint].builtOn == True:
 
@@ -28,13 +24,14 @@ class DamageHandler():
                     if math.floor(playerDefending.buildings[i].x/100) == math.floor(self.xint): 
 
                         if math.floor(playerDefending.buildings[i].y/100) == math.floor(self.yint):
-                            print("found enemy")
-                            self.receiver = playerDefending.buildings[i]
-                            print(self.receiver)
-                            self.Damage = self.shooter.damage
-                            print(self.Damage)
-                            self.receiver.takeDamage(self.Damage, terrain)
-                            self.needToDealDam = False
+                            if (math.fabs(self.xCoord - (x/100)) + math.fabs(self.yCoord - (y/100))) <= self.shooter.range:
+                                print("found enemy")
+                                self.receiver = playerDefending.buildings[i]
+                                print(self.receiver)
+                                self.Damage = self.shooter.damage
+                                print(self.Damage)
+                                self.receiver.takeDamage(self.Damage, terrain)
+                                self.needToDealDam = False
 
 
     def findShooter(self, xCoord, yCoord, playerAttacking, playerDefending,terrain):

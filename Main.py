@@ -127,6 +127,8 @@ class Main():
                                                     turnManager.addActionToPlayer(2)
                                             else:
                                                 self.userInterface.displayError("Not Enough Resources")
+                                        else:
+                                            self.userInterface.displayError("Cannot Build Here")
                         elif self.Handler.needToDealDam == True:
                             if turnManager.playerOneTurn == True:
                                 self.Handler.manageDamageDelt(self.xCoord, self.yCoord, self.player1, self.player2, self.terrainobject)
@@ -235,10 +237,10 @@ class Main():
             self.detectClick(True, turnManager)
             self.userInterface.detectTabChange(0)
             self.userInterface.detectTabChange(1)
-            if self.player1.buildings[0].destroyed == True:
+            if self.player1.buildings[0].destroyed == True or self.player1.playerFood<0:
                 winner = "Player 1"
                 break
-            elif self.player2.buildings[0].destroyed == True:
+            elif self.player2.buildings[0].destroyed == True or self.player1.playerFood<0:
                 winner = "Player 2"
                 break
         self.end_screen = EndScreen.End_Screen(winner)
