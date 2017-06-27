@@ -24,6 +24,7 @@ class DamageHandler():
                     if math.floor(playerDefending.buildings[i].x/100) == math.floor(self.xint): 
 
                         if math.floor(playerDefending.buildings[i].y/100) == math.floor(self.yint):
+<<<<<<< HEAD
                             if (math.fabs(self.xCoord - (x/100)) + math.fabs(self.yCoord - (y/100))) <= self.shooter.range:
                                 print("found enemy")
                                 self.receiver = playerDefending.buildings[i]
@@ -32,6 +33,16 @@ class DamageHandler():
                                 print(self.Damage)
                                 self.receiver.takeDamage(self.Damage, terrain)
                                 self.needToDealDam = False
+=======
+                            print("found enemy")
+                            self.receiver = playerDefending.buildings[i]
+                            print(self.receiver)
+                            self.Damage = self.shooter.damage
+                            print(self.Damage)
+                            self.receiver.takeDamage(self.Damage, terrain)
+                            self.needToDealDam = False
+                            return True
+>>>>>>> 54354062765cfe4705e663b4244e9f4316e88f48
 
 
     def findShooter(self, xCoord, yCoord, playerAttacking, playerDefending,terrain):
