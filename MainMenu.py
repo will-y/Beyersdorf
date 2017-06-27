@@ -12,11 +12,6 @@ class Main_Menu:
         self.background = self.background.convert()
         self.screen_color = (128, 0, 0)
         self.clock = pg.time.Clock()
-        # Game Screen
-        self.title_width = None
-        self.tile_height = None
-        # Keys Pressed
-        self.keys = []
         # Title
         self.title = pg.image.load("Images/beyersdorfTitle.png")
         self.title = pg.transform.scale(self.title, (533, 133))
@@ -41,12 +36,13 @@ class Main_Menu:
             self.clock.tick(30)
             events = pg.event.get()
             key = pg.key.get_pressed()
-            if key[pg.K_RETURN]:
-                break
-            for event in events:
+            for event in events: #If X is clicked, don't crash the window.
                 if event.type == pg.QUIT:
                     sys.exit()
+            if key[pg.K_RETURN]: #If Return key is pressed, start game.
+                break
             self.startscreen.fill(self.screen_color)
+            #Rendering the text
             self.startscreen.blit(self.title, (133, 60))
             self.startscreen.blit(self.text1, (133,210))
             self.startscreen.blit(self.text2, (133,240))
