@@ -100,6 +100,8 @@ class Main():
                                                 self.userInterface.displayError("")
                                             else:
                                                 self.userInterface.displayError("Not Enough Resources")
+                                        else:
+                                            self.userInterface.displayError("Cannot Build Here")
                                     if turnManager.playerOneActions == turnManager.playerOneActionsUsed:
                                         self.userInterface.displayError("No More Actions")
 
@@ -116,6 +118,8 @@ class Main():
                                                 turnManager.useAction(2)
                                                 self.player2.addBuilding(self.building)
                                                 self.userInterface.updateResources(self.player2)
+                        else:
+                            self.userInterface.displayError("Cannot Build Here")
                     else:
                         self.userInterface.updateInspector(self.xCoord, self.yCoord, self.terrainobject.board)
 

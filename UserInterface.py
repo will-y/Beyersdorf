@@ -201,15 +201,6 @@ class UserInterface():
         pg.draw.rect(self.screen, self.rectColor, (self.rectXPos, self.rectYPos, self.rectWidth, self.rectHeight))
         pg.draw.rect(self.screen, pg.Color('black'), (self.rectXPos, self.rectYPos, self.rectWidth,self.rectHeight), 5)
 
-        #if(self.currentBuildingTab == 0 and not self.inspector):
-            #Draw surrounding rectangles
-            # pg.draw.rect(self.screen, self.tabButtonSelectedColor, (1050, 496 + self.buildingPadding, self.buildingRect1Width, self.buildingRect1Height + 8))
-            # pg.draw.rect(self.screen, self.tabButtonColor,(1050, 496 + self.buildingPadding * 2 + self.buildingWidth, self.buildingRect1Width, self.buildingRect1Height + 8))
-            # pg.draw.rect(self.screen, self.tabButtonColor, (1050, 496 + self.buildingPadding * 3 + self.buildingWidth * 2, self.buildingRect1Width, self.buildingRect1Height + 8))
-            # pg.draw.rect(self.screen, self.tabButtonColor, (1050, 496 + self.buildingPadding * 4 + self.buildingWidth * 3, self.buildingRect1Width, self.buildingRect1Height + 8))
-            # pg.draw.rect(self.screen, self.tabButtonColor, (1050, 496 + self.buildingPadding * 5 + self.buildingWidth * 4, self.buildingRect1Width, self.buildingRect1Height + 8))
-            # pg.draw.rect(self.screen, self.tabButtonColor, (1050, 496 + self.buildingPadding * 6 + self.buildingWidth * 5, self.buildingRect1Width, self.buildingRect1Height + 8))
-
         #Draw resource names
         self.screen.blit(self.resourceText, (1125, 25))
         self.screen.blit(self.woodCountText, (1050, 100))
@@ -237,6 +228,7 @@ class UserInterface():
 
         #Error box
         pg.draw.rect(self.screen, pg.Color('white'), (1230, 347, 220, 38))
+        pg.draw.rect(self.screen, pg.Color('black'), (1230, 347, 220, 38), 3)
 
         if(not self.inspector):
             #BUILDING SELECTED
