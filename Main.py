@@ -106,12 +106,6 @@ class Main():
                                                 turnManager.useAction(2)
                                                 self.player2.addBuilding(self.building)
                                                 self.userInterface.updateResources(self.player2)
-                        if self.terrainobject.board[self.xCoord][self.yCoord].builtOn == True:
-                            for i in range(len(self.player1.buildings)):
-                                print(self.xCoord)
-                                print(math.floor(self.player1.buildings[i].x/100))
-                                if math.floor(self.player1.buildings[i].x/100) == math.floor(self.xCoord) and math.floor(self.player1.buildings[i].y/100) == math.floor(self.yCoord) and self.terrainobject.board[self.xCoord][self.yCoord].builtOn == True and self.player1.buildings[i].canFire == True:
-                                    print("clicked on a building")
                     else:
                         self.userInterface.updateInspector(self.xCoord, self.yCoord, self.terrainobject.board)
 
