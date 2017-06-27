@@ -35,6 +35,7 @@ class DamageHandler():
                             print(self.Damage)
                             self.receiver.takeDamage(self.Damage, terrain)
                             self.needToDealDam = False
+                            return True
 
 
     def findShooter(self, xCoord, yCoord, playerAttacking, playerDefending,terrain):
