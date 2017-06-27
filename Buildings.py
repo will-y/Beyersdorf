@@ -131,7 +131,7 @@ class Building:
             self.productionRate = 50
             self.populationCost = 1
             self.populationAdd = 0
-            self.woodCost = 100
+            self.woodCost = 50
             self.stoneCost = 50
             self.oreCost = 2
             self.maxHealth = 150
@@ -145,7 +145,7 @@ class Building:
             self.populationCost = 2
             self.populationAdd = 0
             self.woodCost = 100
-            self.stoneCost = 25
+            self.stoneCost = 0
             self.oreCost = 5
             self.maxHealth = 200
             self.image = pg.image.load("Images/quarry.png")
@@ -157,9 +157,9 @@ class Building:
             self.productionRate = 10
             self.populationCost = 5
             self.populationAdd = 0
-            self.woodCost = 300
-            self.stoneCost = 200
-            self.oreCost = 5
+            self.woodCost = 200
+            self.stoneCost = 150
+            self.oreCost = 0
             self.maxHealth = 200
             self.image = pg.image.load("Images/mine.png")
             self.image = pg.transform.scale(self.image, (int(self.tilesize * (4/5)), int(self.tilesize * (4/5))))
@@ -209,8 +209,8 @@ class Building:
             self.productionRate = 0
             self.populationCost = 0
             self.populationAdd = 0
-            self.woodCost = 200
-            self.stoneCost = 100
+            self.woodCost = 150
+            self.stoneCost = 50
             self.oreCost = 0
             self.maxHealth = 200
             self.image = pg.image.load("Images/bridge.png")
@@ -223,8 +223,8 @@ class Building:
             self.populationCost = 0
             self.populationAdd = 10
             self.woodCost = 1000  
-            self.stoneCost = 1000
-            self.oreCost = 200
+            self.stoneCost = 800
+            self.oreCost = 100
             self.maxHealth = 500
             self.image = pg.image.load("Images/castle1.png")
             self.image = pg.transform.scale(self.image, (int(self.tilesize * (4/5)), int(self.tilesize * (4/5))))
@@ -245,16 +245,16 @@ class Building:
             self.image = pg.transform.scale(self.image, (int(self.tilesize * (4/5)), int(self.tilesize * (4/5))))
             self.canFire = True
             self.damage = 10
-            self.range = 3
+            self.range = 4
 
             #CannonTower
         if self.buildingType == 12:
             self.productionRate = 0
-            self.populationCost = 2
-            self.populationAdd = 10
-            self.woodCost = 700
-            self.stoneCost = 800
-            self.oreCost = 80
+            self.populationCost = 3 
+            self.populationAdd = 0
+            self.woodCost = 400
+            self.stoneCost = 500
+            self.oreCost = 50
             self.maxHealth = 300
             # self.image = pg.image.load("Images/cannonTower.png")
             self.image = pg.image.load("Images/cannonTower.png")
