@@ -13,7 +13,7 @@ class Player():
         self.buildings = []
 
     def canBuy(self, amountwood, amountstone, amountore, amountpop):
-        return self.playerWood + amountwood >= 0 and self.playerStone + amountstone >= 0 and self.playerOre + amountore >= 0 and self.playerCurPop + amountpop <= self.playerMaxPop
+        return self.playerWood + amountwood >= 0 and self.playerStone + amountstone >= 0 and self.playerOre + amountore >= 0 and self.playerCurPop + amountpop >= 0 
 
     def setWood(self,amount):
         self.playerWood=amount
