@@ -52,7 +52,6 @@ class Main():
                         self.player1.popConsumeFood()
                         turnManager.endTurn()
                         self.userInterface.updateResources(self.player2)
-                        self.player1.buildings[1].takeDamage(20)
 
                     elif turnManager.playerOneTurn == False:
                         self.player2.subtractResourceFromTile(self.terrainobject)
@@ -90,7 +89,6 @@ class Main():
                                     if turnManager.playerOneTurn == False and not turnManager.playerTwoActions == turnManager.playerTwoActionsUsed:
 
                                         self.building = Buildings.Building(self.selectedBuilding, self.xCoord*self.tilesize, self.yCoord*self.tilesize, self.tilesize, self.screen,2)
-                                        # print('testing')
                                         if self.player2.canBuild(self.building,self.terrainobject.board):
 
                                             #if player have resources to build

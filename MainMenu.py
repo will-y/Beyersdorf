@@ -36,16 +36,16 @@ class Main_Menu:
     def runScreen(self):
         pg.init()
         pg.font.init()
-        # textBox = eztext.Input(maxlength=45, color=(0,0,0), prompt="Board Size: ")
         while True:
             self.clock.tick(30)
             events = pg.event.get()
             key = pg.key.get_pressed()
-            if key[pg.K_RETURN]:
+            if key[pg.K_RETURN]: #If Return key is pressed, start game.
                 break
-            for event in events:
+            for event in events: #If X is clicked, don't crash the window.
                 if event.type == pg.QUIT:
                     sys.exit()
+            #Rendering the text
             self.startscreen.fill(self.screen_color)
             self.startscreen.blit(self.title, (133, 60))
             self.startscreen.blit(self.text1, (133,210))

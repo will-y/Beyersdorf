@@ -109,7 +109,7 @@ class UserInterface():
         self.oreCount = self.resourceCountFont.render("100" + " " + str(self.resourcesPerTurn[2]) + '/Turn', True, pg.Color('black'))
         self.foodCount = self.resourceCountFont.render("0" + " " + str(self.resourcesPerTurn[3]) + '/Turn', True, pg.Color('black'))
 
-        self.populationCount = self.resourceCountFont.render("0 / 0", True, pg.Color('black'))
+        self.populationCount = self.resourceCountFont.render("10 / 10", True, pg.Color('black'))
 
         #Background rectangle dimensions
         self.rectXPos = 1000
@@ -495,7 +495,7 @@ class UserInterface():
         for i in range(6, 10):
             self.drawResourceCosts(i)
 
-        print("Drawing Other Buildings")
+        # print("Drawing Other Buildings")
         sys.stdout.flush()
 
     def drawResourceCosts(self, buildingID):
@@ -618,25 +618,25 @@ class UserInterface():
         if(tabID == 0):
             if(not self.detectClick(False) == (-1, -1)):
                 if((self.tabButtonXValue < self.detectClick(False)[0] < self.tabButtonXValue + self.tabButtonWidth) and (self.inspector == True) and (self.tabButtonYValue < self.detectClick(False)[1] < self.tabButtonYValue + self.tabButtonHeight)):
-                    print("Tab 1 clicked")
+                    # print("Tab 1 clicked")
                     sys.stdout.flush()
                     self.goToBuildingTab()
                 elif(self.tabButtonXValue + self.tabButtonWidth < self.detectClick(False)[0] < self.tabButtonXValue + 2 * self.tabButtonWidth and self.inspector == False and self.tabButtonYValue < self.detectClick(False)[1] < self.tabButtonYValue + self.tabButtonHeight):
-                    print("Tab 2 clicked")
+                    # print("Tab 2 clicked")
                     sys.stdout.flush()
                     self.goToInspectorTab()
         elif(tabID == 1):
             if(not self.detectClick(False) == (-1, -1)):
                 if(self.tabButton2XValue < self.detectClick(False)[0] < self.tabButton2XValue + self.tabButton2Width and not self.currentBuildingTab == 0 and self.tabButton2YValue < self.detectClick(False)[1] < self.tabButton2YValue + self.tabButton2Height and not self.inspector):
-                    print("Switched to Resource Buildings")
+                    # print("Switched to Resource Buildings")
                     sys.stdout.flush()
                     self.goToResourceBuildings()
                 elif(self.tabButton2XValue + self.tabButton2Width < self.detectClick(False)[0] < self.tabButton2XValue + self.tabButton2Width * 2 and not self.currentBuildingTab == 1 and self.tabButton2YValue < self.detectClick(False)[1] < self.tabButton2YValue + self.tabButton2Height and not self.inspector):
-                    print("Switched to Military Buildings")
+                    # print("Switched to Military Buildings")
                     sys.stdout.flush()
                     self.goToMilitaryBuildings()
                 elif(self.tabButton2XValue + self.tabButton2Width * 2 < self.detectClick(False)[0] < self.tabButton2XValue + self.tabButton2Width * 3 and not self.currentBuildingTab == 2 and self.tabButton2YValue < self.detectClick(False)[1] < self.tabButton2YValue + self.tabButton2Height and not self.inspector):
-                    print("Switched to Infrastructure Buildings")
+                    # print("Switched to Infrastructure Buildings")
                     sys.stdout.flush()
                     self.goToInfrastructureBuildings()
     def updateResourcesPerTurn(self):

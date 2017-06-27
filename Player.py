@@ -47,7 +47,7 @@ class Player():
     
     def addBuilding(self,building):
         self.buildings.append(building)
-        print(self.buildings)
+        # print(self.buildings)
 
     def canBuild(self,building,tileMap):
 
