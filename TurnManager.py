@@ -4,8 +4,8 @@ class Manager:
 
     def __init__(self):
         self.playerOneTurn = True
-        self.playerOneActions = 4
-        self.playerTwoActions = 4
+        self.playerOneActions = 2
+        self.playerTwoActions = 2
         self.playerOneActionsUsed = 0
         self.playerTwoActionsUsed = 0
 

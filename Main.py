@@ -1,5 +1,5 @@
 import pygame as pg
-import sys, Health, Terrain, math, UserInterface, MainMenu, Buildings, Player, InspectorGadget, TurnManager,time,DamageManager
+import sys, Health, Terrain, math, UserInterface, MainMenu, Buildings, Player, InspectorGadget, TurnManager,time,DamageManager, EndScreen
 
 class Main():
 
@@ -100,6 +100,8 @@ class Main():
                                                 self.player1.addBuilding(self.building)
                                                 self.userInterface.updateResources(self.player1)
                                                 self.userInterface.displayError("")
+                                                if self.building.buildingType == 10:
+                                                    turnManager.addActionToPlayer(1)
                                             else:
                                                 self.userInterface.displayError("Not Enough Resources")
                                         else:
@@ -120,6 +122,11 @@ class Main():
                                                 turnManager.useAction(2)
                                                 self.player2.addBuilding(self.building)
                                                 self.userInterface.updateResources(self.player2)
+                                                self.userInterface.displayError("")
+                                                if self.building.buildingType == 10:
+                                                    turnManager.addActionToPlayer(2)
+                                                else:
+                                                    self.userInterface.displayError("Not Enough Resources")
                         elif self.Handler.needToDealDam == True:
                             if turnManager.playerOneTurn == True and turnManager.playerOneActionsUsed < turnManager.playerOneActions:
                                 turnManager.useAction(1)
@@ -228,7 +235,6 @@ class Main():
             self.detectClick(True, turnManager)
             self.userInterface.detectTabChange(0)
             self.userInterface.detectTabChange(1)
-            #sys.stdout.flush()
             if self.player1.buildings[0].destroyed == True:
                 winner = "Player 1"
                 break
