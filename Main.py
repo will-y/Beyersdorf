@@ -75,6 +75,7 @@ class Main():
 
                                     #if it is correct player's turn and they have enough actions
                                     if turnManager.playerOneTurn == True and not turnManager.playerOneActions == turnManager.playerOneActionsUsed:
+
                                         self.building = Buildings.Building(self.selectedBuilding, self.xCoord*self.tilesize, self.yCoord*self.tilesize, self.tilesize, self.screen,1)
 
                                         if self.player1.canBuild(self.building,self.terrainobject.board):
@@ -143,6 +144,8 @@ class Main():
                         self.userInterface.drawResourceBuildings(self.selectedBuilding)
                     elif(self.userInterface.currentBuildingTab == 1 and not self.userInterface.inspector):
                         self.userInterface.drawMilitaryBuildings(self.selectedBuilding)
+                    elif(self.userInterface.currentBuildingTab == 2 and not self.userInterface.inspector):
+                        self.userInterface.drawInfrastructureBuildings(self.selectedBuilding)
                     return (self.xCoord, self.yCoord)
             else:
                 return pg.mouse.get_pos() 

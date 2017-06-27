@@ -29,7 +29,10 @@ class Building:
 
     def drawBuilding(self, player):
         #pg.draw.rect(self.screen, pg.Color(244, 101, 66), (self.x, self.y, self.tilesize, self.tilesize))
-        self.screen.blit(self.image, (self.x + self.tilesize/10, self.y + self.tilesize/10))
+        if self.buildingType == 9:
+            self.screen.blit(self.image, (self.x, self.y))
+        else:
+            self.screen.blit(self.image, (self.x + self.tilesize/10, self.y + self.tilesize/10))
 
         if player == 1:
             pg.draw.rect(self.screen, pg.Color(255, 0, 0), (self.x, self.y, self.tilesize, self.tilesize), 1)
