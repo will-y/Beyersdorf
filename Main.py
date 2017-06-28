@@ -107,7 +107,8 @@ class Main():
                                         else:
                                             self.userInterface.displayError("Cannot Build Here")
                                     if turnManager.playerOneActions == turnManager.playerOneActionsUsed:
-                                        self.userInterface.displayError("No More Actions")
+                                        s
+                                        elf.userInterface.displayError("No More Actions")
 
                                     if turnManager.playerOneTurn == False and not turnManager.playerTwoActions == turnManager.playerTwoActionsUsed:
 
@@ -139,12 +140,8 @@ class Main():
                             self.Handler.findShooter(self.xCoord, self.yCoord, self.player2, self.player1, self.terrainobject)
                             if self.Handler.manageDamageDelt(self.xCoord, self.yCoord, self.player2, self.player1, self.terrainobject):
                                 turnManager.useAction(2)
-<<<<<<< HEAD
-
-=======
                         else:
                             self.userInterface.displayError("No More Actions")
->>>>>>> 3ba19f926579d1d20ea8b3f753381d217f2d1202
                     else:
                         self.userInterface.updateInspector(self.xCoord, self.yCoord, self.terrainobject.board)
 
