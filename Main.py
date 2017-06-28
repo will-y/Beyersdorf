@@ -127,19 +127,31 @@ class Main():
                                                     turnManager.addActionToPlayer(2)
                                             else:
                                                 self.userInterface.displayError("Not Enough Resources")
-                        elif self.Handler.needToDealDam == True:
-                            if turnManager.playerOneTurn == True and turnManager.playerOneActionsUsed < turnManager.playerOneActions:
-                                turnManager.useAction(1)
-                                self.Handler.manageDamageDelt(self.xCoord, self.yCoord, self.player1, self.player2, self.terrainobject)
-                            if turnManager.playerOneTurn == False and turnManager.playerTwoActionsUsed < turnManager.playerTwoActions:
-                                turnManager.useAction(2)
-                                self.Handler.manageDamageDelt(self.xCoord, self.yCoord, self.player2, self.player1, self.terrainobject)
-                        elif turnManager.playerOneTurn == True:
+                                        else:
+                                            self.userInterface.displayError("Cannot Build Here")
+                        #handles all attacking
+                        elif turnManager.playerOneTurn == True and turnManager.playerOneActionsUsed < turnManager.playerOneActions:
                             self.Handler.findShooter(self.xCoord, self.yCoord, self.player1, self.player2, self.terrainobject)
-                        elif turnManager.playerOneTurn == False:
+                            if self.Handler.manageDamageDelt(self.xCoord, self.yCoord, self.player1, self.player2, self.terrainobject):
+                                turnManager.useAction(1)
+                                print(turnManager.playerOneActions, turnManager.playerOneActionsUsed)
+                        elif turnManager.playerOneTurn == False and turnManager.playerTwoActionsUsed < turnManager.playerTwoActions:
                             self.Handler.findShooter(self.xCoord, self.yCoord, self.player2, self.player1, self.terrainobject)
-                        else:
-                            self.userInterface.displayError("Cannot Build Here")
+                            if self.Handler.manageDamageDelt(self.xCoord, self.yCoord, self.player2, self.player1, self.terrainobject):
+                                turnManager.useAction(2)
+                        # elif self.Handler.needToDealDam == True:
+                        #     if turnManager.playerOneTurn == True and turnManager.playerOneActionsUsed < turnManager.playerOneActions:
+                        #         if self.Handler.manageDamageDelt(self.xCoord, self.yCoord, self.player1, self.player2, self.terrainobject):
+                        #             turnManager.useAction(1)
+                        #     if turnManager.playerOneTurn == False and turnManager.playerTwoActionsUsed < turnManager.playerTwoActions:
+                        #         if self.Handler.manageDamageDelt(self.xCoord, self.yCoord, self.player2, self.player1, self.terrainobject):
+                        #             turnManager.useAction(2)
+                        # elif turnManager.playerOneTurn == True:
+                        #     self.Handler.findShooter(self.xCoord, self.yCoord, self.player1, self.player2, self.terrainobject)
+                        # elif turnManager.playerOneTurn == False:
+                        #     self.Handler.findShooter(self.xCoord, self.yCoord, self.player2, self.player1, self.terrainobject)
+                        # else:
+                        #     self.userInterface.displayError("Cannot Build Here")
                     else:
                         self.userInterface.updateInspector(self.xCoord, self.yCoord, self.terrainobject.board)
 
@@ -235,10 +247,10 @@ class Main():
             self.detectClick(True, turnManager)
             self.userInterface.detectTabChange(0)
             self.userInterface.detectTabChange(1)
-            if self.player1.buildings[0].destroyed == True:
+            if self.player1.buildings[0].destroyed == True or self.player1.playerFood<0:
                 winner = "Player 1"
                 break
-            elif self.player2.buildings[0].destroyed == True:
+            elif self.player2.buildings[0].destroyed == True or self.player1.playerFood<0:
                 winner = "Player 2"
                 break
         self.end_screen = EndScreen.End_Screen(winner)

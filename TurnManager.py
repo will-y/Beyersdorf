@@ -27,7 +27,6 @@ class Manager:
             self.playerTwoActionsUsed = 0
             print("Player Two Turn Starts!")
         else:
-            self.playerOneTurn == False
             self.playerOneTurn = True
             self.playerOneActionsUsed = 0
             print("Player One Turn Starts!")

@@ -100,16 +100,12 @@ class UserInterface():
         self.playerFoodPerTurn = " +0/Turn"
 
         #Resource Amounts
-        # self.woodCount = self.resourceCountFont.render("1000" + self.playerWoodPerTurn, True, pg.Color('black'))
-        # self.stoneCount = self.resourceCountFont.render("200" + self.playerStonePerTurn, True, pg.Color('black'))
-        # self.oreCount = self.resourceCountFont.render("100" + self.playerOrePerTurn, True, pg.Color('black'))
-        # self.foodCount = self.resourceCountFont.render("0" + self.playerOrePerTurn, True, pg.Color('black'))
         self.woodCount = self.resourceCountFont.render("1000" + " " + str(self.resourcesPerTurn[0]) + '/Turn', True, pg.Color('black'))
-        self.stoneCount = self.resourceCountFont.render("200" + " " + str(self.resourcesPerTurn[1]) + '/Turn', True, pg.Color('black'))
-        self.oreCount = self.resourceCountFont.render("100" + " " + str(self.resourcesPerTurn[2]) + '/Turn', True, pg.Color('black'))
-        self.foodCount = self.resourceCountFont.render("0" + " " + str(self.resourcesPerTurn[3]) + '/Turn', True, pg.Color('black'))
+        self.stoneCount = self.resourceCountFont.render("500" + " " + str(self.resourcesPerTurn[1]) + '/Turn', True, pg.Color('black'))
+        self.oreCount = self.resourceCountFont.render("75" + " " + str(self.resourcesPerTurn[2]) + '/Turn', True, pg.Color('black'))
+        self.foodCount = self.resourceCountFont.render("20" + " " + str(self.resourcesPerTurn[3]) + '/Turn', True, pg.Color('black'))
 
-        self.populationCount = self.resourceCountFont.render("0 / 0", True, pg.Color('black'))
+        self.populationCount = self.resourceCountFont.render("10 / 10", True, pg.Color('black'))
 
         #Background rectangle dimensions
         self.rectXPos = 1000
@@ -154,10 +150,11 @@ class UserInterface():
 
         self.costPadding = 10
 
+        #                     wood  stone  ore   pop
         #ID = 0
-        self.farmCost =       "100    50    2     1"
+        self.farmCost =       "100    50    1     1"
         #ID = 1
-        self.ranchCost =      "300    200   10    2"
+        self.ranchCost =      "200    100   4    2"
         #ID = 2
         self.fishCost =       "200    100   5     1"
         #ID = 3
