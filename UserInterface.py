@@ -3,6 +3,7 @@ import sys
 import Player
 import InspectorGadget
 import Terrain
+import math
 
 class UserInterface():
     def __init__(self, screen):
@@ -415,7 +416,53 @@ class UserInterface():
         self.tileWoodAmount = inspector.inspectTile(board, x, y)[1]
         self.tileStoneAmount = inspector.inspectTile(board, x, y)[2]
         self.tileOreAmount = inspector.inspectTile(board, x, y)[3]
-        #for i in range(len(self.player1.buildings[])):
+
+        done = False
+        
+        for i in range(len(self.player1.buildings)):
+            if(math.floor(self.player1.buildings[i].x/100) == x and math.floor(self.player1.buildings[i].y/100) == y):
+                self.currentBuildingName = int(str(self.player1.buildings[i]))
+                done = True
+                break
+            else:
+                done = False
+                self.currentBuildingName = -1
+        if (not done):
+            for i in range(len(self.player2.buildings)):
+                if(math.floor(self.player2.buildings[i].x/100) == x and math.floor(self.player2.buildings[i].y/100) == y):
+                    self.currentBuildingName = int(str(self.player2.buildings[i]))
+                    break
+                else:
+                    self.currentBuildingName = -1
+
+        if(self.currentBuildingName == 0):
+            self.currentBuildingName = "Farm"
+        elif(self.currentBuildingName == 1):
+            self.currentBuildingName = "Ranch"
+        elif(self.currentBuildingName == 2):
+            self.currentBuildingName = "Fishing Hut"
+        elif(self.currentBuildingName == 3):
+            self.currentBuildingName = "Lumber Mill"
+        elif(self.currentBuildingName == 4):
+            self.currentBuildingName = "Quarry"
+        elif(self.currentBuildingName == 5):
+            self.currentBuildingName = "Mine"
+        elif(self.currentBuildingName == 6):
+            self.currentBuildingName = "House"
+        elif(self.currentBuildingName == 7):
+            self.currentBuildingName = "Town"
+        elif(self.currentBuildingName == 8):
+            self.currentBuildingName = "City"
+        elif(self.currentBuildingName == 9):
+            self.currentBuildingName = "Bridge"
+        elif(self.currentBuildingName == 10):
+            self.currentBuildingName = "Castle"
+        elif(self.currentBuildingName == 11):
+            self.currentBuildingName = "Outpost"
+        elif(self.currentBuildingName == 12):
+            self.currentBuildingName = "Cannon Tower"
+        else:
+            self.currentBuildingName = "None"
             
         self.drawInspector()
     def drawResourceBuildings(self, buildingID):

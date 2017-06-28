@@ -225,7 +225,7 @@ class Main():
         pg.mixer.music.load(file)
         pg.mixer.music.play(-1)
 
-        self.userInterface.getPlayer(self.player1, self.player2)
+        
 
         while(True):
             self.clock.tick(10)
@@ -236,6 +236,7 @@ class Main():
             pg.mouse.set_cursor(*pg.cursors.broken_x)
             pg.display.update()
             self.detectClick(True, turnManager)
+            self.userInterface.getPlayer(self.player1, self.player2)
             self.userInterface.detectTabChange(0)
             self.userInterface.detectTabChange(1)
             if self.player1.buildings[0].destroyed == True or self.player1.playerFood<0:
