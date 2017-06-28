@@ -36,7 +36,7 @@ class Main():
                 self.player2.editStone(-self.building.stoneCost)
                 self.player2.editOre(-self.building.oreCost)
                 self.player2.editCurPop(self.building.populationCost)
-                self.player1.editCurPop(-self.building.populationAdd)
+                self.player2.editCurPop(-self.building.populationAdd)
                 self.player2.editMaxPop(self.building.populationAdd)
                 return True
 
