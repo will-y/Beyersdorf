@@ -47,7 +47,6 @@ class Building:
     def takeDamage(self, amount, terrain, receivingPlayer, attackedBuilding):
         self.currentHealth = self.currentHealth - amount
         if self.currentHealth <= 0:
-<<<<<<< HEAD
             if receivingPlayer.buildings[0] == attackedBuilding:
                 self.destroyed = True
             else:
@@ -83,43 +82,6 @@ class Building:
                         print(i)
                         receivingPlayer.buildings.pop(i)
                         break
-=======
-            print("Building Destroyed!")
-            #redraws tile after finding tileimage then draws rubble.png
-            self.destroyed = True
-            tileType = terrain.board[math.floor(self.x/100)][math.floor(self.y/100)].tileType
-            if tileType == 0:
-                tileimage = pg.image.load("Images/forestTile.png")
-            elif tileType == 1:
-                tileimage = pg.image.load("Images/mountainTile.png")
-            elif tileType == 2:
-                tileimage = pg.image.load("Images/hillTile.png")
-            elif tileType == 3:
-                tileimage = pg.image.load("Images/plainTile.png")
-            elif tileType >= 4:
-                tileimage = pg.image.load("Images/waterTile.png")
-            self.redraw = pg.transform.scale(tileimage, (int(self.tilesize), int(self.tilesize)))
-            self.screen.blit(self.redraw, (math.floor(self.x/100) * self.tilesize, math.floor(self.y/100) * self.tilesize))
-            self.image = pg.image.load("Images/rubble.png")
-            self.image = pg.transform.scale(self.image, (int(self.tilesize * (4/5)), int(self.tilesize * (2/5))))
-            self.screen.blit(self.image, (self.x + self.tilesize/10, self.y + self.tilesize/2))
-            terrain.board[math.floor(self.x/100)][math.floor(self.y/100)].builtOn = False
-            receivingPlayer.editMaxPop(-self.populationAdd)
-            receivingPlayer.editCurPop(self.populationAdd)
-            receivingPlayer.editCurPop(-self.populationCost)
-            self.productionRate = 0
-            self.populationCost = 0
-            self.populationAdd = 0
-            self.woodCost = 0
-            self.stoneCost = 0
-            self.oreCost = 0
-            self.canFire = False
-            for i in range(len(receivingPlayer.buildings)):
-                if attackedBuilding == receivingPlayer.buildings[i]:
-                    print(i)
-                    receivingPlayer.buildings.pop(i)
-                    break
->>>>>>> 87f1c93f2ee7c8df83be15897ad570d20dda1860
 
         else:
             health = Health.Health((self.x, self.y), self.tilesize, self.screen)
