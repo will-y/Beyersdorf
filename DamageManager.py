@@ -6,25 +6,27 @@ class DamageHandler():
 
     def __init__(self):
         self.shouldFire = False
+        self.attackerSelected = False
 
     def manageDamageDelt(self, x, y, playerAttacking, playerDefending, terrain):
         #switch to targeting mode
         #if player clicks on enemy tile to attack
         if terrain.board[x][y].builtOn == True:
-            for i in range(len(playerDefending.buildings)):
-                if math.floor(playerDefending.buildings[i].x/100) == math.floor(x):
-                    if math.floor(playerDefending.buildings[i].y/100) == math.floor(y):
-                        if not self.attacker = None
+            if self.attackerSelected == True:
+                for i in range(len(playerDefending.buildings)):
+                    if math.floor(playerDefending.buildings[i].x/100) == math.floor(x):
+                        if math.floor(playerDefending.buildings[i].y/100) == math.floor(y):
                             if (math.fabs(math.floor(self.attacker.x/100) - x) + math.fabs(math.floor(self.attacker.y/100) - y)) <= self.attacker.range:
                                 if self.shouldFire == True:
                                     print("found enemy")
                                     self.defender = playerDefending.buildings[i]
                                     self.defender.takeDamage(self.Damage, terrain, playerDefending, self.defender)
                                     self.shouldFire = False
+                                    self.attackerSelected = False
                                     return True
                                 else:
                                     print("not in range")
-                            
+                        
     #     print("found building")
 
         #     if terrain.board[x][y].builtOn == True:
@@ -60,6 +62,7 @@ class DamageHandler():
                                 print("attacker selected!")
                                 print(self.Damage)
                                 self.shouldFire = True
+                                self.attackerSelected == True
     #     self.xCoord = xCoord
     #     self.yCoord = yCoord
     #     if terrain.board[xCoord][yCoord].builtOn == True:
