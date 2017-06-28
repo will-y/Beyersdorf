@@ -106,7 +106,22 @@ class Main():
                                             print("can't place bridge on land")
                                         if self.terrainobject.board[self.xCoord][self.yCoord].tileType == 3:
                                             print("can't place bridge on land")
-                                                        
+                                        if self.terrainobject.board[self.xCoord][self.yCoord].tileType == 4:
+                                            if turnManager.playerOneTurn == True and not turnManager.playerOneActions == turnManager.playerOneActionsUsed:
+                                                self.building = Buildings.Building(self.selectedBuilding, self.xCoord*self.tilesize, self.yCoord*self.tilesize, self.tilesize, self.screen,1)
+                                                if self.player1.canBuild(self.building,self.terrainobject.board):      
+                                                    
+                                                    #if player have resources to build
+                                                    if self.changeResources(1):
+                                                        self.building.drawBuilding(1)
+                                                        self.terrainobject.board[self.xCoord][self.yCoord].builtOn = True
+                                                        turnManager.useAction(1)
+                                                        self.player1.addBuilding(self.building)
+                                                        self.userInterface.updateResources(self.player1)
+                                                        self.userInterface.displayError("")
+                                                        if self.building.buildingType == 10:
+                                                            turnManager.addActionToPlayer(1)
+                                                            
                                     #if it is correct player's turn and they have enough actions
                                     elif turnManager.playerOneTurn == True and not turnManager.playerOneActions == turnManager.playerOneActionsUsed:
 
