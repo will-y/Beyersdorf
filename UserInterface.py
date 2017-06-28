@@ -83,10 +83,10 @@ class UserInterface():
         self.houseImage = pg.image.load("Images/house.png")
         self.houseImage = pg.transform.scale(self.houseImage, (60, 60))
 
-        self.townImage = pg.image.load("Images/pop.png")
+        self.townImage = pg.image.load("Images/town.png")
         self.townImage = pg.transform.scale(self.townImage, (60, 60))
 
-        self.cityImage = pg.image.load("Images/pop.png")
+        self.cityImage = pg.image.load("Images/city.png")
         self.cityImage = pg.transform.scale(self.cityImage, (60, 60))
 
         self.bridgeImage = pg.image.load("Images/bridge.png")
@@ -154,9 +154,9 @@ class UserInterface():
         #ID = 0
         self.farmCost =       "100    50    1     1"
         #ID = 1
-        self.ranchCost =      "200    100   4    2"
+        self.ranchCost =      "200    100   4     2"
         #ID = 2
-        self.fishCost =       "200    100   5     1"
+        self.fishCost =       "125    75    2     1"
         #ID = 3
         self.lumberMillCost = "50     50    2     1"
         #ID = 4
@@ -174,9 +174,9 @@ class UserInterface():
         #ID = 10
         self.castleCost =     "1000   800   100   +10"
         #ID = 11
-        self.outpostCost =    "300    100   10    1"
+        self.outpostCost =    "200    100   15    1"
         #ID = 12
-        self.cannonCost =     "400    500   50    3"
+        self.cannonCost =     "250    400   30    3"
 
         #INSPECTOR THINGS
         self.currentTile = "Forest"
@@ -283,11 +283,11 @@ class UserInterface():
         self.drawInterface()
         
         if(self.currentBuildingTab == 0):
-            self.drawResourceBuildings(self.buildingID)
+            self.goToResourceBuildings()
         elif(self.currentBuildingTab == 1):
-            self.drawMilitaryBuildings(self.buildingID)
+            self.goToMilitaryBuildings()
         elif(self.currentBuildingTab == 2):
-            self.drawInfrastructureBuildings(self.buildingID)
+            self.goToInfrastructureBuildings()
 
         self.screen.blit(self.resourceTabText, (self.tabButton2XValue + 14, self.tabButton2YValue + 4))
         self.screen.blit(self.militaryTabText, (self.tabButton2XValue + 14 + self.tabButton2Width, self.tabButton2YValue + 4))
@@ -340,7 +340,7 @@ class UserInterface():
         self.resourcesPerTurn[0] = tempW
         self.resourcesPerTurn[1] = tempS
         self.resourcesPerTurn[2] = tempO
-        self.resourcesPerTurn[3] = tempF
+        self.resourcesPerTurn[3] = tempF - (player.playerMaxPop -player.playerCurPop)
 
         pg.draw.rect(self.screen, self.rectColor, (self.rectXPos, self.rectYPos, self.rectWidth, self.rectHeight))
         self.woodCount = self.resourceCountFont.render(str(player.playerWood) + " " + str(self.resourcesPerTurn[0]) + "/Turn", True, pg.Color('black'))
@@ -415,6 +415,8 @@ class UserInterface():
         self.tileWoodAmount = inspector.inspectTile(board, x, y)[1]
         self.tileStoneAmount = inspector.inspectTile(board, x, y)[2]
         self.tileOreAmount = inspector.inspectTile(board, x, y)[3]
+        #for i in range(len(self.player1.buildings[])):
+            
         self.drawInspector()
     def drawResourceBuildings(self, buildingID):
         self.buildingID = buildingID
@@ -657,3 +659,6 @@ class UserInterface():
         pg.draw.rect(self.screen, pg.Color('black'), (1230, 347, 220, 38), 3)
         errorMessage = self.tab2Font.render(message, True, pg.Color('black'))
         self.screen.blit(errorMessage, (1249, 360))
+    def getPlayer(self, player1, player2):
+        self.player1 = player1
+        self.player2 = player2

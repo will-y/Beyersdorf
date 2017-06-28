@@ -90,7 +90,7 @@ class Player():
                 self.playerOre = self.playerOre + self.buildings[i].productionRate
         
     def popConsumeFood(self):
-        self.playerFood = self.playerFood - self.playerCurPop
+        self.playerFood = self.playerFood - (self.playerMaxPop -self.playerCurPop)
 
     def subtractResourceFromTile(self, terrain):
         
