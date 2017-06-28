@@ -250,10 +250,10 @@ class Main():
             self.userInterface.detectTabChange(0)
             self.userInterface.detectTabChange(1)
             if self.player1.buildings[0].destroyed == True or self.player1.playerFood<0:
-                winner = "Player 1"
+                winner = "Player 2"
                 break
             elif self.player2.buildings[0].destroyed == True or self.player1.playerFood<0:
-                winner = "Player 2"
+                winner = "Player 1"
                 break
         self.end_screen = EndScreen.End_Screen(winner)
         self.end_screen.runScreen()
