@@ -36,7 +36,7 @@ class Main():
                 self.player2.editStone(-self.building.stoneCost)
                 self.player2.editOre(-self.building.oreCost)
                 self.player2.editCurPop(self.building.populationCost)
-                self.player2.editCurPop(-self.building.populationAdd)
+                self.player1.editCurPop(-self.building.populationAdd)
                 self.player2.editMaxPop(self.building.populationAdd)
                 return True
 
@@ -250,10 +250,10 @@ class Main():
             self.userInterface.detectTabChange(0)
             self.userInterface.detectTabChange(1)
             if self.player1.buildings[0].destroyed == True or self.player1.playerFood<0:
-                winner = "Player 2"
-                break
-            elif self.player2.buildings[0].destroyed == True or self.player2.playerFood<0:
                 winner = "Player 1"
+                break
+            elif self.player2.buildings[0].destroyed == True or self.player1.playerFood<0:
+                winner = "Player 2"
                 break
         self.end_screen = EndScreen.End_Screen(winner)
         self.end_screen.runScreen()
