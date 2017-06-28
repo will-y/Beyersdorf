@@ -67,6 +67,8 @@ class Building:
             self.image = pg.transform.scale(self.image, (int(self.tilesize * (4/5)), int(self.tilesize * (2/5))))
             self.screen.blit(self.image, (self.x + self.tilesize/10, self.y + self.tilesize/2))
             terrain.board[math.floor(self.x/100)][math.floor(self.y/100)].builtOn = False
+            receivingPlayer.editMaxPop(self.populationAdd)
+            receivingPlayer.editCurPop(self.populationCost)
             self.productionRate = 0
             self.populationCost = 0
             self.populationAdd = 0

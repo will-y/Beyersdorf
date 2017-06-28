@@ -12,7 +12,6 @@ class DamageHandler():
         #switch to targeting mode
         #if player clicks on enemy tile to attack
         if terrain.board[x][y].builtOn == True:
-            if self.attackerSelected == True:
                 for i in range(len(playerDefending.buildings)):
                     if math.floor(playerDefending.buildings[i].x/100) == math.floor(x):
                         if math.floor(playerDefending.buildings[i].y/100) == math.floor(y):
@@ -22,7 +21,6 @@ class DamageHandler():
                                     self.defender = playerDefending.buildings[i]
                                     self.defender.takeDamage(self.Damage, terrain, playerDefending, self.defender)
                                     self.shouldFire = False
-                                    self.attackerSelected = False
                                     return True
                                 else:
                                     print("not in range")
@@ -62,7 +60,6 @@ class DamageHandler():
                                 print("attacker selected!")
                                 print(self.Damage)
                                 self.shouldFire = True
-                                self.attackerSelected == True
     #     self.xCoord = xCoord
     #     self.yCoord = yCoord
     #     if terrain.board[xCoord][yCoord].builtOn == True:

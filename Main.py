@@ -139,19 +139,7 @@ class Main():
                             self.Handler.findShooter(self.xCoord, self.yCoord, self.player2, self.player1, self.terrainobject)
                             if self.Handler.manageDamageDelt(self.xCoord, self.yCoord, self.player2, self.player1, self.terrainobject):
                                 turnManager.useAction(2)
-                        # elif self.Handler.needToDealDam == True:
-                        #     if turnManager.playerOneTurn == True and turnManager.playerOneActionsUsed < turnManager.playerOneActions:
-                        #         if self.Handler.manageDamageDelt(self.xCoord, self.yCoord, self.player1, self.player2, self.terrainobject):
-                        #             turnManager.useAction(1)
-                        #     if turnManager.playerOneTurn == False and turnManager.playerTwoActionsUsed < turnManager.playerTwoActions:
-                        #         if self.Handler.manageDamageDelt(self.xCoord, self.yCoord, self.player2, self.player1, self.terrainobject):
-                        #             turnManager.useAction(2)
-                        # elif turnManager.playerOneTurn == True:
-                        #     self.Handler.findShooter(self.xCoord, self.yCoord, self.player1, self.player2, self.terrainobject)
-                        # elif turnManager.playerOneTurn == False:
-                        #     self.Handler.findShooter(self.xCoord, self.yCoord, self.player2, self.player1, self.terrainobject)
-                        # else:
-                        #     self.userInterface.displayError("Cannot Build Here")
+
                     else:
                         self.userInterface.updateInspector(self.xCoord, self.yCoord, self.terrainobject.board)
 
