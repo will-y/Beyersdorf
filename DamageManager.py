@@ -23,13 +23,8 @@ class DamageHandler():
                                     self.shouldFire = False
                                     self.attackerSelected = False
                                     return True
-<<<<<<< HEAD
-                                else:
-                                    print("not in range")
-=======
                             else:
                                 print("not in range")
->>>>>>> a61ee6c21c2c2d82e122c9d453994d9972d813ed
 
     def findShooter(self, xCoord, yCoord, playerAttacking, playerDefending,terrain):
         if terrain.board[xCoord][yCoord].builtOn == True:
@@ -42,9 +37,5 @@ class DamageHandler():
                                 self.Damage = self.attacker.damage
                                 print("attacker selected!")
                                 print(self.Damage)
-<<<<<<< HEAD
-                                self.shouldFire = True
-=======
                                 self.shouldFire = True
                                 self.attackerSelected == True
->>>>>>> a61ee6c21c2c2d82e122c9d453994d9972d813ed
