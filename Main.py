@@ -97,9 +97,18 @@ class Main():
 
                             #if not on water or bridge
                             if (not self.terrainobject.board[self.xCoord][self.yCoord].tileType == 4) or self.selectedBuilding == 9:
-
+                                    if self.selectedBuilding == 9:
+                                        if self.terrainobject.board[self.xCoord][self.yCoord].tileType == 0:
+                                            print("can't place bridge on land")
+                                        if self.terrainobject.board[self.xCoord][self.yCoord].tileType == 1:
+                                            print("can't place bridge on land")
+                                        if self.terrainobject.board[self.xCoord][self.yCoord].tileType == 2:
+                                            print("can't place bridge on land")
+                                        if self.terrainobject.board[self.xCoord][self.yCoord].tileType == 3:
+                                            print("can't place bridge on land")
+                                                        
                                     #if it is correct player's turn and they have enough actions
-                                    if turnManager.playerOneTurn == True and not turnManager.playerOneActions == turnManager.playerOneActionsUsed:
+                                    elif turnManager.playerOneTurn == True and not turnManager.playerOneActions == turnManager.playerOneActionsUsed:
 
                                         self.building = Buildings.Building(self.selectedBuilding, self.xCoord*self.tilesize, self.yCoord*self.tilesize, self.tilesize, self.screen,1)
 
