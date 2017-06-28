@@ -5,6 +5,7 @@ import Terrain
 import Health
 import TileCreate
 import TurnManager
+import Player
 
 class Building:
 
@@ -43,7 +44,7 @@ class Building:
     def __str__(self):
         return str(self.buildingType)
     
-    def takeDamage(self, amount, terrain):
+    def takeDamage(self, amount, terrain, receivingPlayer, attackedBuilding):
         self.currentHealth = self.currentHealth - amount
         if self.currentHealth <= 0:
             print("Building Destroyed!")
@@ -73,6 +74,11 @@ class Building:
             self.stoneCost = 0
             self.oreCost = 0
             self.canFire = False
+            for i in range(len(receivingPlayer.buildings)):
+                if attackedBuilding == receivingPlayer.buildings[i]:
+                    print(i)
+                    receivingPlayer.buildings.pop(i)
+
         else:
             health = Health.Health((self.x, self.y), self.tilesize, self.screen)
             health.drawHealth(self.maxHealth, self.currentHealth)
