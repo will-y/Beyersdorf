@@ -4,10 +4,10 @@ import math as m
 class Player():
     def __init__(self):
         self.team = 0
-        self.playerWood = 10000
-        self.playerStone = 5000
-        self.playerOre = 750
-        self.playerFood = 2000
+        self.playerWood = 1000
+        self.playerStone = 500
+        self.playerOre = 75
+        self.playerFood = 20
         self.playerCurPop = 10
         self.playerMaxPop = 10
         self.buildings = []
@@ -90,7 +90,7 @@ class Player():
                 self.playerOre = self.playerOre + self.buildings[i].productionRate
         
     def popConsumeFood(self):
-        self.playerFood = self.playerFood - self.playerCurPop
+        self.playerFood = self.playerFood - (self.playerMaxPop -self.playerCurPop)
 
     def subtractResourceFromTile(self, terrain):
         

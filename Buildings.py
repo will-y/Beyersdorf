@@ -78,6 +78,7 @@ class Building:
                 if attackedBuilding == receivingPlayer.buildings[i]:
                     print(i)
                     receivingPlayer.buildings.pop(i)
+                    break
 
         else:
             health = Health.Health((self.x, self.y), self.tilesize, self.screen)
@@ -121,9 +122,9 @@ class Building:
             self.productionRate = 8
             self.populationCost = 1
             self.populationAdd = 0
-            self.woodCost = 200
-            self.stoneCost = 100
-            self.oreCost = 5
+            self.woodCost = 125
+            self.stoneCost = 75
+            self.oreCost = 2
             self.maxHealth = 100
             self.image = pg.image.load("Images/fishingHut.png")
             self.image = pg.transform.scale(self.image, (int(self.tilesize * (4/5)), int(self.tilesize * (4/5))))
@@ -232,7 +233,7 @@ class Building:
             self.image = pg.image.load("Images/castle1.png")
             self.image = pg.transform.scale(self.image, (int(self.tilesize * (4/5)), int(self.tilesize * (4/5))))
             self.canFire = True
-            self.damage = 50
+            self.damage = 30
             self.range = 4
 
             #Outpost
@@ -240,14 +241,14 @@ class Building:
             self.productionRate = 0
             self.populationCost = 1
             self.populationAdd = 0
-            self.woodCost = 300 
+            self.woodCost = 200 
             self.stoneCost = 100
-            self.oreCost = 10
+            self.oreCost = 15
             self.maxHealth = 200
             self.image = pg.image.load("Images/outpost.png")
             self.image = pg.transform.scale(self.image, (int(self.tilesize * (4/5)), int(self.tilesize * (4/5))))
             self.canFire = True
-            self.damage = 10
+            self.damage = 15
             self.range = 4
             print(self.canFire)
 
@@ -256,15 +257,15 @@ class Building:
             self.productionRate = 0
             self.populationCost = 3 
             self.populationAdd = 0
-            self.woodCost = 400
-            self.stoneCost = 500
-            self.oreCost = 50
+            self.woodCost = 250
+            self.stoneCost = 400
+            self.oreCost = 30
             self.maxHealth = 300
             # self.image = pg.image.load("Images/cannonTower.png")
             self.image = pg.image.load("Images/cannonTower.png")
             self.image = pg.transform.scale(self.image, (int(self.tilesize * (4/5)), int(self.tilesize * (4/5))))
             self.canFire = True
-            self.damage = 25
+            self.damage = 40
             self.range = 3
 
         self.currentHealth = self.maxHealth
