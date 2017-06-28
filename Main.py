@@ -98,14 +98,6 @@ class Main():
                             #if not on water or bridge
                             if (not self.terrainobject.board[self.xCoord][self.yCoord].tileType == 4) or self.selectedBuilding == 9:
                                     if self.selectedBuilding == 9:
-                                        if self.terrainobject.board[self.xCoord][self.yCoord].tileType == 0:
-                                            print("can't place bridge on land")
-                                        if self.terrainobject.board[self.xCoord][self.yCoord].tileType == 1:
-                                            print("can't place bridge on land")
-                                        if self.terrainobject.board[self.xCoord][self.yCoord].tileType == 2:
-                                            print("can't place bridge on land")
-                                        if self.terrainobject.board[self.xCoord][self.yCoord].tileType == 3:
-                                            print("can't place bridge on land")
                                         if self.terrainobject.board[self.xCoord][self.yCoord].tileType == 4:
                                             if turnManager.playerOneTurn == True and not turnManager.playerOneActions == turnManager.playerOneActionsUsed:
                                                 self.building = Buildings.Building(self.selectedBuilding, self.xCoord*self.tilesize, self.yCoord*self.tilesize, self.tilesize, self.screen,1)
@@ -121,7 +113,8 @@ class Main():
                                                         self.userInterface.displayError("")
                                                         if self.building.buildingType == 10:
                                                             turnManager.addActionToPlayer(1)
-                                                            
+                                        else:
+                                            self.userInterface.displayError("Cannot Build This Here")                    
                                     #if it is correct player's turn and they have enough actions
                                     elif turnManager.playerOneTurn == True and not turnManager.playerOneActions == turnManager.playerOneActionsUsed:
 
@@ -172,7 +165,7 @@ class Main():
                                             else:
                                                 self.userInterface.displayError("Not Enough Resources")
                                         else:
-                                            self.userInterface.displayError("Cannot Build Here")
+                                            self.userInterface.displayError("Cannot Build This Here")
                                     if turnManager.playerOneActions == turnManager.playerOneActionsUsed:
                                         self.userInterface.displayError("No More Actions")
 
@@ -225,7 +218,7 @@ class Main():
                                             else:
                                                 self.userInterface.displayError("Not Enough Resources")
                                         else:
-                                            self.userInterface.displayError("Cannot Build Here")
+                                            self.userInterface.displayError("Cannot Build This Here")
                         #handles all attacking
                         elif turnManager.playerOneTurn == True and turnManager.playerOneActionsUsed < turnManager.playerOneActions:
                             self.Handler.findShooter(self.xCoord, self.yCoord, self.player1, self.player2, self.terrainobject)
