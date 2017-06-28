@@ -20,6 +20,19 @@ class Main():
         self.player2 = Player.Player()
         self.selectedBuilding = 0
 
+        self.farmSound = 'Sound/Music.wav'
+        self.ranchSound = 'Sound/Music.wav'
+        self.lumberSound = 'Sound/Music.wav'
+        self.quarrySound = 'Sound/Music.wav'
+        self.mineSound = 'Sound/Music.wav'
+        self.houseSound = 'Sound/Music.wav'
+        self.townSound = 'Sound/Music2.wav'
+        self.citySound = 'Sound/Music2.wav'
+        self.bridgeSound = 'Sound/Music2.wav'
+        self.castleSound = 'Sound/Music2.wav'
+        self.outpostSound = 'Sound/Music2.wav'
+        self.cannonSound = 'Sound/Music2.wav'
+
     def changeResources(self, player):
         if player == 1:
             if self.player1.canBuy(-self.building.woodCost, -self.building.stoneCost, -self.building.oreCost, -self.building.populationCost):
@@ -102,13 +115,42 @@ class Main():
                                                 self.userInterface.displayError("")
                                                 if self.building.buildingType == 10:
                                                     turnManager.addActionToPlayer(1)
+                                                
+                                                if self.building.buildingType == 0:     #IF FARM
+                                                    pg.mixer.music.load(self.farmSound)
+                                                elif self.building.buildingType == 1:   #IF RANCH
+                                                    pg.mixer.music.load(self.ranchSound)
+                                                elif self.building.buildingType == 1:   #IF FISH HUT
+                                                    pg.mixer.music.load(self.fishSound)
+                                                elif self.building.buildingType == 1:   #IF LUMBER MILL
+                                                    pg.mixer.music.load(self.lumberSound)
+                                                elif self.building.buildingType == 1:   #IF QUARRY
+                                                    pg.mixer.music.load(self.quarrySound)
+                                                elif self.building.buildingType == 1:   #IF MINE
+                                                    pg.mixer.music.load(self.mineSound)
+                                                elif self.building.buildingType == 1:   #IF HOUSE
+                                                    pg.mixer.music.load(self.houseSound)
+                                                elif self.building.buildingType == 1:   #IF TOWN
+                                                    pg.mixer.music.load(self.townSound)
+                                                elif self.building.buildingType == 1:   #IF CITY
+                                                    pg.mixer.music.load(self.citySound)
+                                                elif self.building.buildingType == 1:   #IF BRIDGE
+                                                    pg.mixer.music.load(self.bridgeSound)
+                                                elif self.building.buildingType == 1:   #IF CASTLE
+                                                    pg.mixer.music.load(self.castleSound)
+                                                elif self.building.buildingType == 1:   #IF OUTPOST
+                                                    pg.mixer.music.load(self.outpostSound)
+                                                else:                                   #IF CANNON
+                                                    pg.mixer.music.load(self.cannonSound)
+                                                
+                                                pg.mixer.music.play(0)
+
                                             else:
                                                 self.userInterface.displayError("Not Enough Resources")
                                         else:
                                             self.userInterface.displayError("Cannot Build Here")
                                     if turnManager.playerOneActions == turnManager.playerOneActionsUsed:
-                                        s
-                                        elf.userInterface.displayError("No More Actions")
+                                        self.userInterface.displayError("No More Actions")
 
                                     if turnManager.playerOneTurn == False and not turnManager.playerTwoActions == turnManager.playerTwoActionsUsed:
 
@@ -126,6 +168,36 @@ class Main():
                                                 self.userInterface.displayError("")
                                                 if self.building.buildingType == 10:
                                                     turnManager.addActionToPlayer(2)
+                                                
+                                                if self.building.buildingType == 0:     #IF FARM
+                                                    pg.mixer.music.load(self.farmSound)
+                                                elif self.building.buildingType == 1:   #IF RANCH
+                                                    pg.mixer.music.load(self.ranchSound)
+                                                elif self.building.buildingType == 1:   #IF FISH HUT
+                                                    pg.mixer.music.load(self.fishSound)
+                                                elif self.building.buildingType == 1:   #IF LUMBER MILL
+                                                    pg.mixer.music.load(self.lumberSound)
+                                                elif self.building.buildingType == 1:   #IF QUARRY
+                                                    pg.mixer.music.load(self.quarrySound)
+                                                elif self.building.buildingType == 1:   #IF MINE
+                                                    pg.mixer.music.load(self.mineSound)
+                                                elif self.building.buildingType == 1:   #IF HOUSE
+                                                    pg.mixer.music.load(self.houseSound)
+                                                elif self.building.buildingType == 1:   #IF TOWN
+                                                    pg.mixer.music.load(self.townSound)
+                                                elif self.building.buildingType == 1:   #IF CITY
+                                                    pg.mixer.music.load(self.citySound)
+                                                elif self.building.buildingType == 1:   #IF BRIDGE
+                                                    pg.mixer.music.load(self.bridgeSound)
+                                                elif self.building.buildingType == 1:   #IF CASTLE
+                                                    pg.mixer.music.load(self.castleSound)
+                                                elif self.building.buildingType == 1:   #IF OUTPOST
+                                                    pg.mixer.music.load(self.outpostSound)
+                                                else:                                   #IF CANNON
+                                                    pg.mixer.music.load(self.cannonSound)
+                                                
+                                                pg.mixer.music.play(0)
+
                                             else:
                                                 self.userInterface.displayError("Not Enough Resources")
                                         else:

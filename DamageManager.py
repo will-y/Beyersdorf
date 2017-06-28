@@ -16,13 +16,13 @@ class DamageHandler():
                     if math.floor(playerDefending.buildings[i].x/100) == math.floor(x):
                         if math.floor(playerDefending.buildings[i].y/100) == math.floor(y):
                             if (math.fabs(math.floor(self.attacker.x/100) - x) + math.fabs(math.floor(self.attacker.y/100) - y)) <= self.attacker.range:
-                            if self.shouldFire == True:
-                                print("found enemy")
-                                self.defender = playerDefending.buildings[i]
-                                self.defender.takeDamage(self.Damage, terrain, playerDefending, self.defender)
-                                self.shouldFire = False
-                                self.attackerSelected = False
-                                return True
+                                if self.shouldFire == True:
+                                    print("found enemy")
+                                    self.defender = playerDefending.buildings[i]
+                                    self.defender.takeDamage(self.Damage, terrain, playerDefending, self.defender)
+                                    self.shouldFire = False
+                                    self.attackerSelected = False
+                                    return True
                             else:
                                 print("not in range")
 
