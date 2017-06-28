@@ -67,8 +67,9 @@ class Building:
             self.image = pg.transform.scale(self.image, (int(self.tilesize * (4/5)), int(self.tilesize * (2/5))))
             self.screen.blit(self.image, (self.x + self.tilesize/10, self.y + self.tilesize/2))
             terrain.board[math.floor(self.x/100)][math.floor(self.y/100)].builtOn = False
-            receivingPlayer.editMaxPop(self.populationAdd)
-            receivingPlayer.editCurPop(self.populationCost)
+            receivingPlayer.editMaxPop(-self.populationAdd)
+            receivingPlayer.editCurPop(self.populationAdd)
+            receivingPlayer.editCurPop(-self.populationCost)
             self.productionRate = 0
             self.populationCost = 0
             self.populationAdd = 0
@@ -193,7 +194,7 @@ class Building:
             self.stoneCost = 100
             self.oreCost = 5
             self.maxHealth = 200
-            self.image = pg.image.load("Images/town.png")
+            self.image = pg.image.load("Images/farm.png")
             self.image = pg.transform.scale(self.image, (int(self.tilesize * (4/5)), int(self.tilesize * (4/5))))
             self.canFire = False
 
@@ -206,7 +207,7 @@ class Building:
             self.stoneCost = 300
             self.oreCost = 50
             self.maxHealth = 300
-            self.image = pg.image.load("Images/city.png")
+            self.image = pg.image.load("Images/farm.png")
             self.image = pg.transform.scale(self.image, (int(self.tilesize * (4/5)), int(self.tilesize * (4/5))))
             self.canFire = False
 
