@@ -36,7 +36,7 @@ class Main():
                 self.player2.editStone(-self.building.stoneCost)
                 self.player2.editOre(-self.building.oreCost)
                 self.player2.editCurPop(self.building.populationCost)
-                self.player1.editCurPop(-self.building.populationAdd)
+                self.player2.editCurPop(-self.building.populationAdd)
                 self.player2.editMaxPop(self.building.populationAdd)
                 return True
 
@@ -139,21 +139,12 @@ class Main():
                             self.Handler.findShooter(self.xCoord, self.yCoord, self.player2, self.player1, self.terrainobject)
                             if self.Handler.manageDamageDelt(self.xCoord, self.yCoord, self.player2, self.player1, self.terrainobject):
                                 turnManager.useAction(2)
+<<<<<<< HEAD
+
+=======
                         else:
                             self.userInterface.displayError("No More Actions")
-                        # elif self.Handler.needToDealDam == True:
-                        #     if turnManager.playerOneTurn == True and turnManager.playerOneActionsUsed < turnManager.playerOneActions:
-                        #         if self.Handler.manageDamageDelt(self.xCoord, self.yCoord, self.player1, self.player2, self.terrainobject):
-                        #             turnManager.useAction(1)
-                        #     if turnManager.playerOneTurn == False and turnManager.playerTwoActionsUsed < turnManager.playerTwoActions:
-                        #         if self.Handler.manageDamageDelt(self.xCoord, self.yCoord, self.player2, self.player1, self.terrainobject):
-                        #             turnManager.useAction(2)
-                        # elif turnManager.playerOneTurn == True:
-                        #     self.Handler.findShooter(self.xCoord, self.yCoord, self.player1, self.player2, self.terrainobject)
-                        # elif turnManager.playerOneTurn == False:
-                        #     self.Handler.findShooter(self.xCoord, self.yCoord, self.player2, self.player1, self.terrainobject)
-                        # else:
-                        #     self.userInterface.displayError("Cannot Build Here")
+>>>>>>> 3ba19f926579d1d20ea8b3f753381d217f2d1202
                     else:
                         self.userInterface.updateInspector(self.xCoord, self.yCoord, self.terrainobject.board)
 
@@ -237,6 +228,8 @@ class Main():
         pg.mixer.init()
         pg.mixer.music.load(file)
         pg.mixer.music.play(-1)
+
+        self.userInterface.getPlayer(self.player1, self.player2)
 
         while(True):
             self.clock.tick(10)

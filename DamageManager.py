@@ -12,7 +12,6 @@ class DamageHandler():
         #switch to targeting mode
         #if player clicks on enemy tile to attack
         if terrain.board[x][y].builtOn == True:
-            if self.attackerSelected == True:
                 for i in range(len(playerDefending.buildings)):
                     if math.floor(playerDefending.buildings[i].x/100) == math.floor(x):
                         if math.floor(playerDefending.buildings[i].y/100) == math.floor(y):
