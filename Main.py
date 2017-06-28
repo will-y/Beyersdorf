@@ -110,9 +110,33 @@ class Main():
 
                             #if not on water or bridge
                             if (not self.terrainobject.board[self.xCoord][self.yCoord].tileType == 4) or self.selectedBuilding == 9:
-
+                                    if self.selectedBuilding == 9:
+                                        if self.terrainobject.board[self.xCoord][self.yCoord].tileType == 0:
+                                            print("can't place bridge on land")
+                                        if self.terrainobject.board[self.xCoord][self.yCoord].tileType == 1:
+                                            print("can't place bridge on land")
+                                        if self.terrainobject.board[self.xCoord][self.yCoord].tileType == 2:
+                                            print("can't place bridge on land")
+                                        if self.terrainobject.board[self.xCoord][self.yCoord].tileType == 3:
+                                            print("can't place bridge on land")
+                                        if self.terrainobject.board[self.xCoord][self.yCoord].tileType == 4:
+                                            if turnManager.playerOneTurn == True and not turnManager.playerOneActions == turnManager.playerOneActionsUsed:
+                                                self.building = Buildings.Building(self.selectedBuilding, self.xCoord*self.tilesize, self.yCoord*self.tilesize, self.tilesize, self.screen,1)
+                                                if self.player1.canBuild(self.building,self.terrainobject.board):      
+                                                    
+                                                    #if player have resources to build
+                                                    if self.changeResources(1):
+                                                        self.building.drawBuilding(1)
+                                                        self.terrainobject.board[self.xCoord][self.yCoord].builtOn = True
+                                                        turnManager.useAction(1)
+                                                        self.player1.addBuilding(self.building)
+                                                        self.userInterface.updateResources(self.player1)
+                                                        self.userInterface.displayError("")
+                                                        if self.building.buildingType == 10:
+                                                            turnManager.addActionToPlayer(1)
+                                                            
                                     #if it is correct player's turn and they have enough actions
-                                    if turnManager.playerOneTurn == True and not turnManager.playerOneActions == turnManager.playerOneActionsUsed:
+                                    elif turnManager.playerOneTurn == True and not turnManager.playerOneActions == turnManager.playerOneActionsUsed:
 
                                         self.building = Buildings.Building(self.selectedBuilding, self.xCoord*self.tilesize, self.yCoord*self.tilesize, self.tilesize, self.screen,1)
 
@@ -269,7 +293,7 @@ class Main():
         pg.mixer.music.load(file)
         pg.mixer.music.play(-1)
 
-        self.userInterface.getPlayer(self.player1, self.player2)
+        
 
         while(True):
             self.clock.tick(10)
@@ -280,6 +304,7 @@ class Main():
             pg.mouse.set_cursor(*pg.cursors.broken_x)
             pg.display.update()
             self.detectClick(True, turnManager)
+            self.userInterface.getPlayer(self.player1, self.player2)
             self.userInterface.detectTabChange(0)
             self.userInterface.detectTabChange(1)
             if self.player1.buildings[0].destroyed == True or self.player1.playerFood<0:

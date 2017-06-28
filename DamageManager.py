@@ -6,7 +6,6 @@ class DamageHandler():
 
     def __init__(self):
         self.shouldFire = False
-        self.attackerSelected = False
 
     def manageDamageDelt(self, x, y, playerAttacking, playerDefending, terrain):
         #switch to targeting mode
@@ -21,7 +20,6 @@ class DamageHandler():
                                     self.defender = playerDefending.buildings[i]
                                     self.defender.takeDamage(self.Damage, terrain, playerDefending, self.defender)
                                     self.shouldFire = False
-                                    self.attackerSelected = False
                                     return True
                             else:
                                 print("not in range")
@@ -38,4 +36,3 @@ class DamageHandler():
                                 print("attacker selected!")
                                 print(self.Damage)
                                 self.shouldFire = True
-                                self.attackerSelected == True
