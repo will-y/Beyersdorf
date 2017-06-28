@@ -20,7 +20,8 @@ class End_Screen:
         self.text2 = self.font.render(winner + " was able outsmart their opponent and", 1, pg.Color("Black"))
         self.text3 = self.font.render("destroy their castle. The land of Beyersdörf is", 1, pg.Color("Black"))
         self.text4 = self.font.render("all yours now.", 1, pg.Color("Black"))
-        self.text5 = self.font.render("(Press Enter to quit the game)", 1, pg.Color("Black"))
+        self.text5 = self.font.render("(Press Enter to restart the game)", 1, pg.Color("Black"))
+        self.text6 = self.font.render("(Press Escape to quit the game)", 1, pg.Color("Black"))
     
     def runScreen(self):
         while True:
@@ -30,9 +31,9 @@ class End_Screen:
             for event in events: #If X is clicked, don't crash the window.
                 if event.type == pg.QUIT:
                     sys.exit()
-            if key[pg.K_RETURN]: #If Return key is pressed, end game.
+            if key[pg.K_RETURN]: #If Return key is pressed, restart game.
                 break
-            if key[pg.K_ESCAPE]:
+            if key[pg.K_ESCAPE]: #If Escape key is pressed, quit game.
                 sys.exit()
             self.endscreen.fill(self.screen_color)
             self.endscreen.blit(self.text1, (133, 200))
@@ -40,4 +41,5 @@ class End_Screen:
             self.endscreen.blit(self.text3, (110, 310))
             self.endscreen.blit(self.text4, (110, 340))
             self.endscreen.blit(self.text5, (210, 400))
+            self.endscreen.blit(self.text6, (210, 440))
             pg.display.update()

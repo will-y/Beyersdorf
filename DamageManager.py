@@ -12,7 +12,6 @@ class DamageHandler():
         #switch to targeting mode
         #if player clicks on enemy tile to attack
         if terrain.board[x][y].builtOn == True:
-            if self.attackerSelected == True:
                 for i in range(len(playerDefending.buildings)):
                     if math.floor(playerDefending.buildings[i].x/100) == math.floor(x):
                         if math.floor(playerDefending.buildings[i].y/100) == math.floor(y):
@@ -24,31 +23,13 @@ class DamageHandler():
                                     self.shouldFire = False
                                     self.attackerSelected = False
                                     return True
+<<<<<<< HEAD
                                 else:
                                     print("not in range")
-                        
-    #     print("found building")
-
-        #     if terrain.board[x][y].builtOn == True:
-        #         print(x,y)
-        #         print(self.shooter.x/100,self.shooter.y/100)
-        #         print(self.shooter.range)
-        #         for i in range(len(playerDefending.buildings)):
-
-        #             #if target is opponents tile
-        #             if math.floor(playerDefending.buildings[i].x/100) == math.floor(x): 
-
-        #                 if math.floor(playerDefending.buildings[i].y/100) == math.floor(y):
-        #                     if (math.fabs(math.floor(self.shooter.x/100) - x) + math.fabs(math.floor(self.shooter.y/100) - y)) <= self.shooter.range:
-        #                         print("found enemy")
-        #                         self.receiver = playerDefending.buildings[i]
-        #                         print(self.receiver)
-        #                         self.Damage = self.shooter.damage
-        #                         print(self.Damage)
-        #                         self.receiver.takeDamage(self.Damage, terrain)
-        #                         self.needToDealDam = False
-        #                     else:
-        #                         print("not in range")
+=======
+                            else:
+                                print("not in range")
+>>>>>>> a61ee6c21c2c2d82e122c9d453994d9972d813ed
 
     def findShooter(self, xCoord, yCoord, playerAttacking, playerDefending,terrain):
         if terrain.board[xCoord][yCoord].builtOn == True:
@@ -61,24 +42,9 @@ class DamageHandler():
                                 self.Damage = self.attacker.damage
                                 print("attacker selected!")
                                 print(self.Damage)
+<<<<<<< HEAD
+                                self.shouldFire = True
+=======
                                 self.shouldFire = True
                                 self.attackerSelected == True
-    #     self.xCoord = xCoord
-    #     self.yCoord = yCoord
-    #     if terrain.board[xCoord][yCoord].builtOn == True:
-
-    #         for b in range(len(playerAttacking.buildings)):
-
-    #             #if clicked on a fireable building
-    #             if math.floor(playerAttacking.buildings[b].x/100) == math.floor(xCoord): 
-
-    #                 if math.floor(playerAttacking.buildings[b].y/100) == math.floor(yCoord):
-
-    #                     if terrain.board[xCoord][yCoord].builtOn == True:
-
-    #                         if playerAttacking.buildings[b].canFire == True:
-
-    #                             self.shooter = playerAttacking.buildings[b]
-    #                             print("clicked on a building")
-    #                             self.needToDealDam = True
-    #                             print(str(self.needToDealDam) + "here")
+>>>>>>> a61ee6c21c2c2d82e122c9d453994d9972d813ed
