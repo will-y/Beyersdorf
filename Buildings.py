@@ -78,6 +78,7 @@ class Building:
                 if attackedBuilding == receivingPlayer.buildings[i]:
                     print(i)
                     receivingPlayer.buildings.pop(i)
+                    break
 
         else:
             health = Health.Health((self.x, self.y), self.tilesize, self.screen)
