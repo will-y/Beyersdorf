@@ -235,7 +235,7 @@ class Main():
             else:
                 return pg.mouse.get_pos() 
         
-        if(pg.mouse.get_pressed()[1]):
+        if(pg.mouse.get_pressed()[2]):
             print("going to destroy")
             if(boardCoords):
                 self.realX = pg.mouse.get_pos()[0]
@@ -243,11 +243,11 @@ class Main():
                 self.xCoord = (int)(pg.mouse.get_pos()[0]/100)
                 self.yCoord = (int)(pg.mouse.get_pos()[1]/100)
 
-                if terrain.board[xCoord][yCoord].builtOn == True:
+                if self.terrainobject.board[self.xCoord][self.yCoord].builtOn == True:
                     if turnManager.playerOneTurn == True and not turnManager.playerOneActions == turnManager.playerOneActionsUsed:
                         for b in range(len(self.player1.buildings)):
-                            if math.floor(self.player1.buildings[b].x/100) == math.floor(xCoord):
-                                if math.floor(self.player1.buildings[b].y/100) == math.floor(yCoord):
+                            if math.floor(self.player1.buildings[b].x/100) == math.floor(self.xCoord):
+                                if math.floor(self.player1.buildings[b].y/100) == math.floor(self.yCoord):
                                     self.player1.buildings[b].takeDamage(10000, self.terrainobject, self.player1, self.player1.buildings[b])
 
     def runGame(self):
