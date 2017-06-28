@@ -20,18 +20,18 @@ class Main():
         self.player2 = Player.Player()
         self.selectedBuilding = 0
 
-        self.farmSound = 'Sound/Music.wav'
-        self.ranchSound = 'Sound/Music.wav'
-        self.lumberSound = 'Sound/Music.wav'
-        self.quarrySound = 'Sound/Music.wav'
-        self.mineSound = 'Sound/Music.wav'
-        self.houseSound = 'Sound/Music.wav'
-        self.townSound = 'Sound/Music2.wav'
-        self.citySound = 'Sound/Music2.wav'
-        self.bridgeSound = 'Sound/Music2.wav'
-        self.castleSound = 'Sound/Music2.wav'
-        self.outpostSound = 'Sound/Music2.wav'
-        self.cannonSound = 'Sound/Music2.wav'
+        self.farmSound = 'Sound/Music3.wav'
+        self.ranchSound = 'Sound/Music3.wav'
+        self.lumberSound = 'Sound/Music3.wav'
+        self.quarrySound = 'Sound/Music3.wav'
+        self.mineSound = 'Sound/Music3.wav'
+        self.houseSound = 'Sound/Music3.wav'
+        self.townSound = 'Sound/Music3.wav'
+        self.citySound = 'Sound/Music3.wav'
+        self.bridgeSound = 'Sound/Music3.wav'
+        self.castleSound = 'Sound/Music3.wav'
+        self.outpostSound = 'Sound/Music3.wav'
+        self.cannonSound = 'Sound/Music3.wav'
 
     def changeResources(self, player):
         if player == 1:
