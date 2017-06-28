@@ -601,10 +601,6 @@ class UserInterface():
                     pg.draw.rect(self.screen, self.tabButtonColor, (1050, 496 + self.buildingPadding * 5 + self.buildingWidth * 4, self.buildingRect1Width, self.buildingRect1Height + 8))
                     pg.draw.rect(self.screen, self.tabButtonSelectedColor, (1050, 496 + self.buildingPadding * 6 + self.buildingWidth * 5, self.buildingRect1Width, self.buildingRect1Height + 8))
 
-            # self.drawResourceBuildings()
-            # for i in range(6):
-            #     self.drawResourceCosts(i)
-
     def detectClick(self, boardCoords):
         if(pg.mouse.get_pressed()[0]):
             if(boardCoords):
