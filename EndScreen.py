@@ -30,9 +30,9 @@ class End_Screen:
             for event in events: #If X is clicked, don't crash the window.
                 if event.type == pg.QUIT:
                     sys.exit()
-            if key[pg.K_RETURN]: #If Return key is pressed, end game.
+            if key[pg.K_RETURN]: #If Return key is pressed, restart game.
                 break
-            if key[pg.K_ESCAPE]:
+            if key[pg.K_ESCAPE]: #If Escape key is pressed, quit game.
                 sys.exit()
             self.endscreen.fill(self.screen_color)
             self.endscreen.blit(self.text1, (133, 200))

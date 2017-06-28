@@ -259,8 +259,8 @@ class Main():
 
 def main():
     pg.init()
-    main = Main()
     while True:
+        main = Main()
         main.runGame()
 
 main()
