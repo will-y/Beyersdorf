@@ -139,6 +139,8 @@ class Main():
                             self.Handler.findShooter(self.xCoord, self.yCoord, self.player2, self.player1, self.terrainobject)
                             if self.Handler.manageDamageDelt(self.xCoord, self.yCoord, self.player2, self.player1, self.terrainobject):
                                 turnManager.useAction(2)
+                        else:
+                            self.userInterface.displayError("No More Actions")
                         # elif self.Handler.needToDealDam == True:
                         #     if turnManager.playerOneTurn == True and turnManager.playerOneActionsUsed < turnManager.playerOneActions:
                         #         if self.Handler.manageDamageDelt(self.xCoord, self.yCoord, self.player1, self.player2, self.terrainobject):

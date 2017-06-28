@@ -154,9 +154,9 @@ class UserInterface():
         #ID = 0
         self.farmCost =       "100    50    1     1"
         #ID = 1
-        self.ranchCost =      "200    100   4    2"
+        self.ranchCost =      "200    100   4     2"
         #ID = 2
-        self.fishCost =       "200    100   5     1"
+        self.fishCost =       "125    75    2     1"
         #ID = 3
         self.lumberMillCost = "50     50    2     1"
         #ID = 4
@@ -174,9 +174,9 @@ class UserInterface():
         #ID = 10
         self.castleCost =     "1000   800   100   +10"
         #ID = 11
-        self.outpostCost =    "300    100   10    1"
+        self.outpostCost =    "200    100   15    1"
         #ID = 12
-        self.cannonCost =     "400    500   50    3"
+        self.cannonCost =     "250    400   30    3"
 
         #INSPECTOR THINGS
         self.currentTile = "Forest"
@@ -340,7 +340,7 @@ class UserInterface():
         self.resourcesPerTurn[0] = tempW
         self.resourcesPerTurn[1] = tempS
         self.resourcesPerTurn[2] = tempO
-        self.resourcesPerTurn[3] = tempF
+        self.resourcesPerTurn[3] = tempF - (player.playerMaxPop -player.playerCurPop)
 
         pg.draw.rect(self.screen, self.rectColor, (self.rectXPos, self.rectYPos, self.rectWidth, self.rectHeight))
         self.woodCount = self.resourceCountFont.render(str(player.playerWood) + " " + str(self.resourcesPerTurn[0]) + "/Turn", True, pg.Color('black'))
