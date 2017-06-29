@@ -23,6 +23,7 @@ class Main():
         self.sounds = []
         self.farmSound = pg.mixer.Sound('Sound/FarmSound.wav')
         self.ranchSound = pg.mixer.Sound('Sound/RanchSound.wav')
+        self.fishSound = pg.mixer.Sound('Sound/MineSound.wav')
         self.lumberSound = pg.mixer.Sound('Sound/LumberSound.wav')
         self.quarrySound = pg.mixer.Sound('Sound/MineSound.wav')
         self.mineSound = pg.mixer.Sound('Sound/MineSound.wav')
@@ -35,6 +36,7 @@ class Main():
         self.cannonSound = pg.mixer.Sound('Sound/ClangSound.wav')
         self.sounds.append(self.farmSound)
         self.sounds.append(self.ranchSound)
+        self.sounds.append(self.fishSound)
         self.sounds.append(self.lumberSound)
         self.sounds.append(self.quarrySound)
         self.sounds.append(self.mineSound)
