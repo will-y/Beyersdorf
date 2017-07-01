@@ -16,7 +16,7 @@ class Main_Menu:
         self.title = pg.image.load("Images/beyersdorfTitle.png")
         self.title = pg.transform.scale(self.title, (533, 133))
         # Info Text
-        self.font = pg.font.Font("OptimusPrinceps.ttf", 30)
+        self.font = pg.font.Font("Fonts/OptimusPrinceps.ttf", 30)
         self.text1 = self.font.render("Welcome to Beyersdörf!", 1, pg.Color("Black"))
         self.text2 = self.font.render("Beyersdörf is a tile based strategy game.", 1, pg.Color("Black"))
         self.text3 = self.font.render("The object of the game is to destroy the", 1, pg.Color("Black"))
