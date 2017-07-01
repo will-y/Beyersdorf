@@ -8,6 +8,7 @@ class Manager:
         self.playerTwoActions = 2
         self.playerOneActionsUsed = 0
         self.playerTwoActionsUsed = 0
+        self.turn = 0
 
     def addActionToPlayer(self, player):
         if player == 1:
@@ -25,8 +26,10 @@ class Manager:
         if self.playerOneTurn == True:
             self.playerOneTurn = False
             self.playerTwoActionsUsed = 0
-            print("Player Two Turn Starts!")
+            self.turn += 1
+            print(self.turn)
         else:
             self.playerOneTurn = True
             self.playerOneActionsUsed = 0
-            print("Player One Turn Starts!")
+            self.turn += 1
+            print(self.turn)

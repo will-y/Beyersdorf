@@ -50,7 +50,6 @@ class Building:
             if receivingPlayer.buildings[0] == attackedBuilding:
                 self.destroyed = True
             else:
-                #print("Building Destroyed!")
                 #redraws tile after finding tileimage then draws rubble.png
                 self.destroyed = True
                 tileType = terrain.board[math.floor(self.x/100)][math.floor(self.y/100)].tileType
@@ -79,7 +78,6 @@ class Building:
                 self.canFire = False
                 for i in range(len(receivingPlayer.buildings)):
                     if attackedBuilding == receivingPlayer.buildings[i]:
-                        #print(i)
                         receivingPlayer.buildings.pop(i)
                         break
 
@@ -253,7 +251,6 @@ class Building:
             self.canFire = True
             self.damage = 15
             self.range = 4
-            #print(self.canFire)
 
             #CannonTower
         if self.buildingType == 12:

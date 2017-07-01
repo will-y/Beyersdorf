@@ -181,7 +181,6 @@ class Main():
                             self.Handler.findShooter(self.xCoord, self.yCoord, self.player1, self.player2, self.terrainobject)
                             if self.Handler.manageDamageDelt(self.xCoord, self.yCoord, self.player1, self.player2, self.terrainobject):
                                 turnManager.useAction(1)
-                                # print(turnManager.playerOneActions, turnManager.playerOneActionsUsed)
                         elif turnManager.playerOneTurn == False and turnManager.playerTwoActionsUsed < turnManager.playerTwoActions:
                             self.Handler.findShooter(self.xCoord, self.yCoord, self.player2, self.player1, self.terrainobject)
                             if self.Handler.manageDamageDelt(self.xCoord, self.yCoord, self.player2, self.player1, self.terrainobject):
@@ -237,7 +236,6 @@ class Main():
                 return pg.mouse.get_pos() 
         
         if(pg.mouse.get_pressed()[2]):
-            # print("going to destroy")
             if(boardCoords):
                 self.realX = pg.mouse.get_pos()[0]
                 self.realY = pg.mouse.get_pos()[1]
