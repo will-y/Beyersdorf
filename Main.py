@@ -7,7 +7,7 @@ class Main():
         self.width = 1000
         self.height = 1000
         self.screen = pg.display.set_mode((math.floor(self.width* 3/2), self.height))
-        pg.display.set_caption("Beyersdörf")
+        pg.display.set_caption("Beyersdorf")
         self.background = pg.Surface(self.screen.get_size())
         self.background = self.background.convert()
         self.screen.fill(pg.Color('white'))
@@ -314,5 +314,4 @@ def main():
     while True:
         main = Main()
         main.runGame()
-
 main()
