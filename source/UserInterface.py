@@ -10,6 +10,12 @@ class UserInterface():
         self.tab1Font = pg.font.SysFont("monospace", 25)
         self.tab2Font = pg.font.SysFont("monospace", 15)
         self.buildingFont = pg.font.SysFont("monospace", 14)
+        
+        self.gameHeight = 1000
+        self.gameWidth = 1000
+
+        self.UIWidth = self.gameWidth/2
+        self.UIHeight = self.gameHeight
 
         #Resources List
         self.resourceText = self.font.render("Resources", True, pg.Color('black'))
@@ -31,63 +37,63 @@ class UserInterface():
 
         #Resource Images
         self.woodImage = pg.image.load("Images/log.png")
-        self.woodImage = pg.transform.scale(self.woodImage, (70, 45))
-        self.woodCostImage = pg.transform.scale(self.woodImage, (35, 23))
+        self.woodImage = pg.transform.scale(self.woodImage, (math.floor(self.UIWidth/7), math.floor(self.UIHeight/22)))
+        self.woodCostImage = pg.transform.scale(self.woodImage, (math.floor(self.UIWidth/14.3), math.floor(self.UIHeight/43.5)))
 
         self.stoneImage = pg.image.load("Images/stone.png")
-        self.stoneImage = pg.transform.scale(self.stoneImage, (70, 45))
-        self.stoneCostImage = pg.transform.scale(self.stoneImage, (35, 23))
+        self.stoneImage = pg.transform.scale(self.stoneImage, (math.floor(self.UIWidth/7), math.floor(self.UIHeight/22)))
+        self.stoneCostImage = pg.transform.scale(self.stoneImage, (math.floor(self.UIWidth/14.3), math.floor(self.UIHeight/43.5)))
 
         self.oreImage = pg.image.load("Images/ore.png")
-        self.oreImage = pg.transform.scale(self.oreImage, (70, 45))
-        self.oreCostImage = pg.transform.scale(self.oreImage, (35, 23))
+        self.oreImage = pg.transform.scale(self.oreImage, (math.floor(self.UIWidth/7), math.floor(self.UIHeight/22)))
+        self.oreCostImage = pg.transform.scale(self.oreImage, (math.floor(self.UIWidth/14.3), math.floor(self.UIHeight/43.5)))
 
         self.foodImage = pg.image.load("Images/food.png")
-        self.foodImage = pg.transform.scale(self.foodImage, (60, 45))
+        self.foodImage = pg.transform.scale(self.foodImage, (math.floor(self.UIWidth / ((1/3) + 8)), math.floor(self.UIHeight/22)))
 
         self.populationImage = pg.image.load("Images/pop.png")
-        self.populationImage = pg.transform.scale(self.populationImage, (45, 45))
-        self.populationCostImage = pg.transform.scale(self.populationImage, (23, 23))
+        self.populationImage = pg.transform.scale(self.populationImage, (math.floor(self.UIHeight/22), math.floor(self.UIHeight/22)))
+        self.populationCostImage = pg.transform.scale(self.populationImage, (math.floor(self.UIHeight/43.5), math.floor(self.UIHeight/43.5)))
 
         #Building Images
         self.farmImage = pg.image.load("Images/farm.png")
-        self.farmImage = pg.transform.scale(self.farmImage, (60, 60))
+        self.farmImage = pg.transform.scale(self.farmImage, (math.floor(self.UIWidth / ((1/3) + 8)), math.floor(self.UIWidth / ((1/3) + 8))))
 
         self.ranchImage = pg.image.load("Images/ranch.png")
-        self.ranchImage = pg.transform.scale(self.ranchImage, (60, 60))
+        self.ranchImage = pg.transform.scale(self.ranchImage, (math.floor(self.UIWidth / ((1/3) + 8)), math.floor(self.UIWidth / ((1/3) + 8))))
 
         self.fishImage = pg.image.load("Images/fishingHut.png")
-        self.fishImage = pg.transform.scale(self.fishImage, (60, 60))
+        self.fishImage = pg.transform.scale(self.fishImage, (math.floor(self.UIWidth / ((1/3) + 8)), math.floor(self.UIWidth / ((1/3) + 8))))
 
         self.quarryImage = pg.image.load("Images/quarry.png")
-        self.quarryImage = pg.transform.scale(self.quarryImage, (60, 60))
+        self.quarryImage = pg.transform.scale(self.quarryImage, (math.floor(self.UIWidth / ((1/3) + 8)), math.floor(self.UIWidth / ((1/3) + 8))))
 
         self.lumberMillImage = pg.image.load("Images/lumberMill.png")
-        self.lumberMillImage = pg.transform.scale(self.lumberMillImage, (60, 60))
+        self.lumberMillImage = pg.transform.scale(self.lumberMillImage, (math.floor(self.UIWidth / ((1/3) + 8)), math.floor(self.UIWidth / ((1/3) + 8))))
 
         self.mineImage = pg.image.load("Images/mine.png")
-        self.mineImage = pg.transform.scale(self.mineImage, (60, 60))
+        self.mineImage = pg.transform.scale(self.mineImage, (math.floor(self.UIWidth / ((1/3) + 8)), math.floor(self.UIWidth / ((1/3) + 8))))
 
         self.castleImage = pg.image.load("Images/castle1.png")
-        self.castleImage = pg.transform.scale(self.castleImage, (60, 60))
+        self.castleImage = pg.transform.scale(self.castleImage, (math.floor(self.UIWidth / ((1/3) + 8)), math.floor(self.UIWidth / ((1/3) + 8))))
 
         self.outpostImage = pg.image.load("Images/outpost.png")
-        self.outpostImage = pg.transform.scale(self.outpostImage, (60, 60))
+        self.outpostImage = pg.transform.scale(self.outpostImage, (math.floor(self.UIWidth / ((1/3) + 8)), math.floor(self.UIWidth / ((1/3) + 8))))
 
         self.cannonImage = pg.image.load("Images/cannonTower.png")
-        self.cannonImage = pg.transform.scale(self.cannonImage, (30, 60))
+        self.cannonImage = pg.transform.scale(self.cannonImage, (math.floor(500/16.7), math.floor(self.UIWidth / ((1/3) + 8))))
 
         self.houseImage = pg.image.load("Images/house.png")
-        self.houseImage = pg.transform.scale(self.houseImage, (60, 60))
+        self.houseImage = pg.transform.scale(self.houseImage, (math.floor(self.UIWidth / ((1/3) + 8)), math.floor(self.UIWidth / ((1/3) + 8))))
 
         self.townImage = pg.image.load("Images/town.png")
-        self.townImage = pg.transform.scale(self.townImage, (60, 60))
+        self.townImage = pg.transform.scale(self.townImage, (math.floor(self.UIWidth / ((1/3) + 8)), math.floor(self.UIWidth / ((1/3) + 8))))
 
         self.cityImage = pg.image.load("Images/city.png")
-        self.cityImage = pg.transform.scale(self.cityImage, (60, 60))
+        self.cityImage = pg.transform.scale(self.cityImage, (math.floor(self.UIWidth / ((1/3) + 8)), math.floor(self.UIWidth / ((1/3) + 8))))
 
         self.bridgeImage = pg.image.load("Images/bridge.png")
-        self.bridgeImage = pg.transform.scale(self.bridgeImage, (60, 60))
+        self.bridgeImage = pg.transform.scale(self.bridgeImage, (math.floor(self.UIWidth / ((1/3) + 8)), math.floor(self.UIWidth / ((1/3) + 8))))
 
         #Resources Per Turn   [wood, stone, ore, food]
         self.resourcesPerTurn = [0,0,0,0]
@@ -107,16 +113,16 @@ class UserInterface():
         #Background rectangle dimensions
         self.rectXPos = 1000
         self.rectYPos = 0
-        self.rectWidth = 500
-        self.rectHeight = 1000
+        self.rectWidth = self.UIWidth
+        self.rectHeight = self.UIHeight
         self.rectColor = pg.Color(183, 183, 183)
 
         self.inspector = False
 
         #First Tab Dimensions
-        self.tabButtonHeight = 35
-        self.tabButtonWidth = 200
-        self.tabButtonXValue = 1050
+        self.tabButtonHeight = math.floor(self.UIHeight/28.6)
+        self.tabButtonWidth = math.floor(self.UIWidth/2.5)
+        self.tabButtonXValue = self.gameWidth + math.floor(self.UIWidth/10)
         self.tabButtonYValue = 400
         self.tabButtonColor = pg.Color(145, 145, 145)
         self.tabButtonSelectedColor = pg.Color(99, 99, 99)
