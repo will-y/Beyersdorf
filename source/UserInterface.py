@@ -1,5 +1,5 @@
 import pygame as pg, sys, math
-from Classes import Player, InspectorGadget, Terrain
+from Source import Player, InspectorGadget, Terrain
 
 class UserInterface():
     def __init__(self, screen):

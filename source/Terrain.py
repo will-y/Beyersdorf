@@ -1,5 +1,5 @@
 import pygame as pg, time, math, random
-from Classes import TileCreate as tc
+from Source import TileCreate as tc
 
 class Terrain():
     """Makes the world as we know it"""

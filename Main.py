@@ -1,5 +1,5 @@
 import pygame as pg, sys, math, time
-from Classes import MainMenu, EndScreen, UserInterface, Terrain, TileCreate, Health, Buildings, Player, InspectorGadget, TurnManager, DamageManager
+from Source import MainMenu, EndScreen, UserInterface, Terrain, TileCreate, Health, Buildings, Player, InspectorGadget, TurnManager, DamageManager
 
 class Main():
 
@@ -7,7 +7,7 @@ class Main():
         self.width = 1000
         self.height = 1000
         self.screen = pg.display.set_mode((math.floor(self.width* 3/2), self.height))
-        pg.display.set_caption("Beyersdorf")
+        pg.display.set_caption("Beyersdörf")
         self.background = pg.Surface(self.screen.get_size())
         self.background = self.background.convert()
         self.screen.fill(pg.Color('white'))

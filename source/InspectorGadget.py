@@ -1,5 +1,5 @@
 import pygame as pg, math
-from Classes import Terrain
+from Source import Terrain
 
 class Inspector:
 
