@@ -1,5 +1,10 @@
-The Third Worst Game in the Wild West
+# Beyersdörf
+The third worst game in the Wild West!
 
-At least we aren't using 3D arrays!
+## Description
+Beyersdörf is a tile-based strategy game made in Python. Two people start the game with a castle and their objective is to destroy thier opponent's castle. Players can place buildings on tiles to generate resources. Then can then spend resources on military structures that can then fire upon the enemies buildings.
 
-Beyersdorf food zerg is best zerg
+## Planned Features
+- AI
+- Networking
+- Scalable Map Sizes

@@ -16,13 +16,12 @@ class DamageHandler():
                         if math.floor(playerDefending.buildings[i].y/100) == math.floor(y):
                             if (math.fabs(math.floor(self.attacker.x/100) - x) + math.fabs(math.floor(self.attacker.y/100) - y)) <= self.attacker.range:
                                 if self.shouldFire == True:
-                                    print("found enemy")
                                     self.defender = playerDefending.buildings[i]
                                     self.defender.takeDamage(self.Damage, terrain, playerDefending, self.defender)
                                     self.shouldFire = False
                                     return True
                             else:
-                                print("not in range")
+                                pass
 
     def findShooter(self, xCoord, yCoord, playerAttacking, playerDefending,terrain):
         if terrain.board[xCoord][yCoord].builtOn == True:
@@ -33,6 +32,4 @@ class DamageHandler():
                             if playerAttacking.buildings[b].canFire == True:
                                 self.attacker = playerAttacking.buildings[b]
                                 self.Damage = self.attacker.damage
-                                print("attacker selected!")
-                                print(self.Damage)
                                 self.shouldFire = True
