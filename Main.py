@@ -19,7 +19,6 @@ class Main():
         self.player1 = Player.Player()
         self.player2 = Player.Player()
         self.selectedBuilding = 0
-
         self.sounds = []
         self.farmSound = pg.mixer.Sound('Sound/FarmSound.wav')
         self.ranchSound = pg.mixer.Sound('Sound/RanchSound.wav')
