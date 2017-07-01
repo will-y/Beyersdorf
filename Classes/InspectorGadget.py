@@ -1,4 +1,5 @@
-import pygame as pg, math, Terrain
+import pygame as pg, math
+from Classes import Terrain
 
 class Inspector:
 

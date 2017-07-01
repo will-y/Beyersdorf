@@ -1,11 +1,5 @@
-import pygame as pg
-import math
-import time
-import Terrain
-import Health
-import TileCreate
-import TurnManager
-import Player
+import pygame as pg, math, time
+from Classes import Terrain, Health, TileCreate, TurnManager, Player
 
 class Building:
 

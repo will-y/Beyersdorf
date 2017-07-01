@@ -1,6 +1,6 @@
 import math
 import pygame as pg
-import Terrain
+from Classes import Terrain
 
 class Health():
     """Class that deals with health of buildings"""

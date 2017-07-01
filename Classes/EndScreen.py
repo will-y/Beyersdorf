@@ -1,4 +1,4 @@
-import pygame as pg, InspectorGadget as god, sys
+import pygame as pg, sys
 
 class End_Screen:
 

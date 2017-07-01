@@ -1,5 +1,5 @@
-import pygame as pg
-import sys, Health, Terrain, math, UserInterface, MainMenu, Buildings, Player, InspectorGadget, TurnManager,time,DamageManager, EndScreen
+import pygame as pg, sys, math, time
+from Classes import MainMenu, EndScreen, UserInterface, Terrain, TileCreate, Health, Buildings, Player, InspectorGadget, TurnManager, DamageManager
 
 class Main():
 

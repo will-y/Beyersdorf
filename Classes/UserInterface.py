@@ -1,9 +1,5 @@
-import pygame as pg
-import sys
-import Player
-import InspectorGadget
-import Terrain
-import math
+import pygame as pg, sys, math
+from Classes import Player, InspectorGadget, Terrain
 
 class UserInterface():
     def __init__(self, screen):
