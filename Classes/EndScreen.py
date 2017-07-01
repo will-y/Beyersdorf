@@ -14,8 +14,8 @@ class End_Screen:
         self.screen_color = (128, 0, 0)
         self.clock = pg.time.Clock()
         # Info Text
-        self.bigfont = pg.font.Font("OptimusPrinceps.ttf", 60)
-        self.font = pg.font.Font("OptimusPrinceps.ttf", 30)
+        self.bigfont = pg.font.Font("Fonts/OptimusPrinceps.ttf", 60)
+        self.font = pg.font.Font("Fonts/OptimusPrinceps.ttf", 30)
         self.text1 = self.bigfont.render(winner + " is Victorious!", 1, pg.Color("Black"))
         self.text2 = self.font.render(winner + " was able outsmart their opponent and", 1, pg.Color("Black"))
         self.text3 = self.font.render("destroy their castle. The land of Beyersdörf is", 1, pg.Color("Black"))
