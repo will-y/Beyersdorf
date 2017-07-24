@@ -288,10 +288,12 @@ class Main():
 
         while(True):
             self.clock.tick(10)
-            
+            key = pg.key.get_pressed()
             for event in pg.event.get():
                 if(event.type == pg.QUIT):
                     sys.exit()
+            if key[pg.K_ESCAPE]: #If Return key is pressed, start game.
+                sys.exit()
             pg.mouse.set_cursor(*pg.cursors.broken_x)
             pg.display.update()
             self.detectClick(True, turnManager)
