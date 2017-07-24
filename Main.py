@@ -1,5 +1,5 @@
 import pygame as pg, sys, math, time
-from Source import MainMenu, EndScreen, UserInterface, Terrain, TileCreate, Health, Buildings, Player, InspectorGadget, TurnManager, DamageManager
+from source import MainMenu, EndScreen, UserInterface, Terrain, TileCreate, Health, Buildings, Player, InspectorGadget, TurnManager, DamageManager
 
 class Main():
 
@@ -254,7 +254,7 @@ class Main():
         self.main_menu = MainMenu.Main_Menu()
         self.main_menu.runScreen()
         turnManager = TurnManager.Manager()
-        self.screen = pg.display.set_mode((math.floor(self.width* 3/2), self.height))
+        self.screen = pg.display.set_mode((math.floor(self.width* 3/2), self.height),pg.FULLSCREEN)
         self.screen.fill(pg.Color('white'))
         
         # main_menu.width = self.width

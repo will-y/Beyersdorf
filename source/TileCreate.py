@@ -1,5 +1,5 @@
 import pygame as pg, time, math, random
-from Source import Health
+from source import Health
 
 class GenerateTile:
     """Creates tile that holds what type of tile it is(ie forest, mountain, hill, plains, water) and the resources that exist on that tile(wood, stone, ore)"""

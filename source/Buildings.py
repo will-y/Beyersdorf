@@ -1,5 +1,5 @@
 import pygame as pg, math, time
-from Source import Terrain, Health, TileCreate, TurnManager, Player
+from source import Terrain, Health, TileCreate, TurnManager, Player
 
 class Building:
 

@@ -6,7 +6,7 @@ class Main_Menu:
         # Screen Settings
         self.width = 800
         self.height = 800
-        self.startscreen = pg.display.set_mode((self.width, self.height))
+        self.startscreen = pg.display.set_mode((self.width, self.height),pg.FULLSCREEN)
         pg.display.set_caption("Beyersdörf")
         self.background = pg.Surface(self.startscreen.get_size())
         self.background = self.background.convert()

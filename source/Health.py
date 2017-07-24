@@ -1,6 +1,5 @@
-import math
-import pygame as pg
-from Source import Terrain
+import pygame as pg, math
+from source import Terrain
 
 class Health():
     """Class that deals with health of buildings"""

@@ -1,6 +1,4 @@
-import math
-import pygame as pg
-import time
+import pygame as pg, math, time
 
 class DamageHandler():
 
