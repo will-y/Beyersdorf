@@ -1,3 +1,5 @@
+import os
+os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % (0,0)
 import pygame as pg, sys, math, time
 from source import MainMenu, EndScreen, UserInterface, Terrain, TileCreate, Health, Buildings, Player, InspectorGadget, TurnManager, DamageManager
 
@@ -254,7 +256,7 @@ class Main():
         self.main_menu = MainMenu.Main_Menu()
         self.main_menu.runScreen()
         turnManager = TurnManager.Manager()
-        self.screen = pg.display.set_mode((math.floor(self.width* 3/2), self.height),pg.FULLSCREEN)
+        self.screen = pg.display.set_mode((math.floor(self.width* 3/2), self.height),pg.NOFRAME)
         self.screen.fill(pg.Color('white'))
         
         # main_menu.width = self.width

@@ -7,7 +7,7 @@ class End_Screen:
         # Screen Settings
         self.width = 800
         self.height = 800
-        self.endscreen = pg.display.set_mode((self.width, self.height),pg.FULLSCREEN)
+        self.endscreen = pg.display.set_mode((self.width, self.height),pg.NOFRAME)
         pg.display.set_caption("Beyersdörf")
         self.background = pg.Surface(self.endscreen.get_size())
         self.background = self.background.convert()
