@@ -44,6 +44,7 @@ class Terrain():
             self.waterTile = pg.image.load("Images/waterTile.png")
             self.waterTile = pg.transform.scale(self.waterTile, (int(self.tilesize), int(self.tilesize)))
             self.tileType = None
+            
     def generateBoard(self, screen):
         """Generates the board with different tiles"""
         self.board = []

@@ -1,6 +1,6 @@
 import os
 os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % (0,0)
-import pygame as pg, sys, math, time
+import pygame as pg, sys, math, time, ctypes
 from source import MainMenu, EndScreen, UserInterface, Terrain, TileCreate, Health, Buildings, Player, InspectorGadget, TurnManager, DamageManager
 
 class Main():

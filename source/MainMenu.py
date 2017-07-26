@@ -1,11 +1,11 @@
-import pygame as pg, sys, time
+import pygame as pg, sys, time, ctypes, math
 
 class Main_Menu:
 
     def __init__(self):
         # Screen Settings
-        self.width = 800
-        self.height = 800
+        self.width = ctypes.windll.user32.GetSystemMetrics(0)
+        self.height = ctypes.windll.user32.GetSystemMetrics(0)
         self.startscreen = pg.display.set_mode((self.width, self.height),pg.NOFRAME)
         pg.display.set_caption("Beyersdörf")
         self.background = pg.Surface(self.startscreen.get_size())
@@ -13,25 +13,19 @@ class Main_Menu:
         self.screen_color = (128, 0, 0)
         self.clock = pg.time.Clock()
         # Title
+        self.titleWidth = math.floor(self.width*0.5)
+        self.titleHeight = math.floor(self.height*0.15)
         self.title = pg.image.load("Images/beyersdorfTitle.png")
-        self.title = pg.transform.scale(self.title, (533, 133))
+        self.title = pg.transform.scale(self.title, (self.titleWidth, self.titleHeight))
         # Info Text
-        self.font = pg.font.Font("Fonts/OptimusPrinceps.ttf", 30)
-        self.text1 = self.font.render("Welcome to Beyersdörf!", 1, pg.Color("Black"))
-        self.text2 = self.font.render("Beyersdörf is a tile based strategy game.", 1, pg.Color("Black"))
-        self.text3 = self.font.render("The object of the game is to destroy the", 1, pg.Color("Black"))
-        self.text4 = self.font.render("enemy's base. Gather resources by building", 1, pg.Color("Black"))
-        self.text5 = self.font.render("buildings on tiles. Use resources to build", 1, pg.Color("Black"))
-        self.text6 = self.font.render("other buildings and create your empire.", 1, pg.Color("Black"))
-        self.text7 = self.font.render("Control the board and push into your", 1, pg.Color("Black"))
-        self.text8 = self.font.render("enemy's territory. Take down their base", 1, pg.Color("Black"))
-        self.text9 = self.font.render("to win the game. Good Luck!", 1, pg.Color("Black"))
-        self.text10 = self.font.render("(Press Enter to start the game)", 1, pg.Color("Black"))
+        self.textWidth = math.floor(self.width*0.45)
+        self.textHeight = math.floor(self.height*0.3)
+        self.text = pg.image.load("Images/mainmenuText.png")
+        self.text = pg.transform.scale(self.text, (self.textWidth, self.textHeight))
 
     def runScreen(self):
         pg.init()
         pg.font.init()
-        # textBox = eztext.Input(maxlength=45, color=(0,0,0), prompt="Board Size: ")
         while True:
             self.clock.tick(30)
             events = pg.event.get()
@@ -42,16 +36,7 @@ class Main_Menu:
             if key[pg.K_RETURN]: #If Return key is pressed, start game.
                 break
             self.startscreen.fill(self.screen_color)
-            #Rendering the text
-            self.startscreen.blit(self.title, (133, 60))
-            self.startscreen.blit(self.text1, (133,210))
-            self.startscreen.blit(self.text2, (133,240))
-            self.startscreen.blit(self.text3, (133,270))
-            self.startscreen.blit(self.text4, (133,300))
-            self.startscreen.blit(self.text5, (133,330))
-            self.startscreen.blit(self.text6, (133,360))
-            self.startscreen.blit(self.text7, (133,390))
-            self.startscreen.blit(self.text8, (133,420))
-            self.startscreen.blit(self.text9, (133,450))
-            self.startscreen.blit(self.text10,(133,510))
+            # Rendering the text
+            self.startscreen.blit(self.title, (math.floor(self.width/2-self.titleWidth/2), math.floor(self.height*0.07)))
+            self.startscreen.blit(self.text,  (math.floor(self.width/2-self.textWidth/2), math.floor(self.titleHeight+self.height*0.07+10)))
             pg.display.update()
