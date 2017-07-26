@@ -24,10 +24,14 @@ class Main_Menu:
         self.text = pg.transform.scale(self.text, (self.textWidth, self.textHeight))
 
     def runScreen(self):
+        '''Starts the main menu screen'''
         pg.init()
-        pg.font.init()
+        self.startscreen.fill(self.screen_color)
+        self.startscreen.blit(self.title, (math.floor(self.width/2-self.titleWidth/2), math.floor(self.height*0.07)))
+        self.startscreen.blit(self.text,  (math.floor(self.width/2-self.textWidth/2), math.floor(self.titleHeight+self.height*0.07+10)))
+        pg.display.update()
         while True:
-            self.clock.tick(30)
+            self.clock.tick(10)
             events = pg.event.get()
             key = pg.key.get_pressed()
             for event in events: #If X is clicked, don't crash the window.
@@ -35,8 +39,3 @@ class Main_Menu:
                     sys.exit()
             if key[pg.K_RETURN]: #If Return key is pressed, start game.
                 break
-            self.startscreen.fill(self.screen_color)
-            # Rendering the text
-            self.startscreen.blit(self.title, (math.floor(self.width/2-self.titleWidth/2), math.floor(self.height*0.07)))
-            self.startscreen.blit(self.text,  (math.floor(self.width/2-self.textWidth/2), math.floor(self.titleHeight+self.height*0.07+10)))
-            pg.display.update()

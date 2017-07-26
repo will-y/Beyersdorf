@@ -198,6 +198,7 @@ class UserInterface():
         self.currentTurn = "red"
 
     def drawInterface(self):
+        '''Draws Everything in the Interface'''
         pg.draw.rect(self.screen, self.rectColor, (self.rectXPos, self.rectYPos, self.rectWidth, self.rectHeight))
         pg.draw.rect(self.screen, pg.Color('black'), (self.rectXPos, self.rectYPos, self.rectWidth,self.rectHeight), 5)
 
@@ -281,6 +282,7 @@ class UserInterface():
         self.screen.blit(self.tab1InspectorText, (self.tabButtonXValue + self.tabButtonWidth + 30, self.tabButtonYValue + 5))
 
     def goToBuildingTab(self):
+        '''Switches to Building Tab'''
         self.inspector = False
         pg.draw.rect(self.screen, self.rectColor, (self.rectXPos, self.rectYPos, self.rectWidth, self.rectHeight))
         self.drawInterface()
@@ -297,11 +299,13 @@ class UserInterface():
         self.screen.blit(self.infrastructureTabText, (self.tabButton2XValue + 14 + self.tabButton2Width * 2, self.tabButton2YValue + 4))
 
     def goToInspectorTab(self):
+        '''Switches to Inspector Tab'''
         self.inspector = True
         pg.draw.rect(self.screen, self.rectColor, (self.rectXPos, self.rectYPos, self.rectWidth, self.rectHeight))
         self.drawInterface()
 
     def goToResourceBuildings(self):
+        '''Switches to Resource Tab'''
         self.currentBuildingTab = 0
         pg.draw.rect(self.screen, self.rectColor, (self.rectXPos, self.rectYPos, self.rectWidth, self.rectHeight))
         self.drawInterface()
@@ -310,6 +314,7 @@ class UserInterface():
         
 
     def goToMilitaryBuildings(self):
+        '''Switches to Military Tab'''
         self.currentBuildingTab = 1
         pg.draw.rect(self.screen, self.rectColor, (self.rectXPos, self.rectYPos, self.rectWidth, self.rectHeight))
         self.drawInterface()
@@ -318,6 +323,7 @@ class UserInterface():
         
 
     def goToInfrastructureBuildings(self):
+        '''Switches to Infrastructure Tab'''
         self.currentBuildingTab = 2
         pg.draw.rect(self.screen, self.rectColor, (self.rectXPos, self.rectYPos, self.rectWidth, self.rectHeight))
         self.drawInterface()
@@ -468,6 +474,7 @@ class UserInterface():
             
         self.drawInspector()
     def drawResourceBuildings(self, buildingID):
+        '''Draws the Resource Tab'''
         self.buildingID = buildingID
 
         self.switchSelectedBuilding(self.buildingID)
@@ -501,6 +508,7 @@ class UserInterface():
             self.drawResourceCosts(i)
     
     def drawMilitaryBuildings(self, buildingID):
+        '''Draws the Military Tab'''
         self.buildingID = buildingID
         self.switchSelectedBuilding(self.buildingID)
 
@@ -548,6 +556,7 @@ class UserInterface():
         sys.stdout.flush()
 
     def drawResourceCosts(self, buildingID):
+        '''Draws Resource Costs for Specified Building'''
         if(buildingID == 0):
             self.resources = self.tab2Font.render(self.farmCost, True, pg.Color('black'))  
             self.screen.blit(self.resources, (1230, 545))
@@ -566,9 +575,6 @@ class UserInterface():
         if(buildingID == 5):
             self.resources = self.tab2Font.render(self.mineCost, True, pg.Color('black'))
             self.screen.blit(self.resources, (1230, 500 + self.buildingPadding * (23/4) + self.buildingWidth * (11/2)))
-
-
-
         if(buildingID == 6):
             self.resources = self.tab2Font.render(self.houseCost, True, pg.Color('black'))
             self.screen.blit(self.resources, (1230, 545))
@@ -581,9 +587,6 @@ class UserInterface():
         if(buildingID == 9):
             self.resources = self.tab2Font.render(self.bridgeCost, True, pg.Color('black'))
             self.screen.blit(self.resources, (1230, 500 + self.buildingPadding * (15/4) + self.buildingWidth * (7/2)))
-
-
-
         if(buildingID == 10):
             self.resources = self.tab2Font.render(self.castleCost, True, pg.Color('black'))
             self.screen.blit(self.resources, (1230, 545))
@@ -597,7 +600,7 @@ class UserInterface():
         pg.draw.rect(self.screen, pg.Color(183, 183, 183), (1225, 500, 3, 490))
 
     def switchSelectedBuilding(self, buildingID):
-        
+        '''Switches the Currently Selected Building'''
         if(not self.inspector):
             if(buildingID == 0 or buildingID == 10 or buildingID == 6):
                 pg.draw.rect(self.screen, self.tabButtonSelectedColor, (1050, 496 + self.buildingPadding, self.buildingRect1Width, self.buildingRect1Height + 8))
@@ -653,6 +656,7 @@ class UserInterface():
                     pg.draw.rect(self.screen, self.tabButtonSelectedColor, (1050, 496 + self.buildingPadding * 6 + self.buildingWidth * 5, self.buildingRect1Width, self.buildingRect1Height + 8))
 
     def detectClick(self, boardCoords):
+        '''The True Detect Click Function'''
         if(pg.mouse.get_pressed()[0]):
             if(boardCoords):
                 self.xCoord = (int)(pg.mouse.get_pos()[0]/100)
@@ -688,8 +692,6 @@ class UserInterface():
                     # print("Switched to Infrastructure Buildings")
                     sys.stdout.flush()
                     self.goToInfrastructureBuildings()
-    def updateResourcesPerTurn(self):
-        pass
     def switchEndTurnButton(self, color):
         self.currentTurn = color
         if(self.currentTurn == "blue"):
