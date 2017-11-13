@@ -312,7 +312,6 @@ class UserInterface():
         self.switchSelectedBuilding(0)
         self.drawResourceBuildings(self.buildingID)
         
-
     def goToMilitaryBuildings(self):
         '''Switches to Military Tab'''
         self.currentBuildingTab = 1
@@ -320,7 +319,6 @@ class UserInterface():
         self.drawInterface()
         self.switchSelectedBuilding(10)
         self.drawMilitaryBuildings(self.buildingID)
-        
 
     def goToInfrastructureBuildings(self):
         '''Switches to Infrastructure Tab'''
@@ -330,7 +328,6 @@ class UserInterface():
         self.switchSelectedBuilding(6)
         self.drawInfrastructureBuildings(self.buildingID)
         
-
     def updateResources(self, player):
         tempW = 0
         tempS = 0
@@ -692,6 +689,7 @@ class UserInterface():
                     # print("Switched to Infrastructure Buildings")
                     sys.stdout.flush()
                     self.goToInfrastructureBuildings()
+                    
     def switchEndTurnButton(self, color):
         self.currentTurn = color
         if(self.currentTurn == "blue"):
@@ -710,6 +708,7 @@ class UserInterface():
         pg.draw.rect(self.screen, pg.Color('black'), (1230, 347, 220, 38), 3)
         errorMessage = self.tab2Font.render(message, True, pg.Color('black'))
         self.screen.blit(errorMessage, (1249, 360))
+        
     def getPlayer(self, player1, player2):
         self.player1 = player1
         self.player2 = player2
